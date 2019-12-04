@@ -31,12 +31,24 @@
 	echo '<div class="Charge" style="min-height:80vh">
     <center><div class="Charge-area">
     <div style=" float: left;">
-		<div>Quý khách vui lòng chuyển khoản theo yêu cầu để nạp tiền vào tài khoản</div><br />
-		<div>Ngân hàng nhận: NHNN&PTNT An Phú HCM - PGD Nguyễn Văn Cừ</div><br />
+		<div>Quý khách vui lòng chuyển khoản theo các phương thức dưới đây để nạp tiền vào tài khoản</div><br />
+		<div><strong>Ngân hàng nhận: NHNN&PTNT An Phú HCM - PGD Nguyễn Văn Cừ</strong></div><br />
 		<div>Tên người nhận: SANGSHOP</div><br />
-		<div>Số tài khoản: <strong>1606201036100</strong></div><br />
+		<div>Số tài khoản: 1606201036100</div><br />
 		<div>Số tiền muốn nạp</div><br />
-		<div>Nội dung: NAPTIEN-SANGSHOP-<số tiền muốn nạp>-<email></div><br />
+		<div>Nội dung: NAPTIEN-SANGSHOP-số tiền muốn nạp-email đăng ký tài khoản Sang Shop</div>
+		<br /><br />
+		<div> --------------------------------------------------------------------------- </div>
+		<div><strong>Chuyển tiền qua Momo: </strong></div><br />
+		<div>Số điện thoại người nhận: 0774603639</div><br />
+		<div>Nội dung: NAPTIEN-SANGSHOP-email đăng ký tài khoản Sang Shop</div>
+		<br /><br />
+		<div> --------------------------------------------------------------------------- </div>
+		<div><strong>Chuyển tiền qua Moca: </strong></div><br />
+		<div>Số điện thoại người nhận: 0774603639</div><br />
+		<div>Nội dung: NAPTIEN-SANGSHOP-email đăng ký tài khoản Sang Shop</div>
+		<br /><br />
+		<div> --------------------------------------------------------------------------- </div>
 		<div>*LƯU Ý: Vui lòng nhập đúng địa chỉ email để chúng tôi có thể chuyển tiền đúng tài khoản</div><br />
 		<div>Chúng tôi sẽ không giải quyết bất cứ trường hợp nào chuyển tiền sai hoặc email trong nội dung chuyển tiền bị sai </div><br />
 		</div></div></center></div>';
