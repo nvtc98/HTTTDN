@@ -21,7 +21,7 @@
 	if($row['name']==$_POST['usname'] && $row['passwd']==$_POST['passwde'])
 	{			
 		$_SESSION['IDk']=$row['name'];
-		// $_SESSION['permit']=$row['permit'];
+	 	$_SESSION['permit']=$row['permit'];
 	}			
 	header('Location: adcpg.php');
 	?>

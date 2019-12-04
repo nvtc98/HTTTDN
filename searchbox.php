@@ -19,7 +19,8 @@
 					<option value="Đang xử lý">
 					<option value="Hoàn thành">
 				</datalist>';
-		echo '<input type="submit" value="Tìm kiếm" /><input type="button" value="Add"  onclick="openNav1(&#039'.$_GET['id'].'&#039)"/></form>';
+//		echo '<input type="submit" value="Tìm kiếm" /><input type="button" value="Add"  onclick="openNav1(&#039'.$_GET['id'].'&#039)"/></form>';
+		echo '</form>';
 	}
 	if($_GET['id'] == "games")
 	{

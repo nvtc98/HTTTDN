@@ -109,7 +109,7 @@
 		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=tcharged&action='.$sortie.'&ac=1&page=0">Total Charged</a></div></td>
 		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=banned&action='.$sortie.'&ac=1&page=0">Banned</a></div></td>
 		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=footnote&action='.$sortie.'&ac=1&page=0">Note</a></div></td>';
-		if($permit<1)
+		if($permit<1 || $permit==2)
 		echo'<td>Functions</td>';
 		echo '</tr>';		
 		while($row=mysqli_fetch_array($result))
@@ -134,7 +134,7 @@
 			echo"<td>True</td>";
 			else echo"<td>False</td>";
 			echo"<td>".$row['footnote']."</td>";		
-			if($permit<1)
+			if($permit<1 || $permit==2)
 			{
 				echo '<td> <div class="butts">';
 				echo "<a href='#' onclick='openNav(".$row['Cid'].",&#039$tID&#039)'> edit </a> ";
@@ -246,7 +246,7 @@
 		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=tcharged&action='.$sortie.'&ac=1&page=0">Total Charged</a></div></td>
 		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=banned&action='.$sortie.'&ac=1&page=0">Banned</a></div></td>
 		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=footnote&action='.$sortie.'&ac=1&page=0">Note</a></div></td>';
-		if($permit<1)
+		if($permit<1 || $permit==2)
 		echo'<td>Functions</td>';
 		echo '</tr>';
 		while($row=mysqli_fetch_array($result))
@@ -271,7 +271,7 @@
 			echo"<td>True</td>";
 			else echo"<td>False</td>";
 			echo"<td>".$row['footnote']."</td>";	
-			if($permit<1)
+			if($permit<1 || $permit==2)
 			{
 				echo '<td> <div class="butts">';
 				echo "<a href='#' onclick='openNav(".$row['Cid'].",&#039$tID&#039)'> edit </a> ";

@@ -10,17 +10,25 @@
 	<?php
 	
 	echo '<form action="process.php" method="post">';
-	echo 'Login name:    <input type="text" id="usname" name="usname"/></br>
+//	echo 'Login name:    <input type="text" id="usname" name="usname"/></br>
+//		  Login password: <input type="password" id="passwd" name="passwde"/></br>
+//		  <input type="submit" value="Login"/> <input type="button" value="Register" onclick="boo()"/>
+//	';
+//	echo'</form>'	
+		
+		echo 'Login name:    <input type="text" id="usname" name="usname"/></br>
 		  Login password: <input type="password" id="passwd" name="passwde"/></br>
-		  <input type="submit" value="Login"/> <input type="button" value="Register" onclick="boo()"/>
+		  <input type="submit" value="Login"/>
 	';
-	echo'</form>'		
+	echo'</form>'	
 	?>
+<!--
 	<script>
 	function boo()
 		{
 			alert("tin người vkl");
 		}
 	</script>
+-->
 </body>
 </html>
