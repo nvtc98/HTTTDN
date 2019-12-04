@@ -8,9 +8,13 @@
 	$result = mysqli_fetch_array($query);
 	if(isset($_POST['mode']))
 	{
-		$_SESSION['user']=$result['Cname'];
-		$_SESSION['userId']=$result['Cid'];
-		echo $result["Cname"];
+		if($result['banned']==0)
+		{
+			$_SESSION['user']=$result['Cname'];
+			$_SESSION['userId']=$result['Cid'];
+			echo $result["Cname"];
+		}
+		else echo -2; //banned
 	}
 	else if(!isset($result)) echo -1; //account does not exist;
 	else echo $result['Cpasswd'];

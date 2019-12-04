@@ -117,7 +117,7 @@
 }
 	function showCustomerZone()
 	{
-		document.getElementById("customerZone").innerHTML='<input type="button" id="signInBtn" value="Đăng nhập" class="signInUpBttn" style="margin-right: 15px;" onclick="signIn()" /> <a href="sign-up.php"><input type="button" value="Đăng ký" class="signInUpBttn" /></a> <input type="button" value="SANG'+"'"+'s giỏ" class="signInUpBttn" style="margin-right: 10px" onclick="Basket();" /> ';
+		document.getElementById("customerZone").innerHTML='<input type="button" id="signInBtn" value="Đăng nhập" class="signInUpBttn" style="margin-right: 15px;" onclick="signIn()" /> <a href="sign-up.php"><input type="button" value="Đăng ký" class="signInUpBttn" /></a> <input type="button" value="Giỏ hàng" class="signInUpBttn" style="margin-right: 10px" onclick="Basket();" /> ';
 	}
 	function logOut()
 	{

@@ -87,8 +87,13 @@
 						document.getElementById("showError").innerHTML="Mật khẩu không chính xác.";
 						return false;
 					}
-				$.ajax({url:"ajax/sign-in_ajax.php", type:"POST", data:{ email: $email, mode: true }, success: function(name)
+				$.ajax({url:"ajax/sign-in_ajax.php", type:"POST", data:{ email: $email, password: $password, mode: true }, success: function(name)
 				{
+					if(name==-2)
+						{
+							document.getElementById("showError").innerHTML="Tài khoản này đã bị cấm.";
+							return false;
+						}
 				document.signInForm.reset();
 				$('.signInDialog').css("display","none");
 				if($('#customerZone').length)
