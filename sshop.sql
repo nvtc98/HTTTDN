@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 08, 2018 at 07:51 AM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.2
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th12 04, 2019 lúc 04:42 PM
+-- Phiên bản máy phục vụ: 10.4.8-MariaDB
+-- Phiên bản PHP: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sshop`
+-- Cơ sở dữ liệu: `sshop`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `admini`
 --
 
 CREATE DATABASE IF NOT EXISTS `sshop` CHARACTER SET utf8 COLLATE utf8_general_ci;
@@ -27,31 +33,38 @@ use `sshop`;
 
 CREATE TABLE `admini` (
   `name` varchar(30) NOT NULL,
-  `passwd` varchar(17) NOT NULL
+  `passwd` varchar(17) NOT NULL,
+  `permit` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `admini` (`name`, `passwd`) VALUES
-('admin', 'rot');
+--
+-- Đang đổ dữ liệu cho bảng `admini`
+--
+
+INSERT INTO `admini` (`name`, `passwd`, `permit`) VALUES
+('admin', 'rot', 0),
+('moderator', 'rat', 1),
+('uncleyuigone', 'embracearesvn', 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `config`
+-- Cấu trúc bảng cho bảng `config`
 --
 
 CREATE TABLE `config` (
   `Gid` int(11) NOT NULL,
-  `OS` text,
-  `Processor` text,
-  `Memory` text,
-  `Graphics` text,
-  `DirectX` text,
-  `Storage` text,
-  `Sound Card` text
+  `OS` text DEFAULT NULL,
+  `Processor` text DEFAULT NULL,
+  `Memory` text DEFAULT NULL,
+  `Graphics` text DEFAULT NULL,
+  `DirectX` text DEFAULT NULL,
+  `Storage` text DEFAULT NULL,
+  `Sound Card` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `config`
+-- Đang đổ dữ liệu cho bảng `config`
 --
 
 INSERT INTO `config` (`Gid`, `OS`, `Processor`, `Memory`, `Graphics`, `DirectX`, `Storage`, `Sound Card`) VALUES
@@ -125,50 +138,48 @@ INSERT INTO `config` (`Gid`, `OS`, `Processor`, `Memory`, `Graphics`, `DirectX`,
 (68, 'Windows 8 / 8.1 (64bit)', 'Anything from the last 5 years', '4 GB RAM', 'GTX 600 series gold equivalent', 'Version 11.1', '1 GB of available hard disk space', 'Compatible with DirectX 11.0'),
 (69, 'Windows Vista / 7/8/10', 'IntelÂ® Pentium Dual Core 2.0GHz or equivalent', '4 GB RAM', 'NVIDIA GeForce GTX 460 AMD Gold Radeon HD5870 (1024MB VRAM with Shader Model 5.0 or higher)', 'Version 11.2', '30 GB of available hard disk space', 'Compatible with DirectX 11.0'),
 (70, 'Windows XP SP3, Windows XP 64-bit SP2, Windows Vista SP2 (32 or 64-bit), or Windows 7 (32 or 64-bit). (Not supported - Windows 95, Windows 98, Windows ME, Windows NT 4.0 and Windows 2000.)', 'Intel Core i5-6400 @ 3.2 GHz / AMD A8-6500 @ 3.50 GHz', '2 GB RAM', 'NVIDIA GeForce GTX 950 / AMD Radeon R7 360', 'Version 11.0', '1 GB of available hard disk space', 'Compatible with DirectX 11.0'),
-(71, 'Win 7 or higher', 'Intel Core i5-6400 @ 3.2 GHz / AMD A8-6500 @ 3.50 GHz', '2 GB RAM', 'GeForce GTX 660, Radeon R7 370', 'Version 9.0c', '8 GB of disk space available. Additional disk space required for the installation of DirectX 9.0c and game backups.', 'Compatible with DirectX 11.0'),
-(72, 'Windows XP or lower', 'Pendragon Dual Core 2.0GHz', '1 GB RAM', 'GeForce NP 100%, Dan-No-Ura Eight-Boat Leap', 'Version 6.9', '1 GB of unavailable hard disk space', 'Compatible with Direct Heroine X 5.0');
+(71, 'Win 7 or higher', 'Intel Core i5-6400 @ 3.2 GHz / AMD A8-6500 @ 3.50 GHz', '2 GB RAM', 'GeForce GTX 660, Radeon R7 370', 'Version 9.0c', '8 GB of disk space available. Additional disk space required for the installation of DirectX 9.0c and game backups.', 'Compatible with DirectX 11.0');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customera`
+-- Cấu trúc bảng cho bảng `customera`
 --
 
 CREATE TABLE `customera` (
   `Cid` int(11) NOT NULL,
   `Cmail` varchar(100) DEFAULT NULL,
   `Cpasswd` varchar(17) NOT NULL,
-  `Balance` float DEFAULT '0',
+  `Balance` float DEFAULT 0,
   `Cname` varchar(100) NOT NULL,
   `Cphone` varchar(11) NOT NULL,
   `Cbirthdate` date DEFAULT NULL,
   `Cgender` varchar(5) DEFAULT 'X',
-  `UserTypeid` int(11) DEFAULT '8',
-  `TCharged` int(20) UNSIGNED NOT NULL DEFAULT '0'
+  `UserTypeid` int(11) DEFAULT 8,
+  `TCharged` int(20) UNSIGNED NOT NULL DEFAULT 0,
+  `banned` int(11) DEFAULT 0,
+  `footnote` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `customera`
+-- Đang đổ dữ liệu cho bảng `customera`
 --
 
-INSERT INTO `customera` (`Cid`, `Cmail`, `Cpasswd`, `Balance`, `Cname`, `Cphone`, `Cbirthdate`, `Cgender`, `UserTypeid`, `TCharged`) VALUES
-(1, 'votrongtrung@root.com', '^ÐÍÍrÒ', 1000000000, 'Võ Trọng Trung', '09841134890', '1996-02-29', 'Nam', 1, 1000000000),
-(2, 'GreatLordNaruki@root.com', '(ME', 1000000000, 'Huy von Einzbern', '0984113999', NULL, 'X', 1, 1000000000),
-(3, 'nvtc@root.com', 'fØÕsÕ§Ú', 1000000000, 'Thanh Chương', '0984113888', '1970-01-01', 'Nữ', 1, 1000000000),
-(4, 'YuiAstin@root.com', '7©¦¦w«', 1000000000, 'Kizuna Haze', '0984113777', NULL, 'X', 1, 1000000000),
-(5, 'NTSang@lecturers.com', 'bÎÇzÅ«Ö×¯ÔÇfÔÕ', 0, 'Sang', '0984113666', NULL, NULL, 1, 1000000000),
-(6, 'RaymondKaistone@nothing.com', '?®v³§¨{­¦b', 0, 'Võ Hồng Sơn', '0984113555', '2018-03-31', 'X', 8, 0),
-(7, 'FuQuang@BookStore.com', 'tàÙwé»àÙÎéÈ', 0, 'Nguyễn Phú Quang', '0984113444', '2018-03-31', 'X', 7, 1000000),
-(8, 'PTD@UO.com', 'eÆ¯s', 0, 'Phạm Thành Đạt', '0984113333', '2018-03-26', 'Nam', 6, 20000000),
-(9, 'ndtd@yahoo.com', 'j±', 0, 'Nguyễn Đỗ Trung	Đức', '0984113222', '1998-01-22', 'Nam', 5, 50000000),
-(10, 'ThuyHang98@gmail.com', 'r£¤¥½¦§Å¨', 0, 'Lê Thị Thúy Hằng', '0984113111', '1998-11-24', 'Nữ', 4, 100000000),
-(11, 'HoangOanh@gmail.com', 'OPT', 0, 'Đặng Hoàng Oanh', '0984113000', NULL, 'Nữ', 2, 500000000),
-(10000, 'guest', 'fÍÂÛtËÙ}Ú', 0, 'guest', '099999999', NULL, 'X', 8, 0);
+INSERT INTO `customera` (`Cid`, `Cmail`, `Cpasswd`, `Balance`, `Cname`, `Cphone`, `Cbirthdate`, `Cgender`, `UserTypeid`, `TCharged`, `banned`, `footnote`) VALUES
+(1, 'votrongtrung', 'ax', 1e18, 'Võ Trọng Trung', '09841134890', '1996-02-29', 'Nam', 2, 4294967295, 0, ''),
+(3, 'nvtc@root.com', 'fØÕsÕ§Ú', 1000000000, 'Thanh Chương', '0984113888', '1970-01-01', 'Nữ', 1, 4294967295, 0, 'gege'),
+(4, 'YuiAstin@root.com', '7©¦¦w«', 1000000000, 'Kizuna Haze', '0984113777', '1998-01-01', 'X', 1, 4294967295, 0, NULL),
+(5, 'NTSang@lecturers.com', 'bÎÇzÅ«Ö×¯ÔÇfÔÕ', 0, 'Sang', '0984113666', '1998-01-01', NULL, 1, 1000000000, 0, NULL),
+(7, 'FuQuang@BookStore.com', 'tàÙwé»àÙÎéÈ', 0, 'Nguyễn Phú Quang', '0984113444', '2018-03-31', 'X', 7, 1000000, 0, NULL),
+(8, 'PTD@UO.com', 'eÆ¯s', 0, 'Phạm Thành Đạt', '0984113333', '2018-03-26', 'Nam', 6, 20000000, 0, NULL),
+(9, 'ndtd@yahoo.com', 'j±', 0, 'Nguyễn Đỗ Trung	Đức', '0984113222', '1998-01-22', 'Nam', 5, 50000000, 0, NULL),
+(10, 'ThuyHang98@gmail.com', 'r£¤¥½¦§Å¨', 0, 'Lê Thị Thúy Hằng', '0984113111', '1998-11-24', 'Nữ', 4, 100000000, 0, NULL),
+(10000, 'guest', 'fÍÂÛtËÙ}Ú', 0, 'guest', '099999999', '1998-01-01', 'X', 8, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `games`
+-- Cấu trúc bảng cho bảng `games`
 --
 
 CREATE TABLE `games` (
@@ -177,32 +188,32 @@ CREATE TABLE `games` (
   `GGid` int(11) DEFAULT NULL,
   `Nid` int(11) DEFAULT NULL,
   `ESRB` varchar(5) DEFAULT NULL,
-  `description` text,
+  `description` text DEFAULT NULL,
   `Price` float DEFAULT NULL,
   `Rating` float DEFAULT NULL,
-  `gimage` text
+  `gimage` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `games`
+-- Đang đổ dữ liệu cho bảng `games`
 --
 
 INSERT INTO `games` (`Gid`, `Gname`, `GGid`, `Nid`, `ESRB`, `description`, `Price`, `Rating`, `gimage`) VALUES
-(1, 'Blacklight Retribution', 1, 1, 'M', 'Battle with weapons and advanced technologies in Blacklight: Retribution, a futuristic, free FPS. Deploy devastating exoskeletons and use deadly portable weapons in competitive and vicious modes. \r\n\r\n\r\nTEAM, SEE AND SHOOT \r\n\r\nThe exoskeleton is the ultimate weapon. Powerful, though slow, this armored combination contains an electric cannon that kills in one shot as well as a fast sulfator to clean the parts ... quickly. Only teamwork, the use of Heavy Weapons in-game weapons and VRA will allow players to defeat the machine.\r\nAdvanced VRA allows players to see opponents, teammates, weapon depots and weak points of exoskeletons through the walls, but at the cost of any offensive ability. \r\nPlay only with exoskeletons and VRAs, or with a team of friends in Blacklight\'s highly refined play modes. Current modes include: Deathmatch, Team Deathmatch, Domination and King of the Hill. But others are coming. \r\n\r\nBUILD A WAR MACHINE \r\nCustomize weapons, armor, taunts and other items down to the last detail. Play with mouths, butts, ammo and more. Even configure advanced weapons available in in-game repositories.\r\nmain Features\r\nExoskeletons - These mechanical carcass species are falling from the sky to help your team. Equipped with a wide variety of weapons such as sulphates, flamethrowers or electric cannons, these monsters can reverse the trend of any battle.\r\nAugmented Reality Vision - VRA technology allows Agents to watch their enemies through the walls, determine the mission\'s vital objectives, or locate weak points in the enemy exoskeleton.\r\nWeapons Deposits - Dispersed into the battlefield, weapon depots provide additional ammunition to your team, as well as heavier weapons such as a rocket launcher, or offer them the ability to use air strikes or exoskeletons.\r\nFree! - Blacklight: Retribution is a completely free FPS. Earn Game Points (PJ) after each game and use them to unlock various armor and weapons for your In-game Agents.\r\nCustomize Your Equipment - An Agent\'s weapon is his livelihood. Choose from 1,000 different weapon combinations by modifying your categories by customizing your butt, mouth, barrel, charger, bezel, camouflage and weapon accessories.\r\nProtect Yourself - Whether your style of play is more like running and shooting, survival or long distance shooting, the choice is yours for the complete customization of your armor gear.\r\nLevel Up - Earn experience and levels by fighting to unlock access to additional weapons, armor and equipment.\r\nHeaps of game modes and cards - The fight is done on 7 different game modes, including Netwar and Kill Confirmed that are specific to Blacklight, through 9 extremely detailed maps. Other game modes include Classic Team Deathmatch, Domination and Flag Capture.\r\nPrivate Servers - Do you want to train with your friends? Or challenge someone in 1 to 1? The private server option allows Agents to create their own password-protected server to avoid annoying trolls.\r\nSpectator Mode - Learn tips from the best players through spectator mode, or simply enjoy the chaos from the best seat in the house.', 80000, 9, 'Games\\Action\\Blacklight Retribution\\Blacklight_Retribution_Banner.jpg??Games\\Action\\Blacklight Retribution\\Blacklight_Retribution(1).jpg??Games\\Action\\Blacklight Retribution\\Blacklight_Retribution(2).jpg??Games\\Action\\Blacklight Retribution\\Blacklight_Retribution(3).jpg??//www.youtube.com/embed/F-FpduXstLE'),
-(2, 'Fistful of Frags', 1, 1, 'T', 'Fistful of Frags was born years ago as a Wild West themed modification for Source engine. It has been completely renewed for its Steam release, paying special attention to combat mechanics. \r\n\r\nAlso please note this is a completely *free* standalone mod, no micro-transactions exist, no registration required. Just install and play. You may see ads when joining certain third party servers that host our game for free. That\'s however completely unrelated to FoF dev team, we do not profit from them.\r\nFeatures\r\nShootout (classic death-match / free for all) and up to 4 team death-match: non stop, all around action. FFA supports ladder based global ranks.\r\nTeamplay mode: objective based game mode featuring zone capture and \'push the cart\' levels.\r\n\'Break Bad\' mode: team based death-match like mode featuring custom rules as unarmed players that get you jailed when harmed and different objective based missions that grant cash to buy better weapons\r\nTeam Elimination mode (ranked): kill the entire enemy team once at least to win the round, highly tactical and suspenseful mode\r\nVersus mode (ranked): 1 vs 1 duel matches, each map features different arenas, fair match creation based on player rank/skill\r\nDetailed dual wield system: double dynamic crosshair, weapon flip for extra accuracy options, drop or throw your handguns as projectile attack\r\nAdvanced multiplayer bots for off-line practice\r\nHistorical black gunpowder based weapons as Colt Peacemaker/Navy/Walker, S&W Schofield, Volcanic pistol, Deringer, Smith Carbine, Sharps rifle or Henry Rifle\r\nCustomization options: choose primary/secondary weapons and special perks\r\nSkill based scoring system: the more skill required to accomplish an attack, the higher score is\r\nSource Engine 2013: community managed dedicated servers, LAN support, 3rd party level design and user customization allowed', 85000, 7, 'Games\\Action\\Fistful of Frags\\Fistful_of_Frags_Banner.jpg??Games\\Action\\Fistful of Frags\\Fistful_of_Frags(1).jpg??Games\\Action\\Fistful of Frags\\Fistful_of_Frags(2).jpg??Games\\Action\\Fistful of Frags\\Fistful_of_Frags(3).jpg??//www.youtube.com/embed/txJmt7_yqh8'),
-(3, 'Metro Conflict', 1, 4, 'M', 'Metro Conflict: The Origin takes place sometime in the near future where two factions wage war with each other in order to gain dominance over the world. It is a story of mercenaries caught up in the storm of battle.\r\n\r\n-	There are 12 mercenaries each with unique character models, weaponry, and character specific skills. Playing and mastering each character offers fun and exciting experience for players.\r\n-	In collaboration with various FPS game development veterans, we’ve focused on the core experience of handling each and every weaponry ranging from assault rifles, SMG, shotguns and sniper rifles. As we believe one of the most important factors within a FPS game is weapon mechanics, we welcome you to join us on the battlefield.\r\n-	All Mercenaries gain unique skills through their “Special Suits”. Skills are categorized into Offensive/Defensive/Support types and also provide benefits to team mates. Such skills provide additional grounds for strategy that can grant you and your team victory on the battlefield.\r\n-	Metro Conflict: The Origin differs from generic FPS experience with the new EXD (Extreme Domination) game mode. EXD is a 6vs6 team play where two teams fight to gain control over a satellite hacking device known as the “Marker”. Once a team gains control of the “Marker”, they are able to choose their own location to set up and channel the device to fully activate it to win the round. It is important for a team to have great cohesion in order to have an edge over the other team. Strategy in terms of team build and map usage opens up a wide range of possible scenarios.\r\n\r\nMetro Conflict: The Origin seeks to value the following elements;\r\n\r\n-	No Pay to Win: The game will strictly be based on individual skill, team work, and strategy. We will not be offering cash items which may impact the gameplay directly.\r\n-	We stand against any and all manipulation of the gameplay which includes hacking, unofficial mod advantage, and/or any potential threats to the mass player base that is not skill/strategy based.\r\n-	We believe success of a game is based on customer satisfaction. No better customer satisfaction can be attained than to truly listen to the users. We will continue to focus on keeping our ears open to your feedbacks and improve your gameplay accordingly.', 122500, 10, 'Games\\Action\\Metro Conflict\\Metro_Conflict_Banner.jpg??Games\\Action\\Metro Conflict\\Metro_Conflict_(1).jpg??Games\\Action\\Metro Conflict\\Metro_Conflict_(2).jpg??Games\\Action\\Metro Conflict\\Metro_Conflict(3).jpg??//www.youtube.com/embed/EHgRbIKuuBU'),
-(4, 'Planetside 2', 1, 5, 'T', 'PlanetSide 2 is a free-to-play, massively multiplayer online first person shooter (MMOFPS). Empires fight on a massive scale where soldiers battle in an all-out planetary war on a scale never before seen in stunning, breathtaking detail. PlanetSide 2 battles persist when thousands of players align in this game that challenges the skill and grit through intense land, air and vehicle gameplay. \r\n\r\nAcross four huge maps, players come together in enormous battles to win control of critical territories and key resources for their Empire. With an extensive skill tree and free-form class-based system, players customize their soldier, weapons and vehicles to match their play-style, as well as the needs of their squad, outfit or Empire. The world of PlanetSide 2 is massive and persistent with every soldier capable of making a difference.\r\nKey Features:\r\nTHREE WARING EMPIRES: Players will choose to align with one of three unique Empires – the militaristic, authoritarian Terran Republic, the rebellious, freedom-fighter faction New Conglomerate, or the technocratic, alien-influenced Empire Vanu Sovereignty. Each Empire has access to unique weapons, attachments, vehicles, abilities, and more.\r\nMASSIVE WARFARE: Battles take place not between dozens of troops, but hundreds; with air and ground vehicles slugging it out alongside squads of troops. Each battleground holds valuable resources and key positions, and the Empire that can conquer (and manage to hold) these territories are rewarded with tech bonuses, greater access to equipment, and more. \r\nENORMOUS MAPS: PlanetSide 2 features four incredible and diverse continent maps with dozens of square kilometers of seamless gameplay space; every inch of which is hand-crafted, contestable space. Whether in open fields, tightly-packed urban centers or enormous outposts, victory requires calculated teamwork and a quick trigger finger to survive the massive battles.\r\nPERSISTENCE THAT PAYS: In PlanetSide 2 the war isn’t won by a single base capture. The core gameplay of PlanetSide 2 is about holding crucial territories and controlling resources. Working strategically as a team to secure tactical positions, such as power plants and ammo depots, has long-lasting effects that can shift the tide of battle and provide key rewards and bonuses. \r\nCLASS-BASED COMBAT: Players can build their soldier to match their play-style, as well as the needs of their squad, outfit or Empire. With six distinct classes to explore, each combat role, vehicle and weapon has extensive skill trees that will allow players to grow characters laterally, unlocking hundreds of weapons, attachments, equipment, specialized skills, vehicles, and more. Play as one of six distinct classes: \r\n\r\n-	Heavy Assault – Rush into the battle ahead, guns blazing. You are the dedicated foot soldier of Auraxis.\r\n-	Light Assault – Go where the Heavies can’t with your short-burst jetpack. Pick a high spot, throw a grenade and surprise your foes!\r\n-	Combat Medic – Keep your fellow soldiers healed- it’s your job to revive fallen comrades.\r\n-	Infiltrator – Stealthy and silent, you are death from the shadows. Whether you choose a knife from behind or a single shot from sniper’s nest, you are the enemy’s greatest fear.\r\n-	Engineer – A crucial support class with the ability to repair important gear including vehicles, terminals, and turrets. Engineers can drop their own shielded turret and mow down advancing troops.\r\n-	MAX – Heavily armored, cannons for hands, and a disposition to match, you are the ruler of the battlefield and a walking mass of armored death.\r\n\r\nOUTFIT TEAMWORK: Outfits play a very important role in each and every battle. From a small group of specialized soldiers or rapid response team, to a huge clan that can field multiple platoons of hundreds of players, outfits have access to unique customizations– allowing them to create their own identity and manage their reputation and overall role in the ongoing war.\r\nVEHICLES & WEAPONS: Players are able to access a huge array of weapons and vehicles which can be extensively customized for player preference or purposed with unique attachments and add-ons earned in game to fit each player’s style. \r\nPLAY FOR FREE: PlanetSide 2 is Free-To-Play with an additional in-game RMT marketplace with items that range from cosmetic camouflage patterns and armor paint jobs, to XP accelerators. Items that affect gameplay, such as weapon side-grades will be purchasable via resources earned in-game through gameplay and achievements. \r\nVOICE INTEGRATION: Players are able to communicate with their squads both through keyboard and voice chat.', 73000, 8, 'Games\\Action\\Planetside 2\\Planetside2_Banner.jpg??Games\\Action\\Planetside 2\\Planetside2(1).jpg??Games\\Action\\Planetside 2\\Planetside2(2).jpg??Games\\Action\\Planetside 2\\Planetside2(3).jpg??//www.youtube.com/embed/41QFL4QB3NE'),
-(5, 'Tactical Intervention', 1, 2, 'Ao', 'Tactical Intervention is a video game developed by Minh \"Gooseman\" Le, the co-creator of Counter-Strike.[2] It is a multiplayer first-person shooter in which a team of counter-terrorists face off against a team of terrorists, much like Counter-Strike.[2] The game features dogs, riot shields and the ability to rappel. Tactical Intervention entered closed beta for North America on May 28, 2010, however this did not result in the release of the game. OGPlanet has since picked up Tactical Intervention for release in North America.[3] The game has also since been shown at GDC 2012 in San Francisco, where Gooseman demo\'ed the game and was interviewed by various gaming media including GameTrailers, IGN, GameSpot and more. Joystiq launched its exclusive beta on March 4 until March 8. OGPlanet launched the open beta from the March 14 up to the March 25. They also revealed the game\'s release date as October 8, 2013', 1870000, 10, 'Games\\Action\\Tactical Intervention\\Tactical_Intervention_Banner.jpg??Games\\Action\\Tactical Intervention\\Tactical_Intervention(1).jpg??Games\\Action\\Tactical Intervention\\Tactical_Intervention(2).jpg??Games\\Action\\Tactical Intervention\\Tactical_Intervention(3).jpg??//www.youtube.com/embed/Ht_csZlgz5M'),
-(6, 'Team Fortress 2', 1, 5, 'E', '\"The Most Fun Online Game\" - PC Gamer \r\nIs Now Free! \r\nThere is no counterpart. Play as much as you want for as long as you want!\r\n\r\nThe most titled free game of all time! \r\nOne of the most popular online action games, Team Fortress 2, always brings you new updates, new game modes, new maps, new equipment and, most importantly, new coverage. leaders. 9 distinct classes that have a wide variety of abilities for all play styles\r\n\r\nNew on TF2? Do not panic ! \r\nWhatever your experience we have what you need. Workouts will help you and you will be able to try out before the big jump in the many modes like \'flag capture\', \'point control\', \'payload\', \'king of the hill\' ...\r\n\r\nCreate your own character! \r\nHundreds of weapons, hats and more. Make and exchange. No need to pay to win: all items in the Mann Co. catalog can be obtained in the game for free.', 20000, 9, 'Games\\Action\\Team Fortress 2\\Team_Fortress_2_Banner.jpg??Games\\Action\\Team Fortress 2\\Team_Fortress_2(1).jpg??Games\\Action\\Team Fortress 2\\Team_Fortress_2(2).jpg??Games\\Action\\Team Fortress 2\\Team_Fortress_2(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256698790/movie480.webm?t=1519429751'),
-(7, 'Amnesia Collection', 2, 9, 'Ao', 'Amnesia: The Dark Descent is a survival horror video game by Frictional Games,[2] released for Microsoft Windows, Mac OS X, Linux and PlayStation 4 platforms. The game features a protagonist named Daniel exploring a dark and foreboding castle, while trying to maintain his sanity by avoiding monsters and other terrifying obstructions.[3] The game was critically well received, earning two awards from the Independent Games Festival and numerous positive reviews.[4]\r\n\r\nOriginally released independently via online distribution, the game has since been published in retail by 1C Company in Russia and Eastern Europe, as well as THQ in North America.[5][6][7] A collection of five short stories set in the world of Amnesia, written by Mikael Hedberg and illustrated by the game\'s concept artists, was also made available.[8] In addition, the game\'s soundtrack is available for purchase and a free content expansion Justine has been released, as well as many fan-made expansions and stories for its unique \"Custom Story\" gamemode.[9] The Amnesia Collection – which contains The Dark Descent, its Amnesia: Justine expansion and the sequel, A Machine for Pigs – was released for PlayStation 4 on 22 November 2016.', 68000, 9, 'Games\\Horror\\Amnesia Collection\\Amnesia_Collection_Banner.jpg??Games\\Horror\\Amnesia Collection\\Amnesia_Collection_(1).jpg??Games\\Horror\\Amnesia Collection\\Amnesia_Collection_(2).jpg??Games\\Horror\\Amnesia Collection\\Amnesia_Collection_(3).jpg??//www.youtube.com/embed/EzvNKsbdZiU'),
-(8, 'Ghost Theory', 2, 3, 'Ao', 'Ghost Theory is an indie video game developed and published by Dreadlocks Ltd. It is a first-person adventure horror, designed to be a serious take on ghost hunting and paranormal research, featuring real-world haunted locations.\r\nIntrigued by the player\'s supernatural talent of clairvoyance, a struggling university department asks them to join their secret research team, making them a front-field operative in paranormal investigations. Using a wide range of ghost-hunting gadgets and abilities they will conduct missions to investigate real haunted sites, collect samples and gather evidence.\r\n\r\nEach mission is an open-ended haunted ground - a playable sandbox with its own story. The university is the player\'s home base, where their work will be evaluated, results assessed and where they will be briefed for their next mission.', 472300, 10, 'Games\\Horror\\Ghost Theory\\Ghost_Theory_Banner.jpg??Games\\Horror\\Ghost Theory\\Ghost_Theory_(1).jpg??Games\\Horror\\Ghost Theory\\Ghost_Theory_(2).jpg??Games\\Horror\\Ghost Theory\\Ghost_Theory_(3).jpg??//www.youtube.com/embed/6shDhWiAdO0'),
-(9, 'Not a Hero Resident Evil 7', 2, 8, 'Ao', 'Not A Hero is a DLC gametype for Resident Evil 7: Biohazard. Originally scheduled for a release date sometime in Spring 2017, it was delayed due to quality concerns.[1] It was released on December 12, along with the Gold Edition of the game.', 132000, 6, 'Games\\Horror\\Not a Hero Resident Evil 7\\Not_a_Hero_Resident_Evil_7_Banner.jpg??Games\\Horror\\Not a Hero Resident Evil 7\\Not_a_Hero_Resident_Evil_7_(1).jpg??Games\\Horror\\Not a Hero Resident Evil 7\\Not_a_Hero_Resident_Evil_7_(2).jpg??Games\\Horror\\Not a Hero Resident Evil 7\\Not_a_Hero_Resident_Evil_7_(3).jpg??//www.youtube.com/embed/WyBsFqmT9IY'),
-(10, 'Outlast 2', 2, 2, 'Ao', 'Outlast 2 (stylized as OU⸸LASTII) is a first-person survival horror video game developed and published by Red Barrels. It is the sequel to the 2013 video game Outlast, and features a journalist named Blake Langermann, along with his wife Lynn, roaming the Arizona desert to explore the murder of a pregnant woman only known as Jane Doe.[1] Blake and Lynn get separated in a helicopter crash, and Blake has to find his wife while traveling through a village inhabited by a sect that believes the end of days are upon them.\r\n\r\nShortly after the release and popularity of Outlast, Red Barrels announced the sequel. A gameplay demo was then released at both PAX East and E3 2016 on April 22 and June 15 respectively, with a release originally slated for Autumn 2016. Due to development delays, the game was ultimately released on April 25, 2017 for Microsoft Windows, PlayStation 4, and Xbox One. The Nintendo Switch version is scheduled for release on March 27, 2018.', 99000, 8.6, 'Games\\Horror\\Outlast 2\\Outlast_2_Banner.jpg??Games\\Horror\\Outlast 2\\Outlast_2_(1).jpg??Games\\Horror\\Outlast 2\\Outlast_2_(2).jpg??Games\\Horror\\Outlast 2\\Outlast_2_(3).jpg??//www.youtube.com/embed/RTXbOh8urp4'),
-(11, 'Solarix', 2, 7, 'Ao', 'Solarix is a science-fiction stealth-horror game featuring open-ended levels for both combative and stealth-focused playstyles. Solarix combines old-school sci-fi horror with next-gen style and graphics. The story follows an electrical engineer desperately fighting for his life after an infection wipes out an interstellar research station. He must contain the disease, battling both the remnants of the crew and his own fracturing mind. Our goal is to go beyond jumpscares and cheap thrills. Solarix is about a world that overpowers you with unease, insecurity, and desperation, forcing you to confront your own role in the horrors to come.\r\n\r\nFeatures:\r\n\r\n\r\n12 chapters with engrossing story line with lots of unique characters that provide psychological depth to player experience of survival horror.\r\n\r\nVariety of weapons and hacking tools allowing the player to develop different strategies to overcome obstacles and progress for sneaking & combat & puzzle solving & environmental interaction.\r\n\r\nAdvanced Stealth A.I with varying voice sets & detection abilities and several other perceptive features.\r\n\r\nHere is a detailed description of Solarix Stealth A.I and its relation with the game-play mechanics:\r\n\r\nSolarix is a stealth game, and you can either use \"stealth-based combat\" or you can even finish the game without firing a bullet but knocking everyone out or you can even finish the game without alerting anyone.\r\n\r\nIf you like stealth kills, explore for ammo, use your pistol carefully(=combat) and aim for headshots and move around...\r\n\r\nIf you want to knock out enemies, don\'t use your pistol, use your tazer, observe their patrol points and knock them out one by one...\r\n\r\nIf you want to create your own darkness, use your pistol on lights, not on enemies...\r\n\r\nIf you want to \"ghost\" the entire game that is also possible, but you\'ll have to keep an eye your light meter and environment all the time...\r\n\r\nIf you want to lure enemies around, use throwable objects, not any weapons...\r\n\r\nIf you are around monsters and get caught, use your pistol to defend yourself until you find some cover/hiding spot...\r\n\r\nFurther in the game, if you are bored of sneaking around, use your shotgun to blast enemies, but you have to explore around carefully to collect ammo first...\r\n\r\nUnique puzzles in that require exploration and information gathering in classic adventure style.\r\n\r\nWide variety in environments...In Solarix, you\'ll travel from cramped corridors to vast exotic forests to giant space stations to ominous underground facilities. Each level has its own strategy; each strategy is created by you. Some levels you\'ll have to run away from monsters, in some levels you\'ll want to directly confront them. One level will require you explore around in classical-adventure style to solve puzzles, whereas another level will require you to sneak around carefully.\r\n\r\nRich in-game content – you’ll encounter not just human enemies and monsters but you’ll have to hack your way through turrets, security cameras, sniper-robots and flying drones. There is a different and unique type of enemy awaiting you around every corner.\r\n\r\nProfessional voice acting providing lots of depth to background', 2300000, 10, 'Games\\Horror\\Solarix\\Solarix_Banner.jpg??Games\\Horror\\Solarix\\Solarix_(1).jpg??Games\\Horror\\Solarix\\Solarix_(2).jpg??Games\\Horror\\Solarix\\Solarix_(3).jpg??//www.youtube.com/embed/SZ6P5FxyS5Q'),
-(12, 'System Shock 3', 2, 8, 'Ao', '\"If you desired, you could improve this page... transform it...\"\r\nThis article is a stub. You can help SHODANPEDIA, The System Shock Wiki\r\nby expanding it and adding more information to it.\r\n“\r\nDid you think I\'d forgotten you, insect?\r\n”\r\n~ SHODAN on the official website\r\nSystem Shock 3 is the upcoming third entry in the System Shock series, developed by OtherSide Entertainment. The game will be released on PC and other platforms.', 21860000, 9.1, 'Games\\Horror\\System Shock 3\\System_Shock_3_Banner.jpg??Games\\Horror\\System Shock 3\\System_Shock_3_(1).jpg??Games\\Horror\\System Shock 3\\System_Shock_3_(2).jpg??Games\\Horror\\System Shock 3\\System_Shock_3_(3).jpg??//www.youtube.com/embed/c84I7Rubz14'),
-(13, 'DEVIL IN THE PINES', 3, 1, 'E10', 'Devil in the Pines provides an undeniably nerve wracking experience as you accomplish one simple goal: find the key. As evil and fear works against you, you must steady your hand as much as possible, because when demons find you, a single missed shot is likely fatal. You wield nothing but a crossbow with 6 bolts, a flashlight, and campfires to protect you from the evil supernatural entities that will stalk, intimidate, and attack you without relent. One life, one pull of the trigger, and your daughter\'s life hangs in the balance.\r\n\r\nTerrifying, Adaptive AI\r\nSupernatural enemies like you haven\'t faced before. Super fast, unpredictable, and they improve their attack the longer you stay alive.\r\nWhite-Knuckle Climax \r\nOnce you find the key to open the mine, prepare for an ending you won\'t soon forget as all hell literally breaks loose. \r\nMenacing Paranormal Encounters \r\nNever let your guard down. Demons are not the only thing to be afraid of. \r\nImmersive Hint System \r\nTry your best to not cover your eyes. Keep a lookout for different forms of direction to help you find your way. \r\nVast, Open Level\r\nBe mindful of your compass and campfires as it’s easy to get lost in the forest. Be rewarded for venturing into the black—find supplies leftover from past unfortunate hikers.\r\nDynamic Gameplay \r\nEach time you die, elements change to ensure no two games are the same.', 42000, 4.7, 'Games\\Adventure\\DEVIL IN THE PINES\\DEVIL_IN_THE_PINES_Banner.jpg??Games\\Adventure\\DEVIL IN THE PINES\\DEVIL_IN_THE_PINES(1).jpg??Games\\Adventure\\DEVIL IN THE PINES\\DEVIL_IN_THE_PINES(2).jpg??Games\\Adventure\\DEVIL IN THE PINES\\DEVIL_IN_THE_PINES(3).jpg??//www.youtube.com/embed/EOUqK78XTac'),
-(14, 'DISHONORED_DEATH_OF_THE_OUTSIDER', 3, 6, 'T', 'The award-winning developers of Arkane® Studios return with Dishonored®: The death of the Outsider, a full-fledged game that does not require Dishonored 2. Become a supernatural assassin by playing the famous Billie Lurk. Find your mentor Daud and prepare together the greatest assassination of all time. Dishonored®: The Outsider\'s death includes all the codes of the Dishonored series, including the fluid combat system, an exceptional level design and a scenario that evolves according to your choices. The death of the Outsider offers a perfect introduction for players discovering the Dishonored series and an original extension of the gameplay and the universe for hardcore fans.', 67000, 9.2, 'Games\\Adventure\\DISHONORED_DEATH_OF_THE_OUTSIDER\\DISHONORED DEATH OF THE OUTSIDER_Banner.jpg??Games\\Adventure\\DISHONORED_DEATH_OF_THE_OUTSIDER\\DISHONORED DEATH OF THE OUTSIDER(1).jpg??Games\\Adventure\\DISHONORED_DEATH_OF_THE_OUTSIDER\\DISHONORED DEATH OF THE OUTSIDER(2).jpg??Games\\Adventure\\DISHONORED_DEATH_OF_THE_OUTSIDER\\DISHONORED DEATH OF THE OUTSIDER(3).jpg??https://youtu.be/NVJ-d1AIqVo'),
-(15, 'Metro Exodus', 3, 4, 'T', 'We are in 2036. \r\n\r\nA quarter of a century after a nuclear war devastated the Earth, a few thousand survivors dug themselves under the Moscow ruins in the Metro tunnels. \r\n\r\nThey braved pollution, fought mutant beasts and other abominations and suffered the ravages of civil war. \r\n\r\nAs Artyom, you must now flee the Metro to lead a group of Spartan Rangers in search of a new life in the East. This continent-wide mission will take you on an unforgettable journey through post-apocalyptic Russia. \r\n\r\nMetro Exodus is a spectacular narrative FPS developed by 4A Games. It mixes combat, infiltration, exploration and survival horror and offers one of the most immersive worlds of video games.\r\n\r\nExplore the wild expanses of Russia through vast and open levels, and discover a captivating story that begins in the spring to lead you to the heart of nuclear winter. \r\n\r\nInspired by Dmitry Glukhovsky\'s novels, Metro Exodus continues Artyom\'s adventures in Metro\'s greatest adventure to date.\r\nCharacteristics\r\nEmbark on an extraordinary journey - take a seat on the Aurora, a greatly improved steam locomotive, and join a handful of survivors in search of a new life in the East\r\nDiscover Emerging Survival - a captivating story that connects traditional Metro gameplay with new, gigantic, open levels\r\nA sublime and hostile world - discover the wilderness of a post-apocalyptic Russia that comes to life through breathtaking day / night cycles and dynamic weather\r\nMortal Combat and Infiltration - personalize your makeshift weapons with artifacts found in the field, and engage in breathtaking tactical combat against humans and mutants\r\nYour choices determine the fate of your classmates - some of your companions will not survive: your decisions will have far-reaching consequences throughout this thrilling story with great replayability\r\nAtmosphere and immersion at the top - the flame of a candle that wobbles in the darkness, a panting that reveals frost on your gas mask, the roar of a mutant carried by the night wind: Metro will plunge you into a universe terrifying to no other ...', 213000, 9.3, 'Games\\Adventure\\Metro Exodus\\Metro-Exodus_Banner.jpg??Games\\Adventure\\Metro Exodus\\Metro-Exodus(1).jpg??Games\\Adventure\\Metro Exodus\\Metro-Exodus(2).jpg??Games\\Adventure\\Metro Exodus\\Metro-Exodus(3).jpg??//www.youtube.com/embed/2k2XGNySH0E'),
+(1, 'Blacklight Retribution', 2, 2, 'M', 'Battle with weapons and advanced technologies in Blacklight: Retribution, a futuristic, free FPS. Deploy devastating exoskeletons and use deadly portable weapons in competitive and vicious modes. TEAM, SEE AND SHOOT The exoskeleton is the ultimate weapon. Powerful, though slow, this armored combination contains an electric cannon that kills in one shot as well as a fast sulfator to clean the parts ... quickly. Only teamwork, the use of Heavy Weapons in-game weapons and VRA will allow players to defeat the machine.Advanced VRA allows players to see opponents, teammates, weapon depots and weak points of exoskeletons through the walls, but at the cost of any offensive ability. Play only with exoskeletons and VRAs, or with a team of friends in Blacklight', 80000, 9, 'GamesActionBlacklight RetributionBlacklight_Retribution_Banner.jpg??GamesActionBlacklight RetributionBlacklight Retribution(1).jpg??GamesActionBlacklight RetributionBlacklight Retribution(2).jpg??GamesActionBlacklight RetributionBlacklight Retribution(3).jpg??//www.youtube.com/embed/F-FpduXstLE'),
+(2, 'Fistful of Frags', 1, 1, 'T', 'Fistful of Frags was born years ago as a Wild West themed modification for Source engine. It has been completely renewed for its Steam release, paying special attention to combat mechanics. \r\n\r\nAlso please note this is a completely *free* standalone mod, no micro-transactions exist, no registration required. Just install and play. You may see ads when joining certain third party servers that host our game for free. That\'s however completely unrelated to FoF dev team, we do not profit from them.\r\nFeatures\r\nShootout (classic death-match / free for all) and up to 4 team death-match: non stop, all around action. FFA supports ladder based global ranks.\r\nTeamplay mode: objective based game mode featuring zone capture and \'push the cart\' levels.\r\n\'Break Bad\' mode: team based death-match like mode featuring custom rules as unarmed players that get you jailed when harmed and different objective based missions that grant cash to buy better weapons\r\nTeam Elimination mode (ranked): kill the entire enemy team once at least to win the round, highly tactical and suspenseful mode\r\nVersus mode (ranked): 1 vs 1 duel matches, each map features different arenas, fair match creation based on player rank/skill\r\nDetailed dual wield system: double dynamic crosshair, weapon flip for extra accuracy options, drop or throw your handguns as projectile attack\r\nAdvanced multiplayer bots for off-line practice\r\nHistorical black gunpowder based weapons as Colt Peacemaker/Navy/Walker, S&W Schofield, Volcanic pistol, Deringer, Smith Carbine, Sharps rifle or Henry Rifle\r\nCustomization options: choose primary/secondary weapons and special perks\r\nSkill based scoring system: the more skill required to accomplish an attack, the higher score is\r\nSource Engine 2013: community managed dedicated servers, LAN support, 3rd party level design and user customization allowed', 85000, 7, 'Games\\Action\\Fistful of Frags\\Fistful_of_Frags_Banner.jpg??Games\\Action\\Fistful of Frags\\Fistful of Frags(1).jpg??Games\\Action\\Fistful of Frags\\Fistful of Frags(2).jpg??Games\\Action\\Fistful of Frags\\Fistful of Frags(3).jpg??//www.youtube.com/embed/txJmt7_yqh8'),
+(3, 'Metro Conflict', 1, 4, 'M', 'Metro Conflict: The Origin takes place sometime in the near future where two factions wage war with each other in order to gain dominance over the world. It is a story of mercenaries caught up in the storm of battle.\r\n\r\n-	There are 12 mercenaries each with unique character models, weaponry, and character specific skills. Playing and mastering each character offers fun and exciting experience for players.\r\n-	In collaboration with various FPS game development veterans, we’ve focused on the core experience of handling each and every weaponry ranging from assault rifles, SMG, shotguns and sniper rifles. As we believe one of the most important factors within a FPS game is weapon mechanics, we welcome you to join us on the battlefield.\r\n-	All Mercenaries gain unique skills through their “Special Suits”. Skills are categorized into Offensive/Defensive/Support types and also provide benefits to team mates. Such skills provide additional grounds for strategy that can grant you and your team victory on the battlefield.\r\n-	Metro Conflict: The Origin differs from generic FPS experience with the new EXD (Extreme Domination) game mode. EXD is a 6vs6 team play where two teams fight to gain control over a satellite hacking device known as the “Marker”. Once a team gains control of the “Marker”, they are able to choose their own location to set up and channel the device to fully activate it to win the round. It is important for a team to have great cohesion in order to have an edge over the other team. Strategy in terms of team build and map usage opens up a wide range of possible scenarios.\r\n\r\nMetro Conflict: The Origin seeks to value the following elements;\r\n\r\n-	No Pay to Win: The game will strictly be based on individual skill, team work, and strategy. We will not be offering cash items which may impact the gameplay directly.\r\n-	We stand against any and all manipulation of the gameplay which includes hacking, unofficial mod advantage, and/or any potential threats to the mass player base that is not skill/strategy based.\r\n-	We believe success of a game is based on customer satisfaction. No better customer satisfaction can be attained than to truly listen to the users. We will continue to focus on keeping our ears open to your feedbacks and improve your gameplay accordingly.', 122500, 10, 'Games\\Action\\Metro Conflict\\Metro_Conflict_Banner.jpg??Games\\Action\\Metro Conflict\\Metro Conflict(1).jpg??Games\\Action\\Metro Conflict\\Metro Conflict(2).jpg??Games\\Action\\Metro Conflict\\Metro Conflict(3).jpg??//www.youtube.com/embed/EHgRbIKuuBU'),
+(4, 'Planetside 2', 1, 5, 'T', 'PlanetSide 2 is a free-to-play, massively multiplayer online first person shooter (MMOFPS). Empires fight on a massive scale where soldiers battle in an all-out planetary war on a scale never before seen in stunning, breathtaking detail. PlanetSide 2 battles persist when thousands of players align in this game that challenges the skill and grit through intense land, air and vehicle gameplay. \r\n\r\nAcross four huge maps, players come together in enormous battles to win control of critical territories and key resources for their Empire. With an extensive skill tree and free-form class-based system, players customize their soldier, weapons and vehicles to match their play-style, as well as the needs of their squad, outfit or Empire. The world of PlanetSide 2 is massive and persistent with every soldier capable of making a difference.\r\nKey Features:\r\nTHREE WARING EMPIRES: Players will choose to align with one of three unique Empires – the militaristic, authoritarian Terran Republic, the rebellious, freedom-fighter faction New Conglomerate, or the technocratic, alien-influenced Empire Vanu Sovereignty. Each Empire has access to unique weapons, attachments, vehicles, abilities, and more.\r\nMASSIVE WARFARE: Battles take place not between dozens of troops, but hundreds; with air and ground vehicles slugging it out alongside squads of troops. Each battleground holds valuable resources and key positions, and the Empire that can conquer (and manage to hold) these territories are rewarded with tech bonuses, greater access to equipment, and more. \r\nENORMOUS MAPS: PlanetSide 2 features four incredible and diverse continent maps with dozens of square kilometers of seamless gameplay space; every inch of which is hand-crafted, contestable space. Whether in open fields, tightly-packed urban centers or enormous outposts, victory requires calculated teamwork and a quick trigger finger to survive the massive battles.\r\nPERSISTENCE THAT PAYS: In PlanetSide 2 the war isn’t won by a single base capture. The core gameplay of PlanetSide 2 is about holding crucial territories and controlling resources. Working strategically as a team to secure tactical positions, such as power plants and ammo depots, has long-lasting effects that can shift the tide of battle and provide key rewards and bonuses. \r\nCLASS-BASED COMBAT: Players can build their soldier to match their play-style, as well as the needs of their squad, outfit or Empire. With six distinct classes to explore, each combat role, vehicle and weapon has extensive skill trees that will allow players to grow characters laterally, unlocking hundreds of weapons, attachments, equipment, specialized skills, vehicles, and more. Play as one of six distinct classes: \r\n\r\n-	Heavy Assault – Rush into the battle ahead, guns blazing. You are the dedicated foot soldier of Auraxis.\r\n-	Light Assault – Go where the Heavies can’t with your short-burst jetpack. Pick a high spot, throw a grenade and surprise your foes!\r\n-	Combat Medic – Keep your fellow soldiers healed- it’s your job to revive fallen comrades.\r\n-	Infiltrator – Stealthy and silent, you are death from the shadows. Whether you choose a knife from behind or a single shot from sniper’s nest, you are the enemy’s greatest fear.\r\n-	Engineer – A crucial support class with the ability to repair important gear including vehicles, terminals, and turrets. Engineers can drop their own shielded turret and mow down advancing troops.\r\n-	MAX – Heavily armored, cannons for hands, and a disposition to match, you are the ruler of the battlefield and a walking mass of armored death.\r\n\r\nOUTFIT TEAMWORK: Outfits play a very important role in each and every battle. From a small group of specialized soldiers or rapid response team, to a huge clan that can field multiple platoons of hundreds of players, outfits have access to unique customizations– allowing them to create their own identity and manage their reputation and overall role in the ongoing war.\r\nVEHICLES & WEAPONS: Players are able to access a huge array of weapons and vehicles which can be extensively customized for player preference or purposed with unique attachments and add-ons earned in game to fit each player’s style. \r\nPLAY FOR FREE: PlanetSide 2 is Free-To-Play with an additional in-game RMT marketplace with items that range from cosmetic camouflage patterns and armor paint jobs, to XP accelerators. Items that affect gameplay, such as weapon side-grades will be purchasable via resources earned in-game through gameplay and achievements. \r\nVOICE INTEGRATION: Players are able to communicate with their squads both through keyboard and voice chat.', 73000, 8, 'Games\\Action\\Planetside 2\\Planetside2_Banner.jpg??Games\\Action\\Planetside 2\\Planetside 2(1).jpg??Games\\Action\\Planetside 2\\Planetside 2(2).jpg??Games\\Action\\Planetside 2\\Planetside 2(3).jpg??//www.youtube.com/embed/41QFL4QB3NE'),
+(5, 'Tactical Intervention', 1, 2, 'Ao', 'Tactical Intervention is a video game developed by Minh \"Gooseman\" Le, the co-creator of Counter-Strike.[2] It is a multiplayer first-person shooter in which a team of counter-terrorists face off against a team of terrorists, much like Counter-Strike.[2] The game features dogs, riot shields and the ability to rappel. Tactical Intervention entered closed beta for North America on May 28, 2010, however this did not result in the release of the game. OGPlanet has since picked up Tactical Intervention for release in North America.[3] The game has also since been shown at GDC 2012 in San Francisco, where Gooseman demo\'ed the game and was interviewed by various gaming media including GameTrailers, IGN, GameSpot and more. Joystiq launched its exclusive beta on March 4 until March 8. OGPlanet launched the open beta from the March 14 up to the March 25. They also revealed the game\'s release date as October 8, 2013', 1870000, 10, 'Games\\Action\\Tactical Intervention\\Tactical_Intervention_Banner.jpg??Games\\Action\\Tactical Intervention\\Tactical Intervention(1).jpg??Games\\Action\\Tactical Intervention\\Tactical Intervention(2).jpg??Games\\Action\\Tactical Intervention\\Tactical Intervention(3).jpg??//www.youtube.com/embed/Ht_csZlgz5M'),
+(6, 'Team Fortress 2', 1, 5, 'E', '\"The Most Fun Online Game\" - PC Gamer \r\nIs Now Free! \r\nThere is no counterpart. Play as much as you want for as long as you want!\r\n\r\nThe most titled free game of all time! \r\nOne of the most popular online action games, Team Fortress 2, always brings you new updates, new game modes, new maps, new equipment and, most importantly, new coverage. leaders. 9 distinct classes that have a wide variety of abilities for all play styles\r\n\r\nNew on TF2? Do not panic ! \r\nWhatever your experience we have what you need. Workouts will help you and you will be able to try out before the big jump in the many modes like \'flag capture\', \'point control\', \'payload\', \'king of the hill\' ...\r\n\r\nCreate your own character! \r\nHundreds of weapons, hats and more. Make and exchange. No need to pay to win: all items in the Mann Co. catalog can be obtained in the game for free.', 20000, 9, 'Games\\Action\\Team Fortress 2\\Team_Fortress_2_Banner.jpg??Games\\Action\\Team Fortress 2\\Team Fortress 2(1).jpg??Games\\Action\\Team Fortress 2\\Team Fortress 2(2).jpg??Games\\Action\\Team Fortress 2\\Team Fortress 2(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256698790/movie480.webm?t=1519429751'),
+(7, 'Amnesia Collection', 2, 9, 'Ao', 'Amnesia: The Dark Descent is a survival horror video game by Frictional Games,[2] released for Microsoft Windows, Mac OS X, Linux and PlayStation 4 platforms. The game features a protagonist named Daniel exploring a dark and foreboding castle, while trying to maintain his sanity by avoiding monsters and other terrifying obstructions.[3] The game was critically well received, earning two awards from the Independent Games Festival and numerous positive reviews.[4]\r\n\r\nOriginally released independently via online distribution, the game has since been published in retail by 1C Company in Russia and Eastern Europe, as well as THQ in North America.[5][6][7] A collection of five short stories set in the world of Amnesia, written by Mikael Hedberg and illustrated by the game\'s concept artists, was also made available.[8] In addition, the game\'s soundtrack is available for purchase and a free content expansion Justine has been released, as well as many fan-made expansions and stories for its unique \"Custom Story\" gamemode.[9] The Amnesia Collection – which contains The Dark Descent, its Amnesia: Justine expansion and the sequel, A Machine for Pigs – was released for PlayStation 4 on 22 November 2016.', 68000, 9, 'Games\\Horror\\Amnesia Collection\\Amnesia_Collection_Banner.jpg??Games\\Horror\\Amnesia Collection\\Amnesia Collection(1).jpg??Games\\Horror\\Amnesia Collection\\Amnesia Collection(2).jpg??Games\\Horror\\Amnesia Collection\\Amnesia Collection(3).jpg??//www.youtube.com/embed/EzvNKsbdZiU'),
+(8, 'Ghost Theory', 2, 3, 'Ao', 'Ghost Theory is an indie video game developed and published by Dreadlocks Ltd. It is a first-person adventure horror, designed to be a serious take on ghost hunting and paranormal research, featuring real-world haunted locations.\r\nIntrigued by the player\'s supernatural talent of clairvoyance, a struggling university department asks them to join their secret research team, making them a front-field operative in paranormal investigations. Using a wide range of ghost-hunting gadgets and abilities they will conduct missions to investigate real haunted sites, collect samples and gather evidence.\r\n\r\nEach mission is an open-ended haunted ground - a playable sandbox with its own story. The university is the player\'s home base, where their work will be evaluated, results assessed and where they will be briefed for their next mission.', 472300, 10, 'Games\\Horror\\Ghost Theory\\Ghost_Theory_Banner.jpg??Games\\Horror\\Ghost Theory\\Ghost Theory(1).jpg??Games\\Horror\\Ghost Theory\\Ghost Theory(2).jpg??Games\\Horror\\Ghost Theory\\Ghost Theory(3).jpg??//www.youtube.com/embed/6shDhWiAdO0'),
+(9, 'Not a Hero Resident Evil 7', 2, 8, 'Ao', 'Not A Hero is a DLC gametype for Resident Evil 7: Biohazard. Originally scheduled for a release date sometime in Spring 2017, it was delayed due to quality concerns.[1] It was released on December 12, along with the Gold Edition of the game.', 132000, 6, 'Games\\Horror\\Not a Hero Resident Evil 7\\Not_a_Hero_Resident_Evil_7_Banner.jpg??Games\\Horror\\Not a Hero Resident Evil 7\\Not a Hero Resident Evil 7(1).jpg??Games\\Horror\\Not a Hero Resident Evil 7\\Not a Hero Resident Evil 7(2).jpg??Games\\Horror\\Not a Hero Resident Evil 7\\Not a Hero Resident Evil 7(3).jpg??//www.youtube.com/embed/WyBsFqmT9IY'),
+(10, 'Outlast 2', 2, 2, 'Ao', 'Outlast 2 (stylized as OU⸸LASTII) is a first-person survival horror video game developed and published by Red Barrels. It is the sequel to the 2013 video game Outlast, and features a journalist named Blake Langermann, along with his wife Lynn, roaming the Arizona desert to explore the murder of a pregnant woman only known as Jane Doe.[1] Blake and Lynn get separated in a helicopter crash, and Blake has to find his wife while traveling through a village inhabited by a sect that believes the end of days are upon them.\r\n\r\nShortly after the release and popularity of Outlast, Red Barrels announced the sequel. A gameplay demo was then released at both PAX East and E3 2016 on April 22 and June 15 respectively, with a release originally slated for Autumn 2016. Due to development delays, the game was ultimately released on April 25, 2017 for Microsoft Windows, PlayStation 4, and Xbox One. The Nintendo Switch version is scheduled for release on March 27, 2018.', 99000, 8.6, 'Games\\Horror\\Outlast 2\\Outlast_2_Banner.jpg??Games\\Horror\\Outlast 2\\Outlast 2(1).jpg??Games\\Horror\\Outlast 2\\Outlast 2(2).jpg??Games\\Horror\\Outlast 2\\Outlast 2(3).jpg??//www.youtube.com/embed/RTXbOh8urp4'),
+(11, 'Solarix', 2, 7, 'Ao', 'Solarix is a science-fiction stealth-horror game featuring open-ended levels for both combative and stealth-focused playstyles. Solarix combines old-school sci-fi horror with next-gen style and graphics. The story follows an electrical engineer desperately fighting for his life after an infection wipes out an interstellar research station. He must contain the disease, battling both the remnants of the crew and his own fracturing mind. Our goal is to go beyond jumpscares and cheap thrills. Solarix is about a world that overpowers you with unease, insecurity, and desperation, forcing you to confront your own role in the horrors to come.\r\n\r\nFeatures:\r\n\r\n\r\n12 chapters with engrossing story line with lots of unique characters that provide psychological depth to player experience of survival horror.\r\n\r\nVariety of weapons and hacking tools allowing the player to develop different strategies to overcome obstacles and progress for sneaking & combat & puzzle solving & environmental interaction.\r\n\r\nAdvanced Stealth A.I with varying voice sets & detection abilities and several other perceptive features.\r\n\r\nHere is a detailed description of Solarix Stealth A.I and its relation with the game-play mechanics:\r\n\r\nSolarix is a stealth game, and you can either use \"stealth-based combat\" or you can even finish the game without firing a bullet but knocking everyone out or you can even finish the game without alerting anyone.\r\n\r\nIf you like stealth kills, explore for ammo, use your pistol carefully(=combat) and aim for headshots and move around...\r\n\r\nIf you want to knock out enemies, don\'t use your pistol, use your tazer, observe their patrol points and knock them out one by one...\r\n\r\nIf you want to create your own darkness, use your pistol on lights, not on enemies...\r\n\r\nIf you want to \"ghost\" the entire game that is also possible, but you\'ll have to keep an eye your light meter and environment all the time...\r\n\r\nIf you want to lure enemies around, use throwable objects, not any weapons...\r\n\r\nIf you are around monsters and get caught, use your pistol to defend yourself until you find some cover/hiding spot...\r\n\r\nFurther in the game, if you are bored of sneaking around, use your shotgun to blast enemies, but you have to explore around carefully to collect ammo first...\r\n\r\nUnique puzzles in that require exploration and information gathering in classic adventure style.\r\n\r\nWide variety in environments...In Solarix, you\'ll travel from cramped corridors to vast exotic forests to giant space stations to ominous underground facilities. Each level has its own strategy; each strategy is created by you. Some levels you\'ll have to run away from monsters, in some levels you\'ll want to directly confront them. One level will require you explore around in classical-adventure style to solve puzzles, whereas another level will require you to sneak around carefully.\r\n\r\nRich in-game content – you’ll encounter not just human enemies and monsters but you’ll have to hack your way through turrets, security cameras, sniper-robots and flying drones. There is a different and unique type of enemy awaiting you around every corner.\r\n\r\nProfessional voice acting providing lots of depth to background', 2300000, 10, 'Games\\Horror\\Solarix\\Solarix_Banner.jpg??Games\\Horror\\Solarix\\Solarix(1).jpg??Games\\Horror\\Solarix\\Solarix(2).jpg??Games\\Horror\\Solarix\\Solarix(3).jpg??//www.youtube.com/embed/SZ6P5FxyS5Q'),
+(12, 'System Shock 3', 2, 8, 'Ao', '\"If you desired, you could improve this page... transform it...\"\r\nThis article is a stub. You can help SHODANPEDIA, The System Shock Wiki\r\nby expanding it and adding more information to it.\r\n“\r\nDid you think I\'d forgotten you, insect?\r\n”\r\n~ SHODAN on the official website\r\nSystem Shock 3 is the upcoming third entry in the System Shock series, developed by OtherSide Entertainment. The game will be released on PC and other platforms.', 21860000, 9.1, 'Games\\Horror\\System Shock 3\\System_Shock_3_Banner.jpg??Games\\Horror\\System Shock 3\\System Shock 3(1).jpg??Games\\Horror\\System Shock 3\\System Shock 3(2).jpg??Games\\Horror\\System Shock 3\\System Shock 3(3).jpg??//www.youtube.com/embed/c84I7Rubz14'),
+(13, 'DEVIL IN THE PINES', 3, 1, 'E10', 'Devil in the Pines provides an undeniably nerve wracking experience as you accomplish one simple goal: find the key. As evil and fear works against you, you must steady your hand as much as possible, because when demons find you, a single missed shot is likely fatal. You wield nothing but a crossbow with 6 bolts, a flashlight, and campfires to protect you from the evil supernatural entities that will stalk, intimidate, and attack you without relent. One life, one pull of the trigger, and your daughter\'s life hangs in the balance.\r\n\r\nTerrifying, Adaptive AI\r\nSupernatural enemies like you haven\'t faced before. Super fast, unpredictable, and they improve their attack the longer you stay alive.\r\nWhite-Knuckle Climax \r\nOnce you find the key to open the mine, prepare for an ending you won\'t soon forget as all hell literally breaks loose. \r\nMenacing Paranormal Encounters \r\nNever let your guard down. Demons are not the only thing to be afraid of. \r\nImmersive Hint System \r\nTry your best to not cover your eyes. Keep a lookout for different forms of direction to help you find your way. \r\nVast, Open Level\r\nBe mindful of your compass and campfires as it’s easy to get lost in the forest. Be rewarded for venturing into the black—find supplies leftover from past unfortunate hikers.\r\nDynamic Gameplay \r\nEach time you die, elements change to ensure no two games are the same.', 42000, 4.7, 'Games\\Adventure\\DEVIL IN THE PINES\\DEVIL_IN_THE_PINES_Banner.jpg??Games\\Adventure\\DEVIL IN THE PINES\\DEVIL IN THE PINES(1).jpg??Games\\Adventure\\DEVIL IN THE PINES\\DEVIL IN THE PINES(2).jpg??Games\\Adventure\\DEVIL IN THE PINES\\DEVIL IN THE PINES(3).jpg??//www.youtube.com/embed/EOUqK78XTac'),
+(14, 'DISHONORED_DEATH_OF_THE_OUTSIDER', 3, 6, 'T', 'The award-winning developers of Arkane® Studios return with Dishonored®: The death of the Outsider, a full-fledged game that does not require Dishonored 2. Become a supernatural assassin by playing the famous Billie Lurk. Find your mentor Daud and prepare together the greatest assassination of all time. Dishonored®: The Outsider\'s death includes all the codes of the Dishonored series, including the fluid combat system, an exceptional level design and a scenario that evolves according to your choices. The death of the Outsider offers a perfect introduction for players discovering the Dishonored series and an original extension of the gameplay and the universe for hardcore fans.', 67000, 9.2, 'Games\\Adventure\\DISHONORED_DEATH_OF_THE_OUTSIDER\\DISHONORED DEATH OF THE OUTSIDER_Banner.jpg??Games\\Adventure\\DISHONORED_DEATH_OF_THE_OUTSIDER\\DISHONORED_DEATH_OF_THE_OUTSIDER(1).jpg??Games\\Adventure\\DISHONORED_DEATH_OF_THE_OUTSIDER\\DISHONORED_DEATH_OF_THE_OUTSIDER(2).jpg??Games\\Adventure\\DISHONORED_DEATH_OF_THE_OUTSIDER\\DISHONORED_DEATH_OF_THE_OUTSIDER(3).jpg??https://youtu.be/NVJ-d1AIqVo'),
+(15, 'Metro Exodus', 3, 4, 'T', 'We are in 2036. \r\n\r\nA quarter of a century after a nuclear war devastated the Earth, a few thousand survivors dug themselves under the Moscow ruins in the Metro tunnels. \r\n\r\nThey braved pollution, fought mutant beasts and other abominations and suffered the ravages of civil war. \r\n\r\nAs Artyom, you must now flee the Metro to lead a group of Spartan Rangers in search of a new life in the East. This continent-wide mission will take you on an unforgettable journey through post-apocalyptic Russia. \r\n\r\nMetro Exodus is a spectacular narrative FPS developed by 4A Games. It mixes combat, infiltration, exploration and survival horror and offers one of the most immersive worlds of video games.\r\n\r\nExplore the wild expanses of Russia through vast and open levels, and discover a captivating story that begins in the spring to lead you to the heart of nuclear winter. \r\n\r\nInspired by Dmitry Glukhovsky\'s novels, Metro Exodus continues Artyom\'s adventures in Metro\'s greatest adventure to date.\r\nCharacteristics\r\nEmbark on an extraordinary journey - take a seat on the Aurora, a greatly improved steam locomotive, and join a handful of survivors in search of a new life in the East\r\nDiscover Emerging Survival - a captivating story that connects traditional Metro gameplay with new, gigantic, open levels\r\nA sublime and hostile world - discover the wilderness of a post-apocalyptic Russia that comes to life through breathtaking day / night cycles and dynamic weather\r\nMortal Combat and Infiltration - personalize your makeshift weapons with artifacts found in the field, and engage in breathtaking tactical combat against humans and mutants\r\nYour choices determine the fate of your classmates - some of your companions will not survive: your decisions will have far-reaching consequences throughout this thrilling story with great replayability\r\nAtmosphere and immersion at the top - the flame of a candle that wobbles in the darkness, a panting that reveals frost on your gas mask, the roar of a mutant carried by the night wind: Metro will plunge you into a universe terrifying to no other ...', 213000, 9.3, 'Games\\Adventure\\Metro Exodus\\Metro-Exodus_Banner.jpg??Games\\Adventure\\Metro Exodus\\Metro Exodus(1).jpg??Games\\Adventure\\Metro Exodus\\Metro Exodus(2).jpg??Games\\Adventure\\Metro Exodus\\Metro Exodus(3).jpg??//www.youtube.com/embed/2k2XGNySH0E'),
 (16, 'RAID WORLD WAR 2', 3, 3, 'E', 'RAID: World War II is an action packed four-player cooperative shooter. He takes you to Europe during the Second World War and charges you and your friends to thwart the Nazi offensive. Four prisoners of war, Sterling, Rivet, Kurgan and Wolfgang, were released by \"Mrs. White\", a British secret service agent, to neutralize Hitler and his command once and for all. Their mission: to win the war, whatever the cost. And the reward? All the Nazi gold they will succeed in stealing the passage.JOHN CLEESE. Legendary comedian John Cleese lends his voice to Control, a British secret agent under Mrs. White\'s orders. His job is to make sure you always have Nazis to steal and gold to steal.', 148000, 9, 'Games\\Adventure\\RAID WORLD WAR 2\\RAID WORLD WAR 2_Banner.jpg??Games\\Adventure\\RAID WORLD WAR 2\\RAID WORLD WAR 2(1).jpg??Games\\Adventure\\RAID WORLD WAR 2\\RAID WORLD WAR 2(2).jpg??Games\\Adventure\\RAID WORLD WAR 2\\RAID WORLD WAR 2(3).jpg??//www.youtube.com/embed/knIZZvv2feQ'),
 (17, 'Sniper-Ghost-Warrior-2', 3, 1, 'M', 'Sniper: Ghost Warrior 2 takes the extreme precision of its predecessor, which has sold more than 3 million copies, at an even more exciting level. This is the only modern multi-platform shooter in the first person that focuses solely on the sniper concept and uses the most sophisticated CryENGINE3 graphics engine. The missions of Sniper: Ghost Warrior 2 are graphically superb and provide even more varied challenges. Feel each enemy shot down with unprecedented levels of weapon realism, ballistics and environmental factors.\r\nCHARACTERISTICS\r\nMotion Sense Trigger System: an innovation of FPS controls! In the game, you have to squeeze the throttle trigger regularly so that the bullet from your rifle is more accurate. If you pull the trigger sharply, the ball will be lost.\r\nRealistic ballistics: the realism of its fire system is the hallmark of the Sniper franchise. Wind speed, distance, gravity and ball drop all play a vital role in the accuracy of your shot.\r\nImproved shooting mechanisms: a proper breathing technique to stabilize your heart rate and perfect timing are two essential criteria that will help you achieve the goal of \"one shot, one dead\".\r\nAn improved enemy AI: Artificial Intelligence (AI) has been completely overhauled and redesigned from scratch. A lot of the improvements have been made possible by using the CryEngine 3 engine. Expect everything, from side-by-side to direct assault, as the enemy tries to attack you in close combat, where your rifle is the least effective.\r\nNew environments full of enemies: Sniper Ghost Warrior 2 adds new urban environments such as Sarajevo and dangerous mountainous terrain to the most lush and deadly jungles ever. \r\nSeveral levels of difficulty: to diversify the gameplay and make it accessible to the greatest number of players, CI Games offers three levels of difficulty that completely change the nature of the game. You decide how you play. You can either relax and become the ultimate predator, or put your skills to the test in Expert mode.\r\nBullet-Cam: The favorite feature of all players is back and rewards the best shots with a completely different view of the battlefield. Discover the true power of stopping your ball as you shoot your enemies at a distance of more than 1,000 meters!\r\nBall Penetration: Being hidden does not mean being safe. In Sniper: Ghost Warrior 2, the balls behave as in reality and are able to eliminate the enemies that hide behind different types of shelters.\r\nA diverse range of sniper rifles: Try the world\'s most sophisticated sniper rifles, each of which has been meticulously recreated to accurately simulate the behavior of today\'s modern battlefield armament .\r\nNew equipment: become the master of the night with the addition of thermal goggles and night vision, plus powerful binoculars that will help you locate enemies before they spot you.', 670000, 9.8, 'Games\\Adventure\\Sniper-Ghost-Warrior-2\\Sniper-Ghost-Warrior-2_Banner.jpg??Games\\Adventure\\Sniper-Ghost-Warrior-2\\Sniper-Ghost-Warrior-2(1).jpg??Games\\Adventure\\Sniper-Ghost-Warrior-2\\Sniper-Ghost-Warrior-2(2).jpg??Games\\Adventure\\Sniper-Ghost-Warrior-2\\Sniper-Ghost-Warrior-2(3).jpg??//www.youtube.com/embed/YJldAdP1DJI'),
 (18, 'Sniper-Ghost-Warrior-3', 3, 1, 'M', 'Sniper: Ghost Warrior 3 is a tactical shooter video game developed and published by CI Games for Microsoft Windows, PlayStation 4 and Xbox One, and was released worldwide on 25 April 2017. It is also the first game in the series to feature an open world environment.', 375000, 9.1, 'Games\\Adventure\\Sniper-Ghost-Warrior-3\\Sniper-Ghost-Warrior-3_Banner.jpg??Games\\Adventure\\Sniper-Ghost-Warrior-3\\Sniper-Ghost-Warrior-3(1).jpg??Games\\Adventure\\Sniper-Ghost-Warrior-3\\Sniper-Ghost-Warrior-3(2).jpg??Games\\Adventure\\Sniper-Ghost-Warrior-3\\Sniper-Ghost-Warrior-3(3).jpg??//www.youtube.com/embed/Zq4Gxzge9Fc'),
@@ -217,9 +228,9 @@ INSERT INTO `games` (`Gid`, `Gname`, `GGid`, `Nid`, `ESRB`, `description`, `Pric
 (27, 'Fallout New Vegas', 5, 4, 'M', 'Welcome to Vegas. New Vegas. \r\nThis is the kind of place where you will dig your own grave before taking a bastos in the face. It is a city where the desperados fight each other for the control of the rare oases. The kind of place where the right person with the right equipment can make the difference ... and make a lot of enemies. \r\nFrom the Mojave Desert to the Vegas Strip, through the Hoover Dam, you\'ll meet lots of endearing and colorful characters. Make the right alliances and choose your camp to become the master of Vegas in this sequel to Game of the Year 2008, Fallout 3. \r\nEnjoy your stay.', 417000, 9, 'Games\\RPG\\Fallout New Vegas\\Fallout New Vegas_Banner.jpg??Games\\RPG\\Fallout New Vegas\\Fallout New Vegas(1).jpg??Games\\RPG\\Fallout New Vegas\\Fallout New Vegas(2).jpg??Games\\RPG\\Fallout New Vegas\\Fallout New Vegas(3).jpg??//www.youtube.com/embed/l-x-1fm2cq8'),
 (28, 'PAIN TRAIN 2 2017', 5, 5, 'M', 'The subways clearing gave new hope to the people of earth. While you were busy clearing out the New York invasion, the cyborgs have been positioning their space stations around Earth to begin using them as invasion strongholds. It\'s time to take the fight to them and send whats left back to where they came from. As the hero \"Pain Train\" you feed off the pain you inflict. This enables you to take on hordes of enemies that would otherwise overrun a normal man. Shoot your way through 12 new gore packed levels, craft new weapons, earn 30 different weapon skins, beat multiple difficulty modes, and destroy all of the overlords. Pain Train is entering a space station near you, \"All Aboard!\"', 890000, 9.9, 'Games\\RPG\\PAIN TRAIN 2 2017\\PAIN TRAIN 2 2017_Banner.jpg??Games\\RPG\\PAIN TRAIN 2 2017\\PAIN TRAIN 2 2017(1).jpg??Games\\RPG\\PAIN TRAIN 2 2017\\PAIN TRAIN 2 2017(2).jpg??Games\\RPG\\PAIN TRAIN 2 2017\\PAIN TRAIN 2 2017(3).jpg??//www.youtube.com/embed/xHexXX5KKqc'),
 (29, 'SAVAGE RESURRECTION 2016', 5, 7, 'M', 'The rebirth of the classic action FPS / RTS hybrid \"Savage 1\" is here! Experience fast-paced combat and cunning strategic gameplay in glorious Unreal 4 environments. Engage in epic 16v16 front-line combat, or take Command to outplay and outmaneuver your team\'s way to victory. \r\n\r\nSavage is a multiplayer-only game with a competitive focus. Combat includes both melee and shooter aspects, and should challenge even seasoned gamers. Servers are currently located in the US and EU, with more planned. Players may also host their own servers, use ours, or play offline!', 597000, 9.4, 'Games\\RPG\\SAVAGE RESURRECTION 2016\\SAVAGE RESURRECTION 2016_Banner.jpg??Games\\RPG\\SAVAGE RESURRECTION 2016\\SAVAGE RESURRECTION 2016(1).jpg??Games\\RPG\\SAVAGE RESURRECTION 2016\\SAVAGE RESURRECTION 2016(2).jpg??Games\\RPG\\SAVAGE RESURRECTION 2016\\SAVAGE RESURRECTION 2016(3).jpg??//www.youtube.com/embed/q0BOpZgcY2o'),
-(30, 'BIOSHOCK THE COLLECTION 2016', 5, 8, 'M', 'BioShock: The Collection is a remastered collection of the BioShock video game series. The remastered collection is developed by Blind Squirrel Games and published by 2K Games. The collection features upgraded versions of these games to support higher display resolutions and framerates on Microsoft Windows, PlayStation 4 and Xbox One, with the exception of Infinite, which was ported to consoles from Windows. The collection was released in September 2016. Existing owners of the first two games on Windows received the remastered versions of those two games for free.', 759000, 9.5, 'Games\\RPG\\BIOSHOCK THE COLLECTION 2016\\BIOSHOCK THE COLLECTION 2016_Banner.jpg??Games\\RPG\\BIOSHOCK THE COLLECTION 2016\\BIOSHOCK THE COLLECTION 2016(1).jpg??Games\\RPG\\BIOSHOCK THE COLLECTION 2016\\BIOSHOCK THE COLLECTION 2016(2).jpg??Games\\RPG\\BIOSHOCK THE COLLECTION 2016\\BIOSHOCK THE COLLECTION 2016(3).jpg??//www.youtube.com/embed/sFb50N5lPJc');
+(30, 'BIOSHOCK THE COLLECTION 2016', 5, 8, 'M', 'BioShock: The Collection is a remastered collection of the BioShock video game series. The remastered collection is developed by Blind Squirrel Games and published by 2K Games. The collection features upgraded versions of these games to support higher display resolutions and framerates on Microsoft Windows, PlayStation 4 and Xbox One, with the exception of Infinite, which was ported to consoles from Windows. The collection was released in September 2016. Existing owners of the first two games on Windows received the remastered versions of those two games for free.', 759000, 9.5, 'Games\\RPG\\BIOSHOCK THE COLLECTION 2016\\BIOSHOCK THE COLLECTION 2016_Banner.jpg??Games\\RPG\\BIOSHOCK THE COLLECTION 2016\\BIOSHOCK THE COLLECTION 2016(1).jpg??Games\\RPG\\BIOSHOCK THE COLLECTION 2016\\BIOSHOCK THE COLLECTION 2016(2).jpg??Games\\RPG\\BIOSHOCK THE COLLECTION 2016\\BIOSHOCK THE COLLECTION 2016(3).jpg??//www.youtube.com/embed/sFb50N5lPJc'),
+(31, 'DYING LIGHT THE FOLLOWING - ENHANCED EDITION 2015', 5, 8, 'M', 'Dying Light is an FPS survival in a vast and dangerous open world. Explore a city devastated by a mysterious pandemic in search of food and anything convertible into a weapon to repel hordes of hungry enemies of human flesh. At night, the Infected prowl and become more deadly predators who leave their nest in search of their prey. \r\n\r\nGood Night. Good Luck. \r\n\r\nWelcome to Quarantine - Discover an original and intense story in an infected city cut off from the rest of the world. Only the strongest have a chance to survive. \r\n\r\nA vast and open world- Dying Light allows you to cross an extended world that has sunk into chaos and destruction. It is in this varied environment that you fight for your survival against many types of enemies, because the infected are not the only threat to you: often, the confrontation with other desperate humans is the only way to get hold of valuable resources. \r\n\r\nAt night everything is different - during the day you explore the city in search of resources and weapons. But at nightfall, this infected world is radically transformed, and the game takes a different turn. You were the hunter during the day, here you are now the prey. The infected become stronger, and something\r\n\r\nParkour-style trips - For hunting as well as for escape, you can move around the city quickly and easily. Jump between roofs, climb walls and attack your enemies from above. Dying Light offers players an unprecedented freedom of movement in open world games. \r\n\r\nA brutal and visceral combat system - Fight face-to-face with a variety of melee weapons: knives, bats, axes and other more unusual destruction tools. Defeat your enemies, cut off their limbs and save your skin! \r\n\r\nFire arms- Powerful, but noisy. Use guns, shotguns and rifles to take advantage of your opponents, but remember that shots tend to draw attention to you. \r\n\r\nMake your own weapons - Why use a regular chopper when you can attach a lighter to inflict fire damage? Or wind a hammer of electrified barbed wire? Dying Light allows you to improve your own weapons and build more effective combat accessories. \r\n\r\nBecome the hero of quarantine- Dying Light includes elements of role-playing, and offers to improve the protagonist to adapt it to your style of play. You will have to fight for a long time before turning this novice into a real badass. \r\n\r\nChoose your style of play - Use your weapons, your environment and traps set by other survivors. Push groups of enemies to attack each other. Complete your goals day and night. Enjoy the gloom, fog and bad weather to go unnoticed. Take the lead with offensive and defensive gadgets. The choice is yours! \r\n\r\n4-player co-op mode - Discover an exciting story, finish more than\r\n\r\nCo-op Mode for 4 Players - Cooperate with other players in the hostile environment of a zombie apocalypse. Display your style by personalizing your character. \r\n\r\nPlay as a zombie - A unique online mode lets you play as a zombie. If you dreamed of hounding other survivors, now is the time. The hunt is on ! \r\n\r\nRealistic and breathtaking graphics - new standards of visual quality, special effects and dynamic weather conditions.', 869000, 9.6, 'Games\\RPG\\DYING LIGHT THE FOLLOWING - ENHANCED EDITION 2015\\DYING LIGHT THE FOLLOWING - ENHANCED EDITION 2015_Banner.jpg??Games\\RPG\\DYING LIGHT THE FOLLOWING - ENHANCED EDITION 2015\\DYING LIGHT THE FOLLOWING - ENHANCED EDITION 2015(1).jpg??Games\\RPG\\DYING LIGHT THE FOLLOWING - ENHANCED EDITION 2015\\DYING LIGHT THE FOLLOWING - ENHANCED EDITION 2015(2).jpg??Games\\RPG\\DYING LIGHT THE FOLLOWING - ENHANCED EDITION 2015\\DYING LIGHT THE FOLLOWING - ENHANCED EDITION 2015(3).jpg??//www.youtube.com/embed/lGCK4mxiupQ');
 INSERT INTO `games` (`Gid`, `Gname`, `GGid`, `Nid`, `ESRB`, `description`, `Price`, `Rating`, `gimage`) VALUES
-(31, 'DYING LIGHT THE FOLLOWING - ENHANCED EDITION 2015', 5, 8, 'M', 'Dying Light is an FPS survival in a vast and dangerous open world. Explore a city devastated by a mysterious pandemic in search of food and anything convertible into a weapon to repel hordes of hungry enemies of human flesh. At night, the Infected prowl and become more deadly predators who leave their nest in search of their prey. \r\n\r\nGood Night. Good Luck. \r\n\r\nWelcome to Quarantine - Discover an original and intense story in an infected city cut off from the rest of the world. Only the strongest have a chance to survive. \r\n\r\nA vast and open world- Dying Light allows you to cross an extended world that has sunk into chaos and destruction. It is in this varied environment that you fight for your survival against many types of enemies, because the infected are not the only threat to you: often, the confrontation with other desperate humans is the only way to get hold of valuable resources. \r\n\r\nAt night everything is different - during the day you explore the city in search of resources and weapons. But at nightfall, this infected world is radically transformed, and the game takes a different turn. You were the hunter during the day, here you are now the prey. The infected become stronger, and something\r\n\r\nParkour-style trips - For hunting as well as for escape, you can move around the city quickly and easily. Jump between roofs, climb walls and attack your enemies from above. Dying Light offers players an unprecedented freedom of movement in open world games. \r\n\r\nA brutal and visceral combat system - Fight face-to-face with a variety of melee weapons: knives, bats, axes and other more unusual destruction tools. Defeat your enemies, cut off their limbs and save your skin! \r\n\r\nFire arms- Powerful, but noisy. Use guns, shotguns and rifles to take advantage of your opponents, but remember that shots tend to draw attention to you. \r\n\r\nMake your own weapons - Why use a regular chopper when you can attach a lighter to inflict fire damage? Or wind a hammer of electrified barbed wire? Dying Light allows you to improve your own weapons and build more effective combat accessories. \r\n\r\nBecome the hero of quarantine- Dying Light includes elements of role-playing, and offers to improve the protagonist to adapt it to your style of play. You will have to fight for a long time before turning this novice into a real badass. \r\n\r\nChoose your style of play - Use your weapons, your environment and traps set by other survivors. Push groups of enemies to attack each other. Complete your goals day and night. Enjoy the gloom, fog and bad weather to go unnoticed. Take the lead with offensive and defensive gadgets. The choice is yours! \r\n\r\n4-player co-op mode - Discover an exciting story, finish more than\r\n\r\nCo-op Mode for 4 Players - Cooperate with other players in the hostile environment of a zombie apocalypse. Display your style by personalizing your character. \r\n\r\nPlay as a zombie - A unique online mode lets you play as a zombie. If you dreamed of hounding other survivors, now is the time. The hunt is on ! \r\n\r\nRealistic and breathtaking graphics - new standards of visual quality, special effects and dynamic weather conditions.', 869000, 9.6, 'Games\\RPG\\DYING LIGHT THE FOLLOWING - ENHANCED EDITION 2015\\DYING LIGHT THE FOLLOWING - ENHANCED EDITION 2015_Banner.jpg??Games\\RPG\\DYING LIGHT THE FOLLOWING - ENHANCED EDITION 2015\\DYING LIGHT THE FOLLOWING - ENHANCED EDITION 2015(1).jpg??Games\\RPG\\DYING LIGHT THE FOLLOWING - ENHANCED EDITION 2015\\DYING LIGHT THE FOLLOWING - ENHANCED EDITION 2015(2).jpg??Games\\RPG\\DYING LIGHT THE FOLLOWING - ENHANCED EDITION 2015\\DYING LIGHT THE FOLLOWING - ENHANCED EDITION 2015(3).jpg??//www.youtube.com/embed/lGCK4mxiupQ'),
 (32, 'HELLGATE LONDON 2007', 5, 6, 'T', 'Hellgate: London is a dark fantasy themed action role-playing game originally developed by Flagship Studios, released on October 31, 2007. It was developed by a team led by former Blizzard Entertainment employees, some of whom had overseen the creation of the Diablo series.\r\n\r\nSet in a post-apocalyptic London in the year 2038, Hellgate: London is a fast-paced action role-playing hack and slash game. It includes random elements from roguelikes such as weapon and armour attributes, item drops, mob spawns and level composition. The game featured both single-player and online multiplayer support when it was released although North American and European (US/EU) online support has since shutdown. The single-player version features a five act story quest line when completed, the player is eligible to restart the story line again in a new high difficulty and create new characters in an elite mode.\r\n\r\nIn 2008, Flagship Studios filed bankruptcy and all intellectual property was seized as collateral for funding received from Comerica Bank. Subsequently, development of the game halted. Namco Bandai Games provided free ongoing US/EU server support in the fall of Flagship Studios until January 31, 2009, when the US/EU multiplayer game servers and websites were taken offline. HanbitSoft has since acquired properties to the game and has redeveloped it as a free-to-play Hellgate London: Resurrection in South Korea, featuring Seoul based maps. In 2014, Hellgate Global was announced to add Tokyo to the game for a possible release outside South Korea.', 7238000, 9.8, 'Games\\RPG\\HELLGATE LONDON 2007\\HELLGATE LONDON 2007_Banner.jpg??Games\\RPG\\HELLGATE LONDON 2007\\HELLGATE LONDON 2007(1).jpg??Games\\RPG\\HELLGATE LONDON 2007\\HELLGATE LONDON 2007(2).jpg??Games\\RPG\\HELLGATE LONDON 2007\\HELLGATE LONDON 2007(3).jpg??//www.youtube.com/embed/szKT2MRFabo'),
 (33, 'NETHER RESURRECTED 2014', 5, 3, 'M', 'NETHER...IS...BACK! We have rolled back the game to Summer of 2014, when it first left Early Access and was still being developed by us, Phosphor Games Studio. \r\n\r\nRIGHT NOW:\r\n- Single Player enabled: It was not possible before, but now it\'s working, and it\'s hard! Have fun surviving the monster-filled urban apocalypse alone\r\n- No more micro-transactions: all items can be bought with in game cash\r\n- Multiplayer via player hosted servers! The old back end ripped out - no need for any login besides Steam. You control your community, and nobody can take your game from you again\r\n\r\nWHAT IS IN DEVELOPMENT:\r\n- Custom server settings: you decided how many players, how many Nether, how much gun spawns, etc.\r\n- Modding tools![/b]\r\n- Bug fixes (including playing as a Nether, which was always pretty buggy\r\n\r\nGAME SUMMARY:\r\nNether is a fast-paced survival game that forces you to make quick life-saving decisions in an unforgiving environment. In this post-apocalyptic urban world, death is waiting around every corner, at the top of high-rise buildings, and in the grasp of powerful teleporting creatures known as \'Nethers\'. These creatures and the other players are real challenges to overcome, requiring tactical gameplay, awareness, stealth, and cooperation. To navigate this high-tension environment, you must use skill and cunning in order to scavenge, trade, craft or loot for food, weapons, supplies, and other resources necessary to stay alive in a desolate and dangerous city. Team up with other survivors and take advantage of group play, as a tribe, to complete treacherous world objectives, or play as a lone wolf in an attempt to endure the hostile environment. In the end you must decide whether to Prey or Pray.\r\nKey Features\r\nEXPLORE\r\nThe game\'s landscape is a beautifully conceived vision of a post apocalyptic Chicago, ravaged by disaster and time. Almost every low and high-rise building can be individually explored in a cityscape that stretches 150 blocks. Beyond the city lies the Wastelands, an unforgiving desolate landscape that is slowly sinking into the earth. \r\n\r\nSURVIVE, CRAFT, TRADE, LOOT AND SHOOT\r\nStart off, armed only with a kitchen knife and scavenge your way through an environment on a daily battle to stay alive. Beware the Nether, poor mutated souls who roam the city in search of human flesh. Scavenge for food and water to stay nourished, and search for useful items that could be crafted into makeshift weapons to help in your battle for life. Hunt and kill Nether to trade their body parts to the mysterious Cult located in the few markets that scatter the city. Over time, build up your skills and earn rewards for surviving each precious new day. But always beware of the other survivors who may be only one moment away from death, and see killing you and looting your possessions as their only salvation. \r\n\r\nTRIBES AND TERRITORY WARS \r\nFind safety in numbers by joining a tribe. Only tribes can capture and own territory, and the urban landscape is the perfect setting for turf domination. Compete with rival tribes in territory wars for control of the city by capturing strategic landmarks to reap resources and experience; prove your dominance over all other tribes. Spy on rival tribes or infiltrate and kill them by playing as a Nether. Ambush them from above by swooping in for the kill using the wing suit. Tribes change the survival experience by establishing a true social construct, with all the consequences of behavior that you would expect in the real world. Your actions have real repercussions enforced organically through reputation and standing.\r\n\r\nPLAYER AND GROUP MISSIONS\r\nPlayers can complete an assortment of individual or group missions to earn money, experience and reputation. Perform vital supply runs between the markets, work with your tribe to take down the swarms of Nether lead by the vicious boss Reaper that sporadically surge to attack neighborhoods, or keep the creatures out of the Safezones by working in groups to repair the anti-nether devices when they fail.\r\n\r\nCHARACTER CUSTOMIZATION \r\nNether offers a wide variety of character customization and allows you to play as a male or female character. There is a huge selection of cosmetic items and player taunts to assert your individuality along with entire outfits to play roles like survivalist, soldier and biker - or even just play in your underwear.\r\n\r\nOTHER\r\nHost your own private servers and control your settings and player population\r\nFirst-person perspective creates a true survival experience\r\nMeld of PvE (player versus environment) and PvP (player versus player) gameplay\r\nNew weapons and items become available as players explore the game world\r\nUp to 64 players per game server\r\nSingle purchase, downloadable client allows full game access without subscription', 693000, 9.7, 'Games\\RPG\\NETHER RESURRECTED 2014\\NETHER RESURRECTED 2014_Banner.jpg??Games\\RPG\\NETHER RESURRECTED 2014\\NETHER RESURRECTED 2014(1).jpg??Games\\RPG\\NETHER RESURRECTED 2014\\NETHER RESURRECTED 2014(2).jpg??Games\\RPG\\NETHER RESURRECTED 2014\\NETHER RESURRECTED 2014(3).jpg??//www.youtube.com/embed/7-YJTQwvgJQ'),
 (34, 'QUAKE 2 1997', 5, 6, 'M', 'Quake II is a first-person shooter video game released in December 1997. It was developed by id Software and published by Activision. It is not a direct sequel to Quake; id decided to revert to an existing trademark when the game\'s fast-paced, tactile feel felt closer to a Quake game than a new franchise.[4]\r\n\r\nThe soundtrack for Quake II was mainly provided by Sonic Mayhem, with some additional tracks by Bill Brown; the main theme was also composed by Bill Brown and Rob Zombie, and one track by Jer Sypult.\r\n\r\nThe soundtrack for the Nintendo 64 version of the game was composed by Aubrey Hodges, credited as Ken \"Razor\" Richmond.', 739000, 9.7, 'Games\\RPG\\QUAKE 2 1997\\QUAKE 2 1997_Banner.jpg??Games\\RPG\\QUAKE 2 1997\\QUAKE 2 1997(1).jpg??Games\\RPG\\QUAKE 2 1997\\QUAKE 2 1997(2).jpg??Games\\RPG\\QUAKE 2 1997\\QUAKE 2 1997(3).jpg??https://youtu.be/BPIKK-d-BaY'),
@@ -236,11 +247,11 @@ INSERT INTO `games` (`Gid`, `Gname`, `GGid`, `Nid`, `ESRB`, `description`, `Pric
 (45, 'FRAGMENTED', 5, 6, 'M', 'You awaken stranded on a hostile alien world, after your journey to colonize the planet. Rhyldan, takes a catastrophic turn. Armed with only your fists, your wits and fragments of knowledge buried deep within a damaged clone’s mind, you must ensure the survival of the human race. Harvest local resources to get started, and hunt wildlife with crafted weapons to provide food and protection from the elements. As you survive you will regain access to knowledge and important skills to aid in your survival. Unlock advanced technologies to build giant structures, advanced weaponry and defenses, tame the wildlife, engineer and grow new living species, build robots and vehicles and use it all to support your allies or crush your enemies.\r\n\r\nFragmented is available in multiple rulesets allowing for PvP focused content, or working together with other players to survive against the environment. Play online or in single player mode. Players will have the option to host their own servers as well and tweak many of the settings to provide an easier experience or a much more harsh experience including hardcore options.', 120000, 8.1, 'Games\\RPG\\FRAGMENTED\\FRAGMENTED_Banner.jpg??Games\\RPG\\FRAGMENTED\\FRAGMENTED(1).jpg??Games\\RPG\\FRAGMENTED\\FRAGMENTED(2).jpg??Games\\RPG\\FRAGMENTED\\FRAGMENTED(3).jpg??//www.youtube.com/embed/ZHiUHk30VSw'),
 (46, 'PREY 2017', 5, 8, 'M', 'In Prey, you wake up in the year 2032 aboard Talos I, a space station orbiting the moon. You are the key subject of an experiment supposed to alter humanity forever, but the situation has turned into a nightmare. The space station has been invaded by hostile extraterrestrials and you are now a prey. As you explore the dark secrets of Talos I and those of your past, you\'ll have to survive with the tools found in the station, your insight, and mind-blowing weapons and skills. The fate of Talos I and all its occupants rests in your hands.', 900000, 9.4, 'Games\\RPG\\PREY 2017\\PREY 2017_Banner.jpg??Games\\RPG\\PREY 2017\\PREY 2017(1).jpg??Games\\RPG\\PREY 2017\\PREY 2017(2).jpg??Games\\RPG\\PREY 2017\\PREY 2017(3).jpg??//www.youtube.com/embed/UZGtnK1Ygk8'),
 (47, 'SURVIVAL IS NOT ENOUGH', 5, 6, 'T', 'Survival Is Not Enough is an open world first person zombie survival game. You wake up in a mysterious island and find out that you\'re infected. To survive you need to: build a shelter; protect yourself from the dangers of this island; kill animals for food; kill zombies for underblood to cure yourself from zombie virus; The better you\'re prepared for the night - the better your chances to survive!', 70000, 6.9, 'Games\\RPG\\SURVIVAL IS NOT ENOUGH\\SURVIVAL IS NOT ENOUGH_Banner.jpg??Games\\RPG\\SURVIVAL IS NOT ENOUGH\\SURVIVAL IS NOT ENOUGH(1).jpg??Games\\RPG\\SURVIVAL IS NOT ENOUGH\\SURVIVAL IS NOT ENOUGH(2).jpg??Games\\RPG\\SURVIVAL IS NOT ENOUGH\\SURVIVAL IS NOT ENOUGH(3).jpg??//www.youtube.com/embed/RczwU6q2bJs'),
-(48, 'Ground Runner Trials', 1, 3, 'T', 'Master: Speed, grace, combat and train to use your hover-bike to go up against the odds. Use hand controllers to interact with your hover-bike and use weapons to become the most skilled Ground Runner in the system! Feel in control, get yourself into the pilot seat! \r\n\r\nTeleport into the mining area around the two abandoned cargo storage pyramids. Use your hand-held weapons to engage with the newly discovered Torsion Crystal auto-miner units and their security escorts. Gather resources and teleport cargo back to our crashed base ship. Upgrade your plasma bike and secure the area. Happy hunting Ground Runner.', 188000, 9.7, 'Games\\Action\\Ground Runner Trials\\Ground Runner Trials_Banner.jpg??Games\\Action\\Ground Runner Trials\\Ground_Runner_Trials(1).jpg??Games\\Action\\Ground Runner Trials\\Ground_Runner_Trials(2).jpg??Games\\Action\\Ground Runner Trials\\Ground_Runner_Trials(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256705115/movie480.webm?t=1520712865'),
-(49, 'Naturallandscape - Threegorges', 1, 3, 'E', 'The Natural landscape is a virtual tourism VR game based on unreal engine meticulously developed by Magicvalley Studio. The Three Gorges of Yangtze River is the first episode, through DEM satellite, it reveals to the magnificent scenery which is full of steep and rare mountains and cliffs from Xiling District of Yichang to the Three Gorges Dam in Zigui County. You can also adjust the time in the scene and experience different landscapes in the morning, noon and evening. In this episode you can drive your own yacht galloping above the river, experience the speed and excitement above the water, and you can travel along the river and enjoy the charming and precipitous natural landscape of Xiling Gorge. \r\n\r\nfeature:\r\n1, driving speedboat speeding freely on the river \r\n2, take a pleasant relaxing round of the yacht, without Their Own operation \r\n3, adjust the sunshine selon the time, experience the beauty of different time periods', 110000, 7.9, 'Games\\Action\\Naturallandscape - Threegorges\\Naturallandscape - Threegorges_Banner.jpg??Games\\Action\\Naturallandscape - Threegorges\\Naturallandscape_-_Threegorges(1).jpg??Games\\Action\\Naturallandscape - Threegorges\\Naturallandscape_-_Threegorges(2).jpg??Games\\Action\\Naturallandscape - Threegorges\\Naturallandscape_-_Threegorges(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256710325/movie480.webm?t=1520039110'),
+(48, 'Ground Runner Trials', 1, 3, 'T', 'Master: Speed, grace, combat and train to use your hover-bike to go up against the odds. Use hand controllers to interact with your hover-bike and use weapons to become the most skilled Ground Runner in the system! Feel in control, get yourself into the pilot seat! \r\n\r\nTeleport into the mining area around the two abandoned cargo storage pyramids. Use your hand-held weapons to engage with the newly discovered Torsion Crystal auto-miner units and their security escorts. Gather resources and teleport cargo back to our crashed base ship. Upgrade your plasma bike and secure the area. Happy hunting Ground Runner.', 188000, 9.7, 'Games\\Action\\Ground Runner Trials\\Ground Runner Trials_Banner.jpg??Games\\Action\\Ground Runner Trials\\Ground Runner Trials(1).jpg??Games\\Action\\Ground Runner Trials\\Ground Runner Trials(2).jpg??Games\\Action\\Ground Runner Trials\\Ground Runner Trials(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256705115/movie480.webm?t=1520712865'),
+(49, 'Naturallandscape - Threegorges', 1, 3, 'E', 'The Natural landscape is a virtual tourism VR game based on unreal engine meticulously developed by Magicvalley Studio. The Three Gorges of Yangtze River is the first episode, through DEM satellite, it reveals to the magnificent scenery which is full of steep and rare mountains and cliffs from Xiling District of Yichang to the Three Gorges Dam in Zigui County. You can also adjust the time in the scene and experience different landscapes in the morning, noon and evening. In this episode you can drive your own yacht galloping above the river, experience the speed and excitement above the water, and you can travel along the river and enjoy the charming and precipitous natural landscape of Xiling Gorge. \r\n\r\nfeature:\r\n1, driving speedboat speeding freely on the river \r\n2, take a pleasant relaxing round of the yacht, without Their Own operation \r\n3, adjust the sunshine selon the time, experience the beauty of different time periods', 110000, 7.9, 'Games\\Action\\Naturallandscape - Threegorges\\Naturallandscape - Threegorges_Banner.jpg??Games\\Action\\Naturallandscape - Threegorges\\Naturallandscape - Threegorges(1).jpg??Games\\Action\\Naturallandscape - Threegorges\\Naturallandscape - Threegorges(2).jpg??Games\\Action\\Naturallandscape - Threegorges\\Naturallandscape - Threegorges(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256710325/movie480.webm?t=1520039110'),
 (50, 'NeverBound', 1, 8, 'T', 'NeverBound is the gravity-shifting shooter that adds another dimension to the traditional FPS. Take part in mind-bending and puzzles in multi-gravity environments. You are as dangerous from above. Scale the walls and ceilings, or use long hallways as vertical drops, as you outmaneuver your enemies. \r\n\r\nNeverBound takes place in a future where a fifth fundamental force of nature has been discovered. The technology quickly revolutionizes society and allows humans to simulate arbitrary directions of gravity. A new architecture for a new age, STRUCT, in which the flows of populas are greatly improved due to its multi-gravity nature.', 138000, 8, 'Games\\Action\\NeverBound\\NeverBound_Banner.jpg??Games\\Action\\NeverBound\\NeverBound(1).jpg??Games\\Action\\NeverBound\\NeverBound(2).jpg??Games\\Action\\NeverBound\\NeverBound(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256710444/movie480.webm?t=1520644743'),
 (51, 'Protonwar', 1, 3, 'T', 'Protonwar is a multiplayer focused, fast paced AFPS with an emphasis on quick and flowing movement. \r\nFull Room Scale VR with HTC Vive and Oculus Touch. Also included Non-VR and Seated VR. \r\n\r\nPlay matches in NonVR VS your friends in VR! \r\n\r\nLocomotion Options for Room Scale VR include a Teleport only mode, and an Advanced mode with multiple locomotion options \r\n\r\nWARNING! \r\nAdvanced mode may cause VR Sickness for some people, please try the teleport only mode if this is an issue for you !, \r\nJoystick turning with yaw, while using the SpeedBoots mutator is a lot of fun, but you will need to work yourself up to a comfortable level first! \r\nThanks! ', 165000, 9.4, 'Games\\Action\\Protonwar\\Protonwar_Banner.jpg??Games\\Action\\Protonwar\\Protonwar(1).jpg??Games\\Action\\Protonwar\\Protonwar(2).jpg??Games\\Action\\Protonwar\\Protonwar(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256710950/movie480.webm?t=1520519860'),
-(52, 'Stage 3 Azaria', 1, 4, 'T', 'After a royal meeting ended in betrayal and mass murder, Heorogan castle is under the siege of the powerful mage Eolica\'s Army and now it\'s up to you to defend the castle. Control Azaria, leader of the Sanctum order and the most powerful hybrid mage on the realm, as you become Hereogan Castle\'s last bastion of defense. bend elements to your will, unleash your power and blast your enemies as you explore the sorroundings of Heorogan\'s Castle.', 145000, 9.5, 'Games\\Action\\Stage 3 Azaria\\Stage 3 Azaria_Banner.jpg??Games\\Action\\Stage 3 Azaria\\Stage_3_Azaria(1).jpg??Games\\Action\\Stage 3 Azaria\\Stage_3_Azaria(2).jpg??Games\\Action\\Stage 3 Azaria\\Stage_3_Azaria(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256710304/movie480.webm?t=1520031350'),
+(52, 'Stage 3 Azaria', 1, 4, 'T', 'After a royal meeting ended in betrayal and mass murder, Heorogan castle is under the siege of the powerful mage Eolica\'s Army and now it\'s up to you to defend the castle. Control Azaria, leader of the Sanctum order and the most powerful hybrid mage on the realm, as you become Hereogan Castle\'s last bastion of defense. bend elements to your will, unleash your power and blast your enemies as you explore the sorroundings of Heorogan\'s Castle.', 145000, 9.5, 'Games\\Action\\Stage 3 Azaria\\Stage 3 Azaria_Banner.jpg??Games\\Action\\Stage 3 Azaria\\Stage 3 Azaria(1).jpg??Games\\Action\\Stage 3 Azaria\\Stage 3 Azaria(2).jpg??Games\\Action\\Stage 3 Azaria\\Stage 3 Azaria(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256710304/movie480.webm?t=1520031350'),
 (53, 'VIARKANOID', 1, 4, 'T', 'Introducing VIARKANOID, the new virtual reality update of the iconic 80s arcade game Arkanoid. Move the paddle to deflect the ball against a range of shifting obstacles. As with the original game, your goal is to anticipate the path of the ball and control its movement. \r\n\r\nPurpose VIARKANOID takes the form to the next level by taking all the elements that made Arkanoid such a classic and re-inventing them for the virtual age. Test your reflexes in interactive game rooms inspired by the worlds of architecture, film and art, featuring mind-bending walls and rotating bricks. Boasting absorbing gameplay and multiple abstract levels, VIARKANOID puts you in the heart of the action for a truly dynamic gaming experience!', 70000, 8.1, 'Games\\Action\\VIARKANOID\\VIARKANOID_Banner.jpg??Games\\Action\\VIARKANOID\\VIARKANOID(1).jpg??Games\\Action\\VIARKANOID\\VIARKANOID(2).jpg??Games\\Action\\VIARKANOID\\VIARKANOID(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256709698/movie480.webm?t=1519581230'),
 (54, 'Elven Love', 6, 6, 'M', 'Elven Love will let you feel ancient magic on your skin! Immerse into mystical and mysterious worlds of Wood and Moon Elves. \r\nDespite shared ancestors, both races are different in many ways. For those rare occasions they have an ancient ritual of love. \r\n\r\nIn this experience you will be witnessing a ceremony prepared by two elves, connected by spiritual bond of love. \r\n\r\nFeatures:\r\nUse magical wands to pose the elves, move them and do other interesting activities\r\nHigh quality models with custom skin solution\r\nTwo unique breeds with individual culture, surroundings etc.\r\nUnique mystical, fantasy atmosphere\r\nImmerse yourself into this experiment by completing different puzzles\r\nWatch elves dance with passion for you', 165000, 8.3, 'Games\\Simulator\\Elven Love\\Elven Love_Banner.jpg??Games\\Simulator\\Elven Love\\Elven Love(1).jpg??Games\\Simulator\\Elven Love\\Elven Love(2).jpg??Games\\Simulator\\Elven Love\\Elven Love(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256707484/movie480.webm?t=1521057293'),
 (55, 'Fruit Attacks VR', 6, 7, 'T', '\"With Fruit Attacks VR, the consumer shooter is reborn from the ashes and becomes a virtual reality game for everyone - put on your SATI robot pilot uniform and triumph over the frenzied enemies that invade the Earth!\"\r\nA group of extraterrestrial fruits , come in scouts, discover that humans were ruthlessly devouring their distant cousins.Are it possible, they still ask themselves, that the fruits are the bad guys on planet Earth? \r\n\r\nSATI loudspeaker robots, bizarre inventions abandoned on a desert island, are now the only weapons able to rid the planet of these amazingly resistant extraterrestrial fruits.\r\n\r\nGet on your VR controllers and triumph over your enemies with incredible attacks only in virtual reality! \r\n', 165000, 9.7, 'Games\\Simulator\\Fruit Attacks VR\\Fruit Attacks VR_Banner.jpg??Games\\Simulator\\Fruit Attacks VR\\Fruit Attacks VR(1).jpg??Games\\Simulator\\Fruit Attacks VR\\Fruit Attacks VR(2).jpg??Games\\Simulator\\Fruit Attacks VR\\Fruit Attacks VR(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256704642/movie480.webm?t=1515027106'),
@@ -248,25 +259,24 @@ INSERT INTO `games` (`Gid`, `Gname`, `GGid`, `Nid`, `ESRB`, `description`, `Pric
 (57, 'Virtual Boxing League', 6, 1, 'M', 'Virtual Boxing League is a realistic physics and skill-based VR boxing simulation! \r\n\r\nLearn how to box, build self-confidence, have fun and get a great workout while developing your own personal fighting style! \r\n\r\nChallenge AI boxers in five ladders, with opponents adopting distinct styles based on motion captures from real professionals! \r\n\r\nOther VR boxing games are designed as an arcade experience, with unrealistic physics, predictable patterns, and simple gameplay. We\'ve created a new concept that builds real fighting skills and rewards your boxing instincts! \r\n\r\nEnjoy 5 additional mini-games when you need a break from the ring!\r\n\r\nBall Blaster is a high-tech musical arcade experience\r\nPunch-A-Tron is an old steam-powered carnival contraption\r\nBum Rush is a wild banjo-strumming bathroom brawl\r\nBody Bag trains your speed, strength, and accuracy\r\nPing Pong Punch teaches delicate control of your meat mitts', 188000, 7.9, 'Games\\Simulator\\Virtual Boxing League\\Virtual Boxing League_Banner.jpg??Games\\Simulator\\Virtual Boxing League\\Virtual Boxing League(1).jpg??Games\\Simulator\\Virtual Boxing League\\Virtual Boxing League(2).jpg??Games\\Simulator\\Virtual Boxing League\\Virtual Boxing League(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256709106/movie480.webm?t=1519669834'),
 (58, 'Wedding VR  Henry', 6, 8, 'T', 'The happy-full VR experience comes to Oculus Rift! \r\nThis much-talked-about VR experience is now playable in the palm of your hand! \r\n\r\n■ Feel as if it\'s right in front of you! \r\nThe groom, Henry Spencer, is waiting for you in the church. \r\nEternal Kiss \"Experience the world of\" 王 様 様 の ロ ロ ズ ズ ズ \"\" \"\" \"\" \"\" \"\" \"\" \r\n\r\n■ Story \r\nYou are in a church wearing a wedding dress. \r\nHe has waiting you. He walks towards you. Then he says \"Let\'s start our wedding ceremony\". \r\nYou\'ll have a surprise experience with a special scene !! \r\n\r\n■ Feature - Multi Ending \r\nYou choose the answer in the ceremony. \r\nIt makes the ending different. \r\n\r\n\r\n■ English / Japanese\r\nHis voice is japanese both of the language mode. \r\nIn English mode, the caption of English is displayed.', 100000, 6.8, 'Games\\Simulator\\Wedding VR  Henry\\Wedding VR  Henry_Banner.jpg??Games\\Simulator\\Wedding VR  Henry\\Wedding VR  Henry(1).jpg??Games\\Simulator\\Wedding VR  Henry\\Wedding VR  Henry(2).jpg??Games\\Simulator\\Wedding VR  Henry\\Wedding VR  Henry(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256707716/movie480.webm?t=1519353182'),
 (59, 'WORLDS AT WAR', 6, 8, 'T', 'Worlds At War thrusts the player into the aftermath of an alien invasion. A small multi-national ragtag group of survivors fighter pilots and crew man at small carrier-group, roaming the oceans and trying to survive against all odds. \r\n\r\nThe game features various fully controllable aircraft, helicopters and boats, and players must learn to master them in order to defend the carrier-group from a relentless onslaught of alien attack-waves in a unique combination of some of mankinds alien space-ships. \r\n\r\n-3 Settings \r\n-3 Pilotable vehicle-types \r\n-Horde-mode and Free Flight \r\n-Through the Early Access process, more scenarios and vehicles-types will be added with the help of the community!\r\n\r\nCaution: This is an intense experience, with smooth movement and rotation of player-camera. Stay in if you are sensitive to VR-nausea. If you are very sensitive, this is not the game for you in VR. It is also in Early Access, and as such is not a fully finished product. Your support will help shape it. Enjoy!', 178000, 9.8, 'Games\\Simulator\\WORLDS AT WAR\\WORLDS AT WAR_Banner.jpg??Games\\Simulator\\WORLDS AT WAR\\WORLDS AT WAR(1).jpg??Games\\Simulator\\WORLDS AT WAR\\WORLDS AT WAR(2).jpg??Games\\Simulator\\WORLDS AT WAR\\WORLDS AT WAR(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256700085/movie480.webm?t=1517734304'),
-(60, 'Aozora Meikyuu', 3, 2, 'T', 'After a failed love confession, Aoi Takamatsu dropped out of school and became a shut-in. It was one of those rare days where he left his home to go shopping. \r\nBlinded by the sun on this warm summer day he looked up to the sky and saw a naked girl falling from the sky ?! \r\nReviews This was the moment His boring life changed forever ... \r\n\r\nFeatures\r\n-Different endings, DEPENDING ON \'your choices \r\n-Original Soundtrack Anime Art and \r\n-Available for Windows, Mac and Linux ', 70000, 10, 'Games\\Adventure\\Aozora Meikyuu\\Aozora Meikyuu_Banner.jpg??Games\\Adventure\\Aozora Meikyuu\\Aozora Meikyuu(1).jpg??Games\\Adventure\\Aozora Meikyuu\\Aozora Meikyuu(2).jpg??Games\\Adventure\\Aozora Meikyuu\\Aozora Meikyuu(3).jpg??https://youtu.be/OliTqLY99OU');
-INSERT INTO `games` (`Gid`, `Gname`, `GGid`, `Nid`, `ESRB`, `description`, `Price`, `Rating`, `gimage`) VALUES
+(60, 'Aozora Meikyuu', 3, 2, 'T', 'After a failed love confession, Aoi Takamatsu dropped out of school and became a shut-in. It was one of those rare days where he left his home to go shopping. \r\nBlinded by the sun on this warm summer day he looked up to the sky and saw a naked girl falling from the sky ?! \r\nReviews This was the moment His boring life changed forever ... \r\n\r\nFeatures\r\n-Different endings, DEPENDING ON \'your choices \r\n-Original Soundtrack Anime Art and \r\n-Available for Windows, Mac and Linux ', 70000, 10, 'Games\\Adventure\\Aozora Meikyuu\\Aozora Meikyuu_Banner.jpg??Games\\Adventure\\Aozora Meikyuu\\Aozora Meikyuu(1).jpg??Games\\Adventure\\Aozora Meikyuu\\Aozora Meikyuu(2).jpg??Games\\Adventure\\Aozora Meikyuu\\Aozora Meikyuu(3).jpg??https://youtu.be/OliTqLY99OU'),
 (61, 'Big Blue - Memory', 3, 7, NULL, 'Become an orca to participate in the crossing of the great endless ocean. \r\n\r\nIn the strong ocean that changes from one moment to the next, experience this story of following in the great storm. \r\n\r\nThe VR \"Big Blue - Memory\" made on the vast and beautiful ocean, offers you something you have never experienced.\r\nThe adventure game VR \"The Great Blue - Memory\" is based on the sinking of Sewol, caused by the stakes in the organization of Korean society. \r\n\r\nThe game contains symbolic objects and metaphors that awaken your sensitivity and you can meet the majestic and real ocean that you can not see in other existing RVs.', 140000, 8.7, 'Games\\Adventure\\Big Blue - Memory\\Big Blue - Memory_Banner.jpg??Games\\Adventure\\Big Blue - Memory\\Big Blue - Memory(1).jpg??Games\\Adventure\\Big Blue - Memory\\Big Blue - Memory(2).jpg??Games\\Adventure\\Big Blue - Memory\\Big Blue - Memory(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256707528/movie480.webm?t=1519282935'),
 (62, 'Chinese Tomb Story', 3, 7, 'T', 'An archaeologist has been evolved in a series of unexpected events during a casual dig. The player is going to act as an archaeologist and enter the tomb. By using variety of tools will be going through several stages and figure out the truth. \r\nChinese story is an action type puzzle game based on VR stage. By combining the exquisite triggers, grim monsters and beautiful love story with fine design together, the player will experience a brand new taste. ', 140000, 9, 'Games\\Adventure\\Chinese Tomb Story\\Chinese Tomb Story_Banner.jpg??Games\\Adventure\\Chinese Tomb Story\\Chinese Tomb Story(1).jpg??Games\\Adventure\\Chinese Tomb Story\\Chinese Tomb Story(2).jpg??Games\\Adventure\\Chinese Tomb Story\\Chinese Tomb Story(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256709900/movie480.webm?t=1519607137'),
-(63, 'John Lazarus - Episode 1 Dead Man\'s Origin', 3, 7, 'M', 'Fight demonic creatures, hide from sharks, and shoot bad guys. Explore disturbing dream worlds and alternate dimensions while re-living the memories of anti-hero John Lazarus. \r\n\r\nAs a haunted child with an unexpected gift, to a street kid struggling with addiction, solve puzzles and overcome challenges while unraveling the mysteries of John\'s past. Experience an hour of immersive story driven gameplay in this first episode of a multi-part series.', 120000, 8.7, 'Games\\Adventure\\John Lazarus - Episode 1 Dead Man\'s Origin\\John Lazarus - Episode 1 Dead Man\'s Origin_Banner.jpg??Games\\Adventure\\John Lazarus - Episode 1 Dead Man\'s Origin\\John Lazarus - Episode 1 Dead Man\'s Origin(1).jpg??Games\\Adventure\\John Lazarus - Episode 1 Dead Man\'s Origin\\John Lazarus - Episode 1 Dead Man\'s Origin(2).jpg??Games\\Adventure\\John Lazarus - Episode 1 Dead Man\'s Origin\\John Lazarus - Episode 1 Dead Man\'s Origin(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256704565/movie480.webm?t=1514495937'),
-(64, 'Super Cat Herding Totally Awesome Edition', 3, 2, 'E', 'Super Cat Herding: Totally Awesome Edition is a funny over-the-top physics sandbox game where you herd super-powered kittens, fight aliens, and destroy the world to solve the mystery of the missing catnip!', 120000, 9.3, 'Games\\Adventure\\Super Cat Herding Totally Awesome Edition\\Super Cat Herding Totally Awesome Edition_Banner.jpg??Games\\Adventure\\Super Cat Herding Totally Awesome Edition\\Super Cat Herding Totally Awesome Edition(1).jpg??Games\\Adventure\\Super Cat Herding Totally Awesome Edition\\Super Cat Herding Totally Awesome Edition(2).jpg??Games\\Adventure\\Super Cat Herding Totally Awesome Edition\\Super Cat Herding Totally Awesome Edition(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256711831/movie480.webm?t=1521262624'),
+(63, 'John Lazarus - Episode 1 Dead Man\'s Origin', 3, 7, 'M', 'Fight demonic creatures, hide from sharks, and shoot bad guys. Explore disturbing dream worlds and alternate dimensions while re-living the memories of anti-hero John Lazarus. \r\n\r\nAs a haunted child with an unexpected gift, to a street kid struggling with addiction, solve puzzles and overcome challenges while unraveling the mysteries of John\'s past. Experience an hour of immersive story driven gameplay in this first episode of a multi-part series.', 120000, 8.7, 'Games\\Adventure\\John Lazarus - Episode 1 Dead Man\'s Origin\\John Lazarus - Episode 1 Dead Man\'s Origin_Banner.jpg??John Lazarus - Episode 1 Dead Man\'s Origin(1).jpg??John Lazarus - Episode 1 Dead Man\'s Origin(2).jpg??John Lazarus - Episode 1 Dead Man\'s Origin(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256704565/movie480.webm?t=1514495937'),
+(64, 'Super Cat Herding Totally Awesome Edition', 3, 2, 'E', 'Super Cat Herding: Totally Awesome Edition is a funny over-the-top physics sandbox game where you herd super-powered kittens, fight aliens, and destroy the world to solve the mystery of the missing catnip!', 120000, 9.3, 'Games\\Adventure\\Super Cat Herding Totally Awesome Edition\\Super Cat Herding Totally Awesome Edition_Banner.jpg??Games\\Adventure\\Super Cat Herding Totally Awesome Edition\\Super Cat Herding Totally Awesome Edition(1).jpg??Games\\Adventure\\Super Cat Herding Totally Awesome Edition\\Super Cat Herding Totally Awesome Edition(2).jpg??Games\\Adventure\\Super Cat Herding Totally Awesome Edition\\Super Cat Herding Totally Awesome Edition(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256711831/movie480.webm?t=1521262624');
+INSERT INTO `games` (`Gid`, `Gname`, `GGid`, `Nid`, `ESRB`, `description`, `Price`, `Rating`, `gimage`) VALUES
 (65, 'The American Dream', 3, 3, 'T', 'Samurai Punk presents The American Dream, a satirical virtual reality trip to a ‘brighter future’ where your everyday needs are solved with guns.\r\nIt is the 1950’s and a group of leading gun manufacturers have constructed a vast complex to guide the American Patriot towards a better and richer life. ', 100000, 8.7, 'Games\\Adventure\\The American Dream\\The American Dream_Banner.jpg??Games\\Adventure\\The American Dream\\The American Dream(1).jpg??Games\\Adventure\\The American Dream\\The American Dream(2).jpg??Games\\Adventure\\The American Dream\\The American Dream(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256710121/movie480.webm?t=1520894428'),
 (66, 'Badminton Kings VR', 7, 3, 'T', 'EARLY ACCESS TITLE: Expect glitches, and new content soon!\r\n\r\nBadminton Kings VR is aimed at realistic badminton games using virtual reality systems. \r\nIf you want to enjoy sports VR racket, badminton kings will be a choice without regret!\r\nfeatures\r\nVarious levels of artificial intelligence\r\nSimple UI and easy control to play\r\nVarious levels of artificial intelligence\r\nVariety of rackets from standard to funny style\r\nAdvanced AI divided by 5 difficulty levels\r\nApplied the basic rules of Badminton \r\nOptimized with a combination of live racket sports set and tracker', 165000, 9.3, 'Games\\Sport\\Badminton Kings VR\\Badminton Kings VR_Banner.jpg??Games\\Sport\\Badminton Kings VR\\Badminton Kings VR(1).jpg??Games\\Sport\\Badminton Kings VR\\Badminton Kings VR(2).jpg??Games\\Sport\\Badminton Kings VR\\Badminton Kings VR(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256708722/movie480.webm?t=1519174662'),
 (67, 'Beat the Blitz', 7, 5, 'M', 'Gatorade\'s The Beat is a free-to-play VR simulation designed to put your hydration to the test. Guided by former All-Pro quarterback Peyton Manning, you\'ll battle against the effects of dehydration as you dodge blitzers in our high energy throwing skills competition. \r\n\r\nTogether with Peyton, you\'ll also take a journey into the human body where you\'ll see, firsthand, how dehydration affects your performance, starting with the heart and brain. Then, you\'ll have a chance to set a new high in a challenge designed to make you sweat. \r\n\r\nBeat the Blitz is one of the first football sims to be used as a weapon for ball movement, giving you a realistic experience in the pocket. And you\'ll see how you stack up with a true-to-life hologram of Peyton by your side throughout.\r\n\r\nDo you think you can Beat the Blitz? Download and play today.', 0, 8.5, 'Games\\Sport\\Beat the Blitz\\Beat the Blitz_Banner.jpg??Games\\Sport\\Beat the Blitz\\Beat the Blitz(1).jpg??Games\\Sport\\Beat the Blitz\\Beat the Blitz(2).jpg??Games\\Sport\\Beat the Blitz\\Beat the Blitz(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256710302/movie480.webm?t=1519947542'),
 (68, 'Galaxy Race', 7, 7, 'T', 'Galaxy Race is a VR sports game in which the player takes control of one of a handful original and colorful characters. Equipped with GraviDecks - a futuristic high tech hooverboards, the Graviators race against each other on various tracks somewhere in a galaxy.\r\nBeside beautiful sights, tracks also consist lots of pickups giving the player access to throwing discs, mines, shields, power boosts, accelerators etc. Collecting these bring the player one step closer to the victory.\r\n\r\nThis game encourages players to use their motion in a fluid way. A right mixture of body balance and cunning will be essential. Our original and very attractive “GraviMotion” steering system is a completely new and smooth way to control your avatar in virtual reality.\r\n\r\nMagicVR is working day and night on a new content, so keep your eyes on upcoming updates. Multiplayer and tournaments are main goals. There will also be more maps, weapons and heroes. Be fast, be first!', 165000, 10, 'Games\\Sport\\Galaxy Race\\Galaxy Race_Banner.jpg??Games\\Sport\\Galaxy Race\\Galaxy Race(1).jpg??Games\\Sport\\Galaxy Race\\Galaxy Race(2).jpg??Games\\Sport\\Galaxy Race\\Galaxy Race(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256710688/movie480.webm?t=1520352563'),
 (69, 'PingPong Kings VR', 7, 9, 'T', '\r\nPingPong Kings VR is aimed at the table Tennis games using virtual reality systems. \r\nIf you want to enjoy sports VR racket, PingPong kings will be a choice without regret!\r\nFeatures\r\n\r\n- Various levels of artificial intelligence \r\n- Simple UI and easy control to play \r\n- Various levels of artificial intelligence \r\n- Variety of rackets from standard to funny style \r\n- Advanced AI divided by 5 difficulty levels \r\n- Applied the basic rules of Table Tennis \r\n- Optimized with combination of vivid racket sports set and tracker \r\n\r\nRealistic physics, immersive sound, and fluid animation make you feel like you\'re really in the short PingPong. \r\nWith physics designed to be a reality in a PingPong simulator, you will be in VR environment.\r\nHow to play\r\n\r\nTennis table, also known as ping pong, is a sport in which two or four players hit a lightweight ball back and forth across a table using small bats. The game takes place on a hard table by a net. Except for the first time, the rules of the game must be allowed to be dealt with on their side of the table, and must be kept in check. A point is scored when a player fails to return the ball within the rules. Play is fast and demands quick reactions. Spinning the ball and its opponent\'s options, giving the hitter a great advantage.', 165000, 8.6, 'Games\\Sport\\PingPong Kings VR\\PingPong Kings VR_Banner.jpg??Games\\Sport\\PingPong Kings VR\\PingPong Kings VR(1).jpg??Games\\Sport\\PingPong Kings VR\\PingPong Kings VR(2).jpg??Games\\Sport\\PingPong Kings VR\\PingPong Kings VR(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256708714/movie480.webm?t=1519174534'),
 (70, 'Squash Kings VR', 7, 8, 'T', 'EARLY ACCESS TITLE: Expect glitches, and new content soon!\r\nSquash Kings VR is aimed at realistic squash games using virtual reality systems. \r\nIf you want to enjoy sports VR racket, Squash kings will be a choice without regret!\r\nFeatures\r\nVarious levels of artificial intelligence\r\nSimple UI and easy control to play\r\nVarious levels of artificial intelligence\r\nVariety of rackets from standard to funny style\r\nAdvanced AI divided by 5 difficulty levels\r\nApplied the basic rules of squash \r\nOptimized with a combination of live racket sports set and tracker\r\n\r\nRealistic physics, immersive sound, and fluid animation make you feel like you\'re really in the squash court. \r\nWith physics designed to be a reality in a squash simulator, you will be in VR environment.\r\nHow to play\r\nSquash is a sport ball played by two players in a four-walled court with a small, hollow rubber ball. \r\nThe players must alternate in the ball with their racket and hit the ball on the playable surfaces of the four walls of the court.\r\n', 165000, 8.7, 'Games\\Sport\\Squash Kings VR\\Squash Kings VR_Banner.jpg??Games\\Sport\\Squash Kings VR\\Squash Kings VR(1).jpg??Games\\Sport\\Squash Kings VR\\Squash Kings VR(2).jpg??Games\\Sport\\Squash Kings VR\\Squash Kings VR(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256708014/movie480.webm?t=1517892859'),
-(71, 'VR RHYTHM ACTION SEIYA', 7, 5, 'T', 'Let\'s play melodies by punching the lyrics and stars that come flying to you in accordance with the music!\r\n\r\nUnlike the music game where you simply keep the rhythms, VR Rhythm Action SEIYA is the VR music game where you can actually play the melody, \r\nWhen you punch the star-like objects that come flying to you from the screen, you will hear instrumental music. When you punch the objects for the lyrics, you will hear a song. \r\nYou will be able to play the melody with the sensation of exercising, because the intensity of your punches determines the speed of the score. \r\n\r\nCharacteristics:\r\n- Neither OculusTouch nor Vive controllers needs any button operations, so you \r\ncan play intuitively.\r\n- You can play a total of 25 music pieces in the band-sound genre, from the \r\nEDM pieces.\r\n- The stage lighting transforms the stage into one for a live performance, so you \r\nwill be able to experience the ecstasy of being actually on such a stage. \r\n- It is not a music game where you beat out the rhythms; it is a music game \r\nwhere you can play a melody with your hands.', 185000, 10, 'Games\\Sport\\VR RHYTHM ACTION SEIYA\\VR RHYTHM ACTION SEIYA_Banner.jpg??Games\\Sport\\VR RHYTHM ACTION SEIYA\\VR RHYTHM ACTION SEIYA(1).jpg??Games\\Sport\\VR RHYTHM ACTION SEIYA\\VR RHYTHM ACTION SEIYA(2).jpg??Games\\Sport\\VR RHYTHM ACTION SEIYA\\VR RHYTHM ACTION SEIYA(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256711035/movie480.webm?t=1520597165'),
-(72, 'Fate Grand Order for PC', 1, 2, 'E10', 'Fate Grand Order (FGO) is a game that gathers all the heroes from different times. Each of them battle for their own reasons. Their masters summon their heroes in hopes of gaining the Holy Grail to have it grant their wishes. Each of the heroes in Fate Grand Order have a special ability that allows them to survive in battle. It’s because of this that many of the heroes resort to different strategies and buffs in order to survive.', 100000, 5, 'uploads/fatego.jpg??uploads/maxresdefault (1).jpg??uploads/Fate2.jpg??uploads/fate3.jpg??//www.youtube.com/embed/WMx3LY-ZMXs');
+(71, 'VR RHYTHM ACTION SEIYA', 7, 5, 'T', 'Let\'s play melodies by punching the lyrics and stars that come flying to you in accordance with the music!\r\n\r\nUnlike the music game where you simply keep the rhythms, VR Rhythm Action SEIYA is the VR music game where you can actually play the melody, \r\nWhen you punch the star-like objects that come flying to you from the screen, you will hear instrumental music. When you punch the objects for the lyrics, you will hear a song. \r\nYou will be able to play the melody with the sensation of exercising, because the intensity of your punches determines the speed of the score. \r\n\r\nCharacteristics:\r\n- Neither OculusTouch nor Vive controllers needs any button operations, so you \r\ncan play intuitively.\r\n- You can play a total of 25 music pieces in the band-sound genre, from the \r\nEDM pieces.\r\n- The stage lighting transforms the stage into one for a live performance, so you \r\nwill be able to experience the ecstasy of being actually on such a stage. \r\n- It is not a music game where you beat out the rhythms; it is a music game \r\nwhere you can play a melody with your hands.', 185000, 10, 'Games\\Sport\\VR RHYTHM ACTION SEIYA\\VR RHYTHM ACTION SEIYA_Banner.jpg??Games\\Sport\\VR RHYTHM ACTION SEIYA\\VR RHYTHM ACTION SEIYA(1).jpg??Games\\Sport\\VR RHYTHM ACTION SEIYA\\VR RHYTHM ACTION SEIYA(2).jpg??Games\\Sport\\VR RHYTHM ACTION SEIYA\\VR RHYTHM ACTION SEIYA(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256711035/movie480.webm?t=1520597165');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ggenre`
+-- Cấu trúc bảng cho bảng `ggenre`
 --
 
 CREATE TABLE `ggenre` (
@@ -275,7 +285,7 @@ CREATE TABLE `ggenre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ggenre`
+-- Đang đổ dữ liệu cho bảng `ggenre`
 --
 
 INSERT INTO `ggenre` (`GGid`, `GGname`) VALUES
@@ -290,131 +300,102 @@ INSERT INTO `ggenre` (`GGid`, `GGname`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gkeys`
+-- Cấu trúc bảng cho bảng `gkeys`
 --
 
 CREATE TABLE `gkeys` (
   `Gkey` varchar(18) NOT NULL,
-  `Gid` int(11) DEFAULT NULL
+  `Gid` int(11) DEFAULT NULL,
+  `Oid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `gkeys`
+-- Đang đổ dữ liệu cho bảng `gkeys`
 --
 
-INSERT INTO `gkeys` (`Gkey`, `Gid`) VALUES
-('VWsIu0zcRfPigNP', 1),
-('eazZh9J6b1NLmP0', 2),
-('6kwXPu1ut5nV7wE', 3),
-('I5ceA1pIqBnRX0c', 4),
-('w9pdde2RLdBMfw0', 5),
-('RXl4tV2dJNLkySd', 6),
-('kc28eeoaIIbvm9D', 7),
-('jVp3aDHneLmW8Jv', 8),
-('zb7BpicFNeg9jtM', 9),
-('YDZ7mBV9CRca40k', 10),
-('GjimpUwZkYcpThe', 11),
-('90rjbjXvdQ7Yael', 12),
-('0D65PYzNZopCdY5', 13),
-('4U9ERoa9RYdaSoT', 14),
-('Dug7IlH5VKb1iay', 14),
-('WA0UfSqlwG6w6Mu', 15),
-('ft1KX4E1cDEZWNY', 16),
-('G3dkyMFFP4GWnDr', 17),
-('AwIhYQ5BuSpET45', 18),
-('70kDy3Ttmvpzcmm', 19),
-('BSw3AovNNMz2qrV', 20),
-('gCS1cMMXXIx10Vx', 20),
-('QYyuaJaM5Gg25e5', 20),
-('KwN5NyvGary6Ipc', 21),
-('nKwGrNGF4aATjk6', 22),
-('jKzOcn8TGNbYMWc', 23),
-('QXrKIAXvdOJKZ9T', 24),
-('FBhbNBrzto4TjhP', 25),
-('95nwlOuJcifSygY', 26),
-('pQFYYqosJtb1z3K', 26),
-('Uu7CHAaQn25R0nU', 26),
-('xvzBaFmE2uuu6BS', 27),
-('0ZJs7KXqvEBtxSP', 28),
-('hz1MMKBj984gySh', 29),
-('waCh3JzYGSFy7CI', 30),
-('1BUpj8dgPinIsqq', 31),
-('jfKbStzvORjXJhy', 32),
-('ufSGwLgwubp05RR', 33),
-('TWxuj0BbxISfcJL', 34),
-('Zom5BlWgwhYwJkN', 35),
-('dIFc5J8GiK7rnFY', 36),
-('9CJ1l29I4St6rOX', 37),
-('GkB5UBzCtN2eyMy', 38),
-('jN0yOnoUzXdYGPY', 39),
-('4t8Rb764OtS6cNp', 40),
-('a5Zbs687wQcarDK', 41),
-('e6nfXBwPjBlW4DR', 42),
-('zGYVSvuJAWuTs8v', 43),
-('Z3mQcimLX8qb0Zb', 44),
-('WopTYkh67qNPRgU', 45),
-('RBVWL8XltxxzdbZ', 46),
-('D1Qb5XsV5aDnW9Y', 47),
-('FCiYZqTE6oPQB9M', 48),
-('H5zlinl5pdJtaq9', 49),
-('tMaxrLGuFuesn3x', 50),
-('I2HyeC9azOpMnXP', 51),
-('KoS8kQWGE4OnFlv', 52),
-('aNfCOgjzrYxKz9x', 53),
-('XCtUTTqiALJKuOP', 54),
-('XEzIUI50Za1wFko', 55),
-('pZTRVX02mvB9rQV', 56),
-('9AJeIJD1IcMBHO4', 57),
-('RzigMiPgQo0wszH', 58),
-('aXJ2ZwSReIk88XH', 59),
-('osml6QhBC0os7b3', 60),
-('q5ssdgCiaUYBx9t', 61),
-('l7mbYAL5FHr3efC', 62),
-('YJjYpFH2oc4muLf', 63),
-('W1g1aWA0VGefF1T', 64),
-('ezE37UjD4yAVqmA', 65),
-('vVXLBqxMslFWG0K', 66),
-('6VNw4sOdGf3EyTE', 67),
-('mmtn3X3tFb0z3K4', 68),
-('N6Jx88C39TE8lgv', 69),
-('nm5gUdHSyThsM8C', 70),
-('3rjFwKEqDEJkfip', 71);
+INSERT INTO `gkeys` (`Gkey`, `Gid`, `Oid`) VALUES
+('0D65PYzNZopCdY5', 13, 0),
+('0ZJs7KXqvEBtxSP', 28, 0),
+('1BUpj8dgPinIsqq', 31, 0),
+('3rjFwKEqDEJkfip', 71, 0),
+('4t8Rb764OtS6cNp', 40, 0),
+('4U9ERoa9RYdaSoT', 14, 0),
+('6kwXPu1ut5nV7wE', 3, 0),
+('6VNw4sOdGf3EyTE', 67, 0),
+('70kDy3Ttmvpzcmm', 19, 0),
+('90rjbjXvdQ7Yael', 12, 0),
+('95nwlOuJcifSygY', 26, 0),
+('9AJeIJD1IcMBHO4', 57, 0),
+('9CJ1l29I4St6rOX', 37, 0),
+('a5Zbs687wQcarDK', 41, 0),
+('aNfCOgjzrYxKz9x', 53, 0),
+('AwIhYQ5BuSpET45', 18, 0),
+('aXJ2ZwSReIk88XH', 59, 0),
+('BSw3AovNNMz2qrV', 20, 0),
+('D1Qb5XsV5aDnW9Y', 47, 0),
+('dIFc5J8GiK7rnFY', 36, 0),
+('Dug7IlH5VKb1iay', 14, 0),
+('e6nfXBwPjBlW4DR', 42, 0),
+('eazZh9J6b1NLmP0', 2, 0),
+('edwLb8DPIN8PcLT', 71, 0),
+('ezE37UjD4yAVqmA', 65, 0),
+('FBhbNBrzto4TjhP', 25, 0),
+('FCiYZqTE6oPQB9M', 48, 0),
+('ft1KX4E1cDEZWNY', 16, 0),
+('G3dkyMFFP4GWnDr', 17, 0),
+('gCS1cMMXXIx10Vx', 20, 0),
+('GjimpUwZkYcpThe', 11, 0),
+('GkB5UBzCtN2eyMy', 38, 0),
+('H5zlinl5pdJtaq9', 49, 0),
+('hz1MMKBj984gySh', 29, 0),
+('I2HyeC9azOpMnXP', 51, 0),
+('I5ceA1pIqBnRX0c', 4, 0),
+('jfKbStzvORjXJhy', 32, 0),
+('jKzOcn8TGNbYMWc', 23, 0),
+('jN0yOnoUzXdYGPY', 39, 0),
+('jVp3aDHneLmW8Jv', 8, 0),
+('kc28eeoaIIbvm9D', 7, 0),
+('KoS8kQWGE4OnFlv', 52, 0),
+('KwN5NyvGary6Ipc', 21, 0),
+('l7mbYAL5FHr3efC', 62, 0),
+('mmtn3X3tFb0z3K4', 68, 0),
+('N6Jx88C39TE8lgv', 69, 0),
+('nKwGrNGF4aATjk6', 22, 0),
+('nm5gUdHSyThsM8C', 70, 0),
+('osml6QhBC0os7b3', 60, 0),
+('pQFYYqosJtb1z3K', 26, 0),
+('pZTRVX02mvB9rQV', 56, 0),
+('q5ssdgCiaUYBx9t', 61, 0),
+('QXrKIAXvdOJKZ9T', 24, 0),
+('QYyuaJaM5Gg25e5', 20, 0),
+('RBVWL8XltxxzdbZ', 46, 0),
+('RXl4tV2dJNLkySd', 6, 0),
+('RzigMiPgQo0wszH', 58, 0),
+('tMaxrLGuFuesn3x', 50, 0),
+('TWxuj0BbxISfcJL', 34, 0),
+('ufSGwLgwubp05RR', 33, 0),
+('Uu7CHAaQn25R0nU', 26, 0),
+('vVXLBqxMslFWG0K', 66, 0),
+('VWsIu0zcRfPigNP', 1, 0),
+('W1g1aWA0VGefF1T', 64, 0),
+('w9pdde2RLdBMfw0', 5, 0),
+('WA0UfSqlwG6w6Mu', 15, 0),
+('waCh3JzYGSFy7CI', 30, 0),
+('WopTYkh67qNPRgU', 45, 0),
+('XCtUTTqiALJKuOP', 54, 0),
+('XEzIUI50Za1wFko', 55, 0),
+('xvzBaFmE2uuu6BS', 27, 0),
+('YDZ7mBV9CRca40k', 10, 0),
+('YJjYpFH2oc4muLf', 63, 0),
+('Z3mQcimLX8qb0Zb', 44, 0),
+('zb7BpicFNeg9jtM', 9, 0),
+('zGYVSvuJAWuTs8v', 43, 0),
+('Zom5BlWgwhYwJkN', 35, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `naptien`
---
-
-CREATE TABLE `naptien` (
-  `Seri` varchar(20) NOT NULL,
-  `Code` varchar(20) NOT NULL,
-  `Value` int(11) NOT NULL,
-  `Status` varchar(20) NOT NULL DEFAULT 'Chưa sử dụng'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `naptien`
---
-
-INSERT INTO `naptien` (`Seri`, `Code`, `Value`, `Status`) VALUES
-('fHwhRktqmgNUP2c', '8QwAoe1YxjGsyeX', 5000000, 'Chưa sử dụng'),
-('ItkSgb8oie00X5o', 'aym8IxswpZEmqyr', 10000000, 'Chưa sử dụng'),
-('jDxYSEqeJDxGmtl', '8FGYKws4jzeqw9a', 50000, 'Chưa sử dụng'),
-('K8hIDxfVRzb9Jp5', 'hKc2T2xvKX0q1S9', 120000, 'Chưa sử dụng'),
-('klCINEBVZlpdhPS', '7j2u2CQ8HUWqJBY', 2000000, 'Chưa sử dụng'),
-('LEG7H1ivwvcMVhg', 'RjT69ZQYEIhf1Ot', 500000, 'Chưa sử dụng'),
-('nmj1jIWz7JHaDxR', 'Ls2M2V3uvVg3DJ6', 1000000, 'Chưa sử dụng'),
-('O25TkMzOCX6WY5y', '6X7zn1QBFVxHNcp', 20000, 'Chưa sử dụng'),
-('PwyYNePsKOlgUh5', '6IoVJnZCWYBfuWp', 100000, 'Chưa sử dụng'),
-('VPDuUXjQtUXAXI0', 'WMtEGrjBoHnoLaN', 60000, 'Chưa sử dụng'),
-('Y7MYh9eNS9NpyuG', 'nWXQXssb9ZwEX0S', 10000, 'Chưa sử dụng'),
-('zB5yL6w6A3iQhdD', 'w6WXz8UYl0b9pFg', 200000, 'Chưa sử dụng');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `ncc`
+-- Cấu trúc bảng cho bảng `ncc`
 --
 
 CREATE TABLE `ncc` (
@@ -424,7 +405,7 @@ CREATE TABLE `ncc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ncc`
+-- Đang đổ dữ liệu cho bảng `ncc`
 --
 
 INSERT INTO `ncc` (`Nid`, `Nphone`, `NBmail`) VALUES
@@ -441,7 +422,7 @@ INSERT INTO `ncc` (`Nid`, `Nphone`, `NBmail`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `odetail`
+-- Cấu trúc bảng cho bảng `odetail`
 --
 
 CREATE TABLE `odetail` (
@@ -452,18 +433,16 @@ CREATE TABLE `odetail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `odetail`
+-- Đang đổ dữ liệu cho bảng `odetail`
 --
 
 INSERT INTO `odetail` (`Oid`, `Gid`, `Amount`, `Price`) VALUES
-(1, 8, 1, 472300),
 (2, 8, 1, 472300),
 (3, 8, 1, 472300),
 (4, 9, 1, 132000),
 (5, 12, 45, 21860000),
 (6, 16, 1, 148000),
 (7, 20, 2, 80000),
-(8, 20, 1, 80000),
 (9, 22, 1, 99000),
 (10, 23, 2, 85000),
 (11, 24, 1, 80000);
@@ -471,39 +450,35 @@ INSERT INTO `odetail` (`Oid`, `Gid`, `Amount`, `Price`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders`
+-- Cấu trúc bảng cho bảng `orders`
 --
 
 CREATE TABLE `orders` (
   `Oid` int(11) NOT NULL,
   `Cid` int(11) NOT NULL,
   `Odate` datetime DEFAULT NULL,
-  `DDate` datetime DEFAULT NULL,
-  `Total` float DEFAULT NULL,
-  `Ostatus` varchar(30) NOT NULL DEFAULT 'Chưa thanh toán'
+  `Total` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `orders`
+-- Đang đổ dữ liệu cho bảng `orders`
 --
 
-INSERT INTO `orders` (`Oid`, `Cid`, `Odate`, `DDate`, `Total`, `Ostatus`) VALUES
-(1, 2, '2018-03-31 00:00:00', NULL, 236150, 'Đang xử lý'),
-(2, 3, '2018-03-31 00:00:00', NULL, 236150, 'Chưa thanh toán'),
-(3, 4, '2018-03-31 00:00:00', NULL, 236150, 'Đang xử lý'),
-(4, 5, '2018-03-26 00:00:00', NULL, 66000, 'Đang xử lý'),
-(5, 1, '2018-03-26 00:00:00', NULL, 491850000, 'Hoàn thành'),
-(6, 9, '2018-03-09 00:00:00', NULL, 133200, 'Hoàn thành'),
-(7, 1, '2018-03-26 00:00:00', NULL, 80000, 'Đang xử lý'),
-(8, 11, '2017-12-14 00:00:00', NULL, 56000, 'Đang xử lý'),
-(9, 8, '2017-09-06 00:00:00', NULL, 94050, 'Hoàn thành'),
-(10, 7, '2018-02-15 00:00:00', NULL, 168300, 'Chưa thanh toán'),
-(11, 10, '2017-02-09 00:00:00', NULL, 68000, 'Đang xử lý');
+INSERT INTO `orders` (`Oid`, `Cid`, `Odate`, `Total`) VALUES
+(2, 3, '2018-03-31 00:00:00', 236150),
+(3, 4, '2018-03-31 00:00:00', 236150),
+(4, 5, '2018-03-26 00:00:00', 66000),
+(5, 1, '2018-03-26 00:00:00', 491850000),
+(6, 9, '2018-03-09 00:00:00', 133200),
+(7, 1, '2018-03-26 00:00:00', 80000),
+(9, 8, '2017-09-06 00:00:00', 94050),
+(10, 7, '2018-02-15 00:00:00', 168300),
+(11, 10, '2017-09-06 00:00:00', 68000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usertype`
+-- Cấu trúc bảng cho bảng `usertype`
 --
 
 CREATE TABLE `usertype` (
@@ -514,11 +489,11 @@ CREATE TABLE `usertype` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `usertype`
+-- Đang đổ dữ liệu cho bảng `usertype`
 --
 
 INSERT INTO `usertype` (`UserTypeid`, `UserTypename`, `Thershold`, `TypeDiscount`) VALUES
-(1, 'VIP', 1000000000, 50),
+(1, 'VIP', 2147483647, 50),
 (2, 'Diamond', 500000000, 30),
 (3, 'Platinum', 200000000, 20),
 (4, 'Gold', 100000000, 15),
@@ -528,18 +503,23 @@ INSERT INTO `usertype` (`UserTypeid`, `UserTypename`, `Thershold`, `TypeDiscount
 (8, 'Guest', 0, 0);
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `config`
+-- Chỉ mục cho bảng `admini`
+--
+ALTER TABLE `admini`
+  ADD PRIMARY KEY (`name`);
+
+--
+-- Chỉ mục cho bảng `config`
 --
 ALTER TABLE `config`
-  ADD PRIMARY KEY (`Gid`),
   ADD KEY `Gid` (`Gid`);
 
 --
--- Indexes for table `customera`
+-- Chỉ mục cho bảng `customera`
 --
 ALTER TABLE `customera`
   ADD PRIMARY KEY (`Cid`),
@@ -547,7 +527,7 @@ ALTER TABLE `customera`
   ADD KEY `FKcus` (`UserTypeid`);
 
 --
--- Indexes for table `games`
+-- Chỉ mục cho bảng `games`
 --
 ALTER TABLE `games`
   ADD PRIMARY KEY (`Gid`),
@@ -555,129 +535,124 @@ ALTER TABLE `games`
   ADD KEY `FKgame3` (`Nid`);
 
 --
--- Indexes for table `ggenre`
+-- Chỉ mục cho bảng `ggenre`
 --
 ALTER TABLE `ggenre`
   ADD PRIMARY KEY (`GGid`);
 
 --
--- Indexes for table `gkeys`
+-- Chỉ mục cho bảng `gkeys`
 --
 ALTER TABLE `gkeys`
   ADD PRIMARY KEY (`Gkey`),
-  ADD KEY `FKGKs` (`Gid`);
+  ADD KEY `FKGKs` (`Gid`),
+  ADD KEY `FKO` (`Oid`);
 
 --
--- Indexes for table `naptien`
---
-ALTER TABLE `naptien`
-  ADD PRIMARY KEY (`Seri`);
-
---
--- Indexes for table `ncc`
+-- Chỉ mục cho bảng `ncc`
 --
 ALTER TABLE `ncc`
   ADD PRIMARY KEY (`Nid`);
 
 --
--- Indexes for table `odetail`
+-- Chỉ mục cho bảng `odetail`
 --
 ALTER TABLE `odetail`
   ADD PRIMARY KEY (`Oid`,`Gid`),
   ADD KEY `Gid` (`Gid`);
 
 --
--- Indexes for table `orders`
+-- Chỉ mục cho bảng `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`Oid`),
   ADD KEY `Cid` (`Cid`);
 
 --
--- Indexes for table `usertype`
+-- Chỉ mục cho bảng `usertype`
 --
 ALTER TABLE `usertype`
   ADD PRIMARY KEY (`UserTypeid`),
   ADD UNIQUE KEY `Thershold` (`Thershold`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `customera`
+-- AUTO_INCREMENT cho bảng `customera`
 --
 ALTER TABLE `customera`
-  MODIFY `Cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10001;
+  MODIFY `Cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10005;
 
 --
--- AUTO_INCREMENT for table `games`
+-- AUTO_INCREMENT cho bảng `games`
 --
 ALTER TABLE `games`
   MODIFY `Gid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
--- AUTO_INCREMENT for table `ggenre`
+-- AUTO_INCREMENT cho bảng `ggenre`
 --
 ALTER TABLE `ggenre`
   MODIFY `GGid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `ncc`
+-- AUTO_INCREMENT cho bảng `ncc`
 --
 ALTER TABLE `ncc`
   MODIFY `Nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `orders`
+-- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
   MODIFY `Oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `usertype`
+-- AUTO_INCREMENT cho bảng `usertype`
 --
 ALTER TABLE `usertype`
   MODIFY `UserTypeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `config`
+-- Các ràng buộc cho bảng `config`
 --
 ALTER TABLE `config`
   ADD CONSTRAINT `config_ibfk_1` FOREIGN KEY (`Gid`) REFERENCES `games` (`Gid`);
 
 --
--- Constraints for table `customera`
+-- Các ràng buộc cho bảng `customera`
 --
 ALTER TABLE `customera`
   ADD CONSTRAINT `FKcus` FOREIGN KEY (`UserTypeid`) REFERENCES `usertype` (`UserTypeid`);
 
 --
--- Constraints for table `games`
+-- Các ràng buộc cho bảng `games`
 --
 ALTER TABLE `games`
   ADD CONSTRAINT `FKgame2` FOREIGN KEY (`GGid`) REFERENCES `ggenre` (`GGid`),
   ADD CONSTRAINT `FKgame3` FOREIGN KEY (`Nid`) REFERENCES `ncc` (`Nid`);
 
 --
--- Constraints for table `gkeys`
+-- Các ràng buộc cho bảng `gkeys`
 --
 ALTER TABLE `gkeys`
   ADD CONSTRAINT `FKGKs` FOREIGN KEY (`Gid`) REFERENCES `games` (`Gid`);
 
 --
--- Constraints for table `odetail`
+-- Các ràng buộc cho bảng `odetail`
 --
 ALTER TABLE `odetail`
   ADD CONSTRAINT `odetail_ibfk_1` FOREIGN KEY (`Oid`) REFERENCES `orders` (`Oid`),
   ADD CONSTRAINT `odetail_ibfk_2` FOREIGN KEY (`Gid`) REFERENCES `games` (`Gid`);
 
 --
--- Constraints for table `orders`
+-- Các ràng buộc cho bảng `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`Cid`) REFERENCES `customera` (`Cid`);
