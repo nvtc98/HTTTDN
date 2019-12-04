@@ -1,0 +1,185 @@
+@charset "utf-8";
+/* CSS Document */
+.containerSP
+{
+	width: 600px;	
+	height: 400px;
+	padding-right: 50px;
+	float: left;
+}
+.titleSP
+{
+	color: black;
+	font-family:Arial;
+	font-size:28px;
+	text-transform:uppercase;
+	text-align:left;
+	margin-top: 70px;
+	width: 100%;
+	float:left;
+}
+
+.detailSP
+{
+	color: black;
+	width:43%;
+	font-family:Arial;
+	font-size: 18px;
+	margin-right: 20px;
+	text-align:justify;
+	margin-left: 20px;
+	float:left;
+	margin-top: 20px;
+}
+
+.priceSP
+{
+	font-size: 40px;
+	font-family: Arial;
+	color:#E6E6E6;
+	background-color:#282828;
+	padding: 20px 0;
+	float: right;
+	width: 500px;
+	margin-right: 50px;
+	margin-left: 50px;
+	margin-top: 40px;
+}
+
+.buySP
+{
+	font-size:24px;
+	color:white;
+	background-color:#0C0;
+	font-family:Arial;
+	display:block;
+	padding: 10px 0;
+	transition: 0.6s ease;
+	cursor: pointer;
+	float:right;
+	margin-right: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.buySP:hover
+{
+	background-color:#fd9a00;
+	color: black;
+	transition: 0.6s ease;
+}
+	
+.detailBar
+{
+	width: 100%;
+	height: 100%;
+	background-color: #222;
+	margin-top: 30px;
+	float:left;	
+	display:block;
+}
+
+.blockBar
+{
+	color: white;
+	font-family: Arial;
+	font-size:18px;
+	padding: 10px;
+	text-transform:uppercase;
+	transition: 0.6s ease;
+	float:left;
+}
+
+.blockBar:hover
+{
+	background-color: white;
+	color: black;
+	transition: 0.6s ease;
+	cursor: pointer;
+}
+
+.info
+{
+	font-size:18px;
+	font-family: Arial;
+	border:dashed; 
+	border-color: black;
+	margin-bottom: 30px;
+	padding: 20px;
+	padding-left: 50px;
+	float:left;	
+	height: 100%;
+	width: 94%;
+	border-top: none;
+}
+
+.info p
+{
+	text-align:left;
+}
+
+.info span
+{
+	font-weight: bold;
+}
+
+.preview
+{
+	width: 99.5%;
+	float:left;
+	border:dashed;
+	border-color: black;
+	border-top: none
+}
+
+.swtchbtn-left
+{
+	display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+	color: #fff;
+    background-color: #000;
+    margin-top: 30%;
+    transform: translate(0%,-50%);
+	float:left;
+	border: none;
+	transition: 0.6s ease;
+	cursor: pointer;
+}
+
+.swtchbtn-left:hover
+{
+	background-color: white;
+	color: black;
+	transition: 0.6s ease;
+}
+
+.swtchbtn-right
+{
+	display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+	color: #fff;
+    background-color: #000;
+    margin-top: 30%;
+    transform: translate(0%,-50%);
+	float:left;
+	border: none;
+	transition: 0.6s ease;
+	cursor: pointer;
+}
+
+.swtchbtn-right:hover
+{
+	background-color: white;
+	color: black;
+	transition: 0.6s ease;
+}
+
+.preview-img
+{
+	width:93.5%;
+	float:left;
+}

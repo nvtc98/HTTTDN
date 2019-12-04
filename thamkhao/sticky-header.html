@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Example name - [MyLớp.edu.vn]</title>
+
+
+	<style>
+		body {
+			text-align: center;
+			margin: 0;
+		}
+		.sticky {
+			position: fixed;
+			top: 0;
+		}
+		.header {
+			width: 100%;
+			background: #F6D565;
+			padding: 15px 0;
+		}
+		.footer {
+			width: 100%;
+			background: #F9E6A7;
+			padding: 25px 0;
+		}
+	</style>
+
+
+	
+</head>
+
+<body>
+
+<div style="margin-bottom: 150px;">
+	Hãy cuộn xuống dưới!
+</div>
+
+<div class="header"><h1>Sticky Header Demo</h1></div>
+
+<div style="margin-top: 500px; margin-bottom: 200px;">
+	Nội dung
+</div>
+
+<h1>Xuống nữa!</h1>
+
+<div style="margin-top: 800px;">
+	<p>Hết!</p>
+	<p><a href="http://mylop.edu.vn/">MyLop.edu.vn</a></p>
+</div>
+
+<div class="footer">Footer</div>
+
+<script>
+	var header = document.querySelector('.header');
+	var origOffsetY = header.offsetTop;
+
+	function onScroll(e) {
+		window.scrollY >= origOffsetY ? header.classList.add('sticky') :
+	                                  header.classList.remove('sticky');
+	}
+
+	document.addEventListener('scroll', onScroll);
+</script>
+</body>
+</html>

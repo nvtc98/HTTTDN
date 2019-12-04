@@ -1,0 +1,126 @@
+.fear
+{
+	height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.6);
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+.fear .cbutts 
+{
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+	text-decoration: none;
+	color:whitesmoke;
+	opacity: 0.6
+}
+.mawaru
+{
+	margin:auto;
+    position: relative;
+    top: 25%;
+    align: center;
+    margin-top: 30px;
+	color: whitesmoke;	
+}
+.mawaru table
+{
+	margin:auto;
+    position: relative;
+    top: 25%;
+    align: center;
+    margin-top: 30px;
+	color: whitesmoke;	
+}
+.butts a
+{
+	text-decoration:none;
+	padding: 3px 10px;
+	background-color: dodgerblue;
+	color: white;
+	opacity: 0.8;
+}
+.butts
+{
+	padding:0 4px;
+	float:left;
+}
+.butts a:hover
+{
+	text-decoration:none;
+	padding: 3px 10px;
+	background-color: darkblue;
+	color: white;	
+	transition: ease-in 0.25s;
+	opacity: 0.9; 
+}
+.wrath td
+{
+	padding: 5px 10px;
+	border: thin dashed;
+	border-color: purple;	
+	background-color: black;
+	opacity:0.6;
+}
+.wrath td:hover
+{
+	padding: 5px 10px;
+	border: thin dashed;
+	border-color: purple;	
+	background-color: orange;
+	opacity:1;
+}
+.wrath
+{
+	width:100%;
+}
+.satan
+{
+	clear: both;
+	float:left;
+	background-image: url("https://i.imgur.com/634g8Uv.png");
+	background-repeat:no-repeat;
+	background-size:cover;	
+	background-color:#FFF;
+	background-blend-mode:multiply;
+	color: white;
+	width:100%;
+}
+.butts2 a
+{
+	text-decoration:none;
+	padding: 3px auto;
+	color: white;
+	height:100%;
+}
+.lout
+{
+	position: absolute;
+	top: 5px;
+	right: 0px;
+}
+.showCustomer
+{
+    margin: 0;
+    float: left;
+    position: absolute;
+    padding: 0;
+    left: 20px;
+    top: -50px;
+}
+.Odetail
+{
+	margin: 0;
+	float: right;
+	position: absolute;
+	padding: 0;
+	right: 20px;
+	top: -50px;
+}
