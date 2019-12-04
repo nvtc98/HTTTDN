@@ -98,7 +98,6 @@
 	<span id="Header_info">Thông tin khách hàng</span><br/>
 	<span id="name_info">Họ&nbsp;tên&nbsp;</span>'.$Name_Ip.'<br/>
     <span id="mail_info">Email</span>'.$Email_Ip.'<br/>
-	<span id="addr_info">Địa&nbsp;chỉ&nbsp;</span><input type="text" id="GetAddress" size="30" name="Address" placeholder="Địa chỉ" style="width:70%; font-size:18px; border: 2px solid #fd9a00; margin-top:10px;" /><br/>
             <center><input type="button" name="Submit" value="Đặt hàng" id="DH"  onclick="return CheckInfo();"/></center>
             <div id="Error"></div>
 		</form></div>';
