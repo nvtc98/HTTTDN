@@ -43,8 +43,7 @@
 		}
 		
 		$gid=$_GET['gid'];
-		$conn = mysqli_connect('localhost','id11774760_admin','admin','id11774760_sshop');
-		//$conn=mysqli_connect("localhost", "root", "", "sshop");
+		$conn=mysqli_connect("localhost", "root", "", "sshop");
 		$query=mysqli_query($conn, "select * from games where Gid=$gid");
 		$row=mysqli_fetch_array($query);
 		$query=mysqli_query($conn, "select GGname from ggenre where GGid=".$row['GGid']);

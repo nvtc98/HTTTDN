@@ -172,8 +172,7 @@
                 <select name="genre" onchange="filter()">
                     <option selected="selected" value="0">---</option>
                     <?php
-					$conn = mysqli_connect('localhost','id11774760_admin','admin','id11774760_sshop');
-                        //$conn=mysqli_connect("localhost", "root", "", "sshop");
+                        $conn=mysqli_connect("localhost", "root", "", "sshop");
                         $query=mysqli_query($conn, "select * from ggenre");
                         while($row=mysqli_fetch_array($query))
                             echo '<option value="'.$row['GGid'].'">'.$row['GGname'].'</option>';

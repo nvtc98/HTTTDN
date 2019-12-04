@@ -64,40 +64,40 @@
 .wrath td
 {
 	padding: 5px 10px;
-	border: thin dashed;
-	border-color: purple;	
-	background-color: black;
+	border-color: grey;	
+    border-style: solid;
+    border-width: 1px;
+	background-color: white;
 	opacity:0.6;
 }
 .wrath td:hover
 {
 	padding: 5px 10px;
-	border: thin dashed;
-	border-color: purple;	
-	background-color: orange;
+	border-style: solid;
+    border-width: 1px;
+	border-color: "#555";	
+	background-color: #CCC;
 	opacity:1;
 }
 .wrath
 {
 	width:100%;
+    border-spacing: 0px;
 }
 .satan
 {
 	clear: both;
 	float:left;
-	background-image: url("https://i.imgur.com/634g8Uv.png");
-	background-repeat:no-repeat;
-	background-size:cover;	
 	background-color:#FFF;
 	background-blend-mode:multiply;
-	color: white;
 	width:100%;
 }
 .butts2 a
 {
 	text-decoration:none;
+    font-weight: bold;
 	padding: 3px auto;
-	color: white;
+	color: black;
 	height:100%;
 }
 .lout

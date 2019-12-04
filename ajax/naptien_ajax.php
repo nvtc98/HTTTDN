@@ -9,8 +9,7 @@ function generateRandomString($length = 15) {
     return $randomString;
 }
 	session_start();
-	// $con = mysqli_connect("localhost","root","","sshop");
-	$conn = mysqli_connect('localhost','id11774760_admin','admin','id11774760_sshop');
+	$con = mysqli_connect("localhost","root","","sshop");
 	mysqli_set_charset($con, 'UTF8');
 	//Get seri and Code
 	$seri=$_POST['seri'];

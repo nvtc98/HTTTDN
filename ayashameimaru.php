@@ -12,12 +12,11 @@
 	if ($tab=="orders")
 		echo ' onSubmit="return subm()"';
 	echo '>';
-	// $servername = "localhost";
-	// $username = "root";
-	// $password = "";			
-	// $dbname = "sshop";	
-	// $conn = mysqli_connect($servername,$username,$password,$dbname);
-	$conn = mysqli_connect('localhost','id11774760_admin','admin','id11774760_sshop');
+	$servername = "localhost";
+	$username = "root";
+	$password = "";			
+	$dbname = "sshop";	
+	$conn = mysqli_connect($servername,$username,$password,$dbname);
 	$conn->query("set names utf8");
 	$_SESSION['tab']=$tab;	
 	$IDs=strval($_GET['dore']);

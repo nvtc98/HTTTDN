@@ -6,8 +6,7 @@
         <li style="font-size: 22px;  padding-left: 45px;" onclick="extendGenre(this)"> thể loại &#9656;</li> 
         	<ul class="genreList">
             	<?php
-					// $conn=mysqli_connect("localhost", "root", "", "sshop");
-					$conn = mysqli_connect('localhost','id11774760_admin','admin','id11774760_sshop');
+					$conn=mysqli_connect("localhost", "root", "", "sshop");
 					$query=mysqli_query($conn, "select * from ggenre");
 					while($row=mysqli_fetch_array($query))
 						echo '<li onclick="window.location='."'genre.php?".$row['GGid']."'".'">'.$row['GGname'].'</li>';

@@ -108,8 +108,8 @@
         		</div>
     		</div>';
 		}
-		$conn = mysqli_connect('localhost','id11774760_admin','admin','id11774760_sshop');
-		//$conn = mysqli_connect("localhost", "root", "", "sshop");
+		
+		$conn = mysqli_connect("localhost", "root", "", "sshop");
 		$query = "select * from games order by Gid desc limit 6";
 		$result = mysqli_query($conn, $query);
 		$d=1;

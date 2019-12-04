@@ -7,12 +7,11 @@
 
 <body>
 	<?php
-	// $servername = "localhost";
-	// $username = "root";
-	// $password = "";			
-	// $dbname = "sshop";	
-	// $conn = mysqli_connect($servername,$username,$password,$dbname);
-	$conn = mysqli_connect('localhost','id11774760_admin','admin','id11774760_sshop');
+	$servername = "localhost";
+	$username = "root";
+	$password = "";			
+	$dbname = "sshop";	
+	$conn = mysqli_connect($servername,$username,$password,$dbname);
 	$conn->query("set names utf8");
 	$tab=strval($_GET['tab']);
 	//$quer2="SELECT COLUMN_NAME as col FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '".$tab."' and table_schema='sshop'";

@@ -7,12 +7,11 @@
 
 <body>
 	<?php 
-	// $servername = "localhost";
-	// $username = "root";
-	// $password = "";			
-	// $dbname = "sshop";	
-	// $conn = mysqli_connect($servername,$username,$password,$dbname);
-	$conn = mysqli_connect('localhost','id11774760_admin','admin','id11774760_sshop');
+	$servername = "localhost";
+	$username = "root";
+	$password = "";			
+	$dbname = "sshop";	
+	$conn = mysqli_connect($servername,$username,$password,$dbname);
 	$tab=strval($_GET['tab']);	
 	$IDs=strval($_GET['dore']);		
 	if($tab=="games")

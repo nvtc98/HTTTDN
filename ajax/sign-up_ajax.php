@@ -1,8 +1,6 @@
 <?php
 	session_start();
-	// $conn=mysqli_connect("localhost", "root", "", "sshop") 
-	$conn = mysqli_connect('localhost','id11774760_admin','admin','id11774760_sshop')
-	or die ("Không thể kết nối cơ sở dữ liệu. Hãy chơi khủng long :3");
+	$conn=mysqli_connect("localhost", "root", "", "sshop") or die ("Không thể kết nối cơ sở dữ liệu. Hãy chơi khủng long :3");
 	mysqli_set_charset($conn, 'UTF8');
 	$Name=$_POST['Name'];
 	$Email=$_POST['Email'];

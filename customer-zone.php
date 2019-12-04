@@ -39,7 +39,6 @@
 		line-height: 50px;
 		width:100px;
 	}
-
 	.welcome:hover
 	{
 		color: #fd9a00;
@@ -57,7 +56,6 @@
 		position: absolute;
 		right: 0;
 	}
-
 	.user-dropdown
 	{
 		color: black;
@@ -98,7 +96,7 @@
 	
 	function showLogOut(name)
 	{
-		var s='<div style="margin-left: 85%; width: 200px; position: absolute;"><div style="color:white;font-family:Arial;font-size:16px;float:left;line-height: 50px; padding-right: 10px">Xin chào,</div><div class="welcome">' + shortenName(name) + '<div class="dropdown-wrapper"><div class="user-dropdown" onclick="window.location='+"'user-info.php'"+'">Thông tin khách hàng</div><div class="user-dropdown" onclick="Basket();" id="GioHang" >Giỏ hàng</div><div class="user-dropdown" onclick="window.location='+"'naptien.php'"+'" id="GioHang" >Nạp tiền</div><div class="user-dropdown" onclick="logOut()">Đăng xuất</div></div></div></div></div>';
+		var s='<div style="margin-left: 85%; width: 200px; position: absolute;"><div style="color:white;font-family:Arial;font-size:16px;float:left;line-height: 50px; padding-right: 10px">Xin chào,</div><div class="welcome">' + shortenName(name) + '<div class="dropdown-wrapper"><div class="user-dropdown" onclick="window.location='+"'user-info.php'"+'">Thông tin khách hàng</div><div class="user-dropdown" onclick="Basket();" id="GioHang" >Giỏ hàng</div><div class="user-dropdown" onclick="window.location='+"'naptien.php'"+'" id="NapTien" >Nạp tiền</div><div class="user-dropdown" onclick="window.location='+"'lichsu.php'"+'" id="LSMH" >Lịch sử mua hàng</div><div class="user-dropdown" onclick="logOut()">Đăng xuất</div></div></div></div></div>';
 		document.getElementById("customerZone").innerHTML=s;
 	}
 	function getCookie(cname)

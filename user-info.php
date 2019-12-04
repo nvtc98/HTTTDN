@@ -51,8 +51,7 @@
 			include("header.php");
 			
 			$id=$_SESSION['userId'];
-			//$conn=mysqli_connect("localhost", "root", "", "sshop");
-			$conn = mysqli_connect('localhost','id11774760_admin','admin','id11774760_sshop');
+			$conn=mysqli_connect("localhost", "root", "", "sshop");
 			mysqli_set_charset($conn, 'UTF8');
 			$query=mysqli_query($conn, "select * from customera where Cid='$id'");
 			$row=mysqli_fetch_array($query);

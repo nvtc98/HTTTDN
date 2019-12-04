@@ -7,10 +7,10 @@
 
 <body>
 	<?php
-	// $servername = "localhost";
-	// $username = "root";
-	// $password = "";			
-	// $dbname = "sshop";	
+	$servername = "localhost";
+	$username = "root";
+	$password = "";			
+	$dbname = "sshop";	
 	$tab = $_POST['tab'];
 	$conn = mysqli_connect($servername,$username,$password,$dbname);
 	$conn->query("set names utf8");

@@ -25,8 +25,7 @@
 	<div class="Basket" style="min-height:80vh">
  
 <?php
-	// $con = mysqli_connect("localhost","root","","sshop");
-	$con = mysqli_connect('localhost','id11774760_admin','admin','id11774760_sshop');
+	$con = mysqli_connect("localhost","root","","sshop");
 	mysqli_set_charset($con, 'UTF8');
 	$count=0;
 	$Item = "";

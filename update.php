@@ -8,13 +8,12 @@
 <body>
 	
 	<?php 
-	// $servername = "localhost";
-	// $username = "root";
-	// $password = "";			
-	// $dbname = "sshop";	
-	// $tab = $_POST['tab'];
-	// $conn = mysqli_connect($servername,$username,$password,$dbname);
-	$conn = mysqli_connect('localhost','id11774760_admin','admin','id11774760_sshop');
+	$servername = "localhost";
+	$username = "root";
+	$password = "";			
+	$dbname = "sshop";	
+	$tab = $_POST['tab'];
+	$conn = mysqli_connect($servername,$username,$password,$dbname);
 	$conn->query("set names utf8");	
 	$quer;
 	if($tab=="games")

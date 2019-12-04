@@ -25,7 +25,7 @@
 	<?php include("header.php"); ?>
     
 <?php
-	$con = mysqli_connect('localhost','id11774760_admin','admin','id11774760_sshop');
+	$con = mysqli_connect("localhost","root","","sshop");
 	mysqli_set_charset($con, 'UTF8');
 	if (isset($_SESSION['user']))
 	echo '<div class="Charge" style="min-height:80vh">

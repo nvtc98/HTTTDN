@@ -1,6 +1,5 @@
 <?php
-	//$conn = mysqli_connect("localhost","root","","sshop");
-	$conn = mysqli_connect('localhost','id11774760_admin','admin','id11774760_sshop');
+	$conn = mysqli_connect("localhost","root","","sshop");
 	mysqli_set_charset($conn, 'UTF8');
 	$Cid=""; $Cmail=""; $Cpasswd=""; $Balance=""; $Cname=""; $Cphone=""; $Cbirthdate="";
 	$Cgender=""; $UserTypeid=""; $TCharged=""; $banned=""; $footnote="";

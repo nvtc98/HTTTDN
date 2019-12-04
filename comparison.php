@@ -50,8 +50,7 @@
 			{
 				$id1=$_COOKIE['cmpr1'];
 				$id2=$_COOKIE['cmpr2'];
-				$conn = mysqli_connect('localhost','id11774760_admin','admin','id11774760_sshop');
-				//$conn=mysqli_connect("localhost", "root", "", "sshop");
+				$conn=mysqli_connect("localhost", "root", "", "sshop");
 				$query=mysqli_query($conn, "select * from games where Gid=$id1");
 				$row=mysqli_fetch_array($query);
 				$query=mysqli_query($conn, "select * from games where Gid=$id2");

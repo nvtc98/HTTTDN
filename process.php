@@ -8,11 +8,11 @@
 
 <body>
 	<?php
-	// $servername = "localhost";
-	// $username = "root";
-	// $password = "";			
-	// $dbname = "sshop";	
-	// $conn = mysqli_connect($servername,$username,$password,$dbname);
+	$servername = "localhost";
+	$username = "root";
+	$password = "";			
+	$dbname = "sshop";	
+	$conn = mysqli_connect($servername,$username,$password,$dbname);
 	$quer="select * from admini where name='".$_POST['usname']."'";
 	$result=$conn->query($quer);
 	$row=mysqli_fetch_array($result);
@@ -21,7 +21,7 @@
 	if($row['name']==$_POST['usname'] && $row['passwd']==$_POST['passwde'])
 	{			
 		$_SESSION['IDk']=$row['name'];
-		$_SESSION['permit']=$row['permit'];
+		// $_SESSION['permit']=$row['permit'];
 	}			
 	header('Location: adcpg.php');
 	?>

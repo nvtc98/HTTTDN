@@ -2,8 +2,7 @@
 $curPage = $_GET['curPage'];
 $itemsPerPage = $_GET['itemsPerPage'];
 
-// $conn = mysqli_connect('localhost', 'root', '', 'sshop')
-$conn = mysqli_connect('localhost','id11774760_admin','admin','id11774760_sshop')
+$conn = mysqli_connect('localhost', 'root', '', 'sshop')
 or die ('Lỗi: không thể kết nối. Hãy chơi khủng long .-.');
 mysqli_set_charset($conn, 'UTF8');
 
