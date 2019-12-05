@@ -61,7 +61,10 @@ tr:nth-child(even) {
                     echo '<div margin-horizontal: 50px;"><p style="font-weight:bold; font-size: 20px">Hóa đơn số: '. $row['Oid'] .'</p>';
                     echo '<p style="font-size: 16px">Thời điểm mua: '. $row['Odate'] .'</p>';
                     echo '<p style="font-size: 16px">Thành tiền: '. $row['Total'] .'đ</p>';
-					if (mysqli_num_rows($result) > 0)
+					//get odetail
+					$query2 = "select * from odetail where Oid = ".$row['Oid'];
+					$result2 = mysqli_query($con, $query2);
+					if (mysqli_num_rows($result2) > 0)
 						echo '<p style="font-size: 16px">Chi tiết:</p><table style="font-size: 14px;">
 							  <tr>
 								<th>Tên game</th>
@@ -69,9 +72,6 @@ tr:nth-child(even) {
 								<th>Giá</th>
 								<th>Key</th>
 							  </tr>';
-					//get odetail
-					$query2 = "select * from odetail where Oid = ".$row['Oid'];
-					$result2 = mysqli_query($con, $query2);
 					while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC))
 					{
 						//get game name
