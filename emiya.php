@@ -27,8 +27,6 @@
 				echo 'Account Email: <div style="font-weight: normal">'.$meh['Cmail']."</div><br>";
 					else { echo mysqli_error($conn); echo "nothing";}
 		echo 'Ordered Day: <div style="font-weight: normal">'.$row['Odate']."</div><br>";
-		echo 'Delivered Day: <div style="font-weight: normal">'.$row['DDate']."</div><br>";
-		echo 'Orders Status: <div style="font-weight: normal">'.$row['Ostatus']."</div><br>";
 		/*$quer3="select * from games where Gid='".$row['Gid']."'";	
 			$result3=$conn->query($quer3);
 			$meh=mysqli_fetch_array($result3);
@@ -38,18 +36,18 @@
 		$quer4="select * from orders,odetail where orders.Oid=odetail.Oid and orders.Oid = '".$row['Oid']."'";
 			$result4 = $conn->query($quer4);
 			echo 'Games: ';
-			while($row = mysqli_fetch_array($result4))
+			while($row2 = mysqli_fetch_array($result4))
 			{
-				$quer3="select * from games where Gid='".$row['Gid']."'";	
+				$quer3="select * from games where Gid='".$row2['Gid']."'";	
 				$result3=$conn->query($quer3);
 				$meh=mysqli_fetch_array($result3);
 				if($result3)  				
-				echo '<div style="font-weight: normal">'.$meh['Gname'].'('.$row['Amount'].')</div>';	
+				echo '<div style="font-weight: normal">'.$meh['Gname'].'<br/><span style="font-size:12px">Amount: '.$row2['Amount'].' - Price: '.$row2['Price'].'đ</span></div><br/>';
 			}
 		//echo 'Amount: <div style="font-weight: normal">'.$row['Amount']."</div><br>";
-		echo 'Price: <div style="font-weight: normal">'.$row['Price']."</div><br>";
+//		echo 'Price: <div style="font-weight: normal">'.$row['Price']."</div><br>";
 		echo "<hr width='100%'>";
-		echo 'Total: <div style="font-weight: normal">'.$row['Total']." </div></div></center>";
+		echo 'Total: <div style="font-weight: normal">'.$row['Total']."đ</div></div></center>";
 	
 	?>
 

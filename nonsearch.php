@@ -109,7 +109,7 @@
 		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=tcharged&action='.$sortie.'&ac=1&page=0">Total Charged</a></div></td>
 		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=banned&action='.$sortie.'&ac=1&page=0">Banned</a></div></td>
 		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=footnote&action='.$sortie.'&ac=1&page=0">Note</a></div></td>';
-		if($permit<1 || $permit==2)
+//		if($permit<1)
 		echo'<td>Functions</td>';
 		echo '</tr>';		
 		while($row=mysqli_fetch_array($result))
@@ -134,11 +134,12 @@
 			echo"<td>True</td>";
 			else echo"<td>False</td>";
 			echo"<td>".$row['footnote']."</td>";		
-			if($permit<1 || $permit==2)
+//			if($permit<1)
 			{
 				echo '<td> <div class="butts">';
-				echo "<a href='#' onclick='openNav(".$row['Cid'].",&#039$tID&#039)'> edit </a> ";
-				echo '<a href="#" onclick="Enma('.$row['Cid'].',&#039'.$tID.'&#039)"> del </a></div> </td>';		
+				echo "<a href='#' onclick='openNav(".$row['Cid'].",&#039$tID&#039, $permit)'> edit </a> ";
+				if($permit<1)
+					echo '<a href="#" onclick="Enma('.$row['Cid'].',&#039'.$tID.'&#039)"> del </a></div> </td>';		
 			}
 			echo "</tr> ";
 		}
@@ -159,9 +160,7 @@
 		echo '<tr><td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=Oid&action='.$sortie.'&ac=1&page=0">Orders ID</a></div></td>
 		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=Cid&action='.$sortie.'&ac=1&page=0">Account Email</a></div></td>
 		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=Odate&action='.$sortie.'&ac=1&page=0">Ordered Day</a></div></td>
-		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=DDate&action='.$sortie.'&ac=1&page=0">Delivered Day</a></div></td>
-		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=total&action='.$sortie.'&ac=1&page=0">Total</a></div></td>
-		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=Ostatus&action='.$sortie.'&ac=1&page=0">Orders Status</a></div></td>		
+		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=total&action='.$sortie.'&ac=1&page=0">Total</a></div></td>		
 		<td>Functions</td></tr>';
 		$t=""; $t2="";
 		while($row=mysqli_fetch_array($result))
@@ -175,13 +174,14 @@
 				 }
 			else { echo mysqli_error($conn); $t.="<td>nothing</td>";}
 			$t.="<td>".$row['Odate']."</td>";
-			$t.="<td>".$row['DDate']."</td>";
-			$t.="<td>".$row['Total']."đ</td>";
-			$t.="<td>".$row['Ostatus']."</td>";								
+			$t.="<td>".$row['Total']."đ</td>";							
 			$t.= '<td> <div class="butts">';
 			$t.="<a href='#' onclick='openNav3(".$row['Oid'].",&#039$tID&#039)'> info </a> ";
-			$t.= "<a href='#' onclick='openNav(".$row['Oid'].",&#039$tID&#039)'> edit </a> ";
-			$t.= '<a href="#" onclick="Enma('.$row['Oid'].',&#039'.$tID.'&#039)"> del </a></div> </td>';		
+			if($permit<1)
+			{
+				$t.= "<a href='#' onclick='openNav(".$row['Oid'].",&#039$tID&#039)'> edit </a> ";
+				$t.= '<a href="#" onclick="Enma('.$row['Oid'].',&#039'.$tID.'&#039)"> del </a></div> </td>';
+			}		
 			$t.= "</tr> ";
 			if($t!=$t2)
 			{
@@ -246,7 +246,7 @@
 		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=tcharged&action='.$sortie.'&ac=1&page=0">Total Charged</a></div></td>
 		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=banned&action='.$sortie.'&ac=1&page=0">Banned</a></div></td>
 		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=footnote&action='.$sortie.'&ac=1&page=0">Note</a></div></td>';
-		if($permit<1 || $permit==2)
+//		if($permit<1)
 		echo'<td>Functions</td>';
 		echo '</tr>';
 		while($row=mysqli_fetch_array($result))
@@ -271,7 +271,7 @@
 			echo"<td>True</td>";
 			else echo"<td>False</td>";
 			echo"<td>".$row['footnote']."</td>";	
-			if($permit<1 || $permit==2)
+//			if($permit<1)
 			{
 				echo '<td> <div class="butts">';
 				echo "<a href='#' onclick='openNav(".$row['Cid'].",&#039$tID&#039)'> edit </a> ";
@@ -282,14 +282,12 @@
 	}
 	if ( $tID == "orders" && isset($_POST['filth'] ))
 	{
-		$quer = "SELECT * FROM ORDERS WHERE OSTATUS = '".$_POST['filth']."' OR ODATE LIKE '%".$_POST['filth']."%' OR DDATE LIKE '%".$_POST['filth']."%'";
+		$quer = "SELECT * FROM ORDERS WHERE Oid like '%".$_POST['filth']."%' OR ODATE LIKE '%".$_POST['filth']."%'";
 		$result=$conn->query($quer);
 		echo '<tr><td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=Oid&action='.$sortie.'&ac=1&page=0">Orders ID</a></div></td>
 		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=Cid&action='.$sortie.'&ac=1&page=0">Account Email</a></div></td>
 		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=Odate&action='.$sortie.'&ac=1&page=0">Ordered Day</a></div></td>
-		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=DDate&action='.$sortie.'&ac=1&page=0">Delivered Day</a></div></td>
-		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=total&action='.$sortie.'&ac=1&page=0">Total</a></div></td>
-		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=Ostatus&action='.$sortie.'&ac=1&page=0">Orders Status</a></div></td>		
+		<td><div class="butts2"><a href="adcpg.php?id='.$tID.'&col=total&action='.$sortie.'&ac=1&page=0">Total</a></div></td>		
 		<td>Functions</td></tr>';
 		while($row=mysqli_fetch_array($result))
 		{						
@@ -302,9 +300,7 @@
 				 }
 			else { echo mysqli_error($conn); echo"<td>nothing</td>";}
 			echo"<td>".$row['Odate']."</td>";
-			echo"<td>".$row['DDate']."</td>";
-			echo"<td>".$row['Total']."đ</td>";
-			echo"<td>".$row['Ostatus']."</td>";								
+			echo"<td>".$row['Total']."đ</td>";							
 			echo '<td> <div class="butts">';
 			echo "<a href='#' onclick='openNav3(".$row['Oid'].",&#039$tID&#039)'> info </a> ";
 			echo "<a href='#' onclick='openNav2(".$row['Oid'].",&#039$tID&#039)'> edit </a> ";

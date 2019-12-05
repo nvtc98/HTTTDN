@@ -13,9 +13,9 @@ function generateRandomString($length = 15) {
 	mysqli_set_charset($con, 'UTF8');
 	
 	 // Lấy ID hóa đơn hiện tại
-	$result = mysqli_query($con,"SELECT * from orders");
-	$Oid=$result->num_rows+1;
-	
+	$result = mysqli_query($con,"SELECT MAX(Oid) AS currentId FROM orders;");
+	$result=mysqli_fetch_array($result);
+	$Oid = $result['currentId']+1;
 
 	// Lấy thời gian hiện tại
 	date_default_timezone_set("Asia/Saigon");
@@ -25,15 +25,14 @@ function generateRandomString($length = 15) {
 	// Địa chỉ giao hàng
 	$user_info=$_POST['user'];
 	$email_info=$_POST['email'];
-	$address_info=$_POST['address'];
 	$Stt=0;
-	$str="<center><table border='1px solid black' class='tb-css'><tr><th colspan='7' align='center'>Thông tin giao dịch</th></tr>
+	$str="<center><table border='1px solid black' class='tb-css'><tr><th colspan='7' align='center'>Thông tin giao dịch - Hóa đơn số: $Oid</th></tr>
 		<tr class='row-HD'><th>Stt</th><th>Tên sản phẩm</th><th>Số lượng mua</th><th>Đơn giá</th><th>Giảm giá</th><th>Thành tiền</th><th>Key</th></tr>";	
 				
 	if (isset($_SESSION['user'])) //member
 	{
 		// Lưu hóa đơn vào database
-		$HD_sql="INSERT INTO `orders`(`Cid`, `Odate`, `DDate`, `Total`, `Ostatus`) VALUES ('".$_SESSION['userId']."','$Odate','$Odate','$Total','Hoàn thành')";
+		$HD_sql="INSERT INTO `orders`(`Cid`, `Odate`, `Total`) VALUES ('".$_SESSION['userId']."','$Odate','$Total')";
 		mysqli_query($con,$HD_sql);
 	
 		// Sale
@@ -57,12 +56,11 @@ function generateRandomString($length = 15) {
 			echo '<div style=" float: left; ">
 			<div>User: '.$user_info.'</div>
 			<div>Email: '.$email_info.'</div>
-			<div>Địa chỉ: '.$address_info.'</div>
 			</div>';
 			
 
 			$Cus_sql="UPDATE `customera` SET  `Balance`='$New_Balance' WHERE Cid='".$_SESSION['userId']."'";
-
+			mysqli_query($con,$Cus_sql);
 			
 			foreach ($_COOKIE as $key=>$val)
 			{
@@ -79,7 +77,7 @@ function generateRandomString($length = 15) {
 						$get_key=generateRandomString();
 						if ($i==$val-1) $str=$str."<div class='key_final'>".$get_key."</div>";
 						else $str=$str."<div class='key'>".$get_key."</div>";
-						$sql_updqte_key="INSERT INTO `gkeys`(`Gkey`, `Gid`) VALUES ('$get_key','$id[1]')";
+						$sql_updqte_key="INSERT INTO `gkeys`(`Gkey`, `Gid`, `Oid`) VALUES ('$get_key','$id[1]', '$Oid')";
 						mysqli_query($con,$sql_updqte_key);
 					}
 					$str=$str."</td></tr>";
