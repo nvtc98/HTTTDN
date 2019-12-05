@@ -10,9 +10,10 @@
 			}
 			else { document.getElementById("warn").innerHTML=""; return true; }			
 		}
-		function openNav(dore,tabb) 
-		{ "use strict";
-    	document.getElementById("hinako").style.width = "100%";
+		function openNav(dore,tabb,permit) 
+		{
+		 	if(!permit) permit=0;
+    		document.getElementById("hinako").style.width = "100%";
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() 
 			{				
@@ -22,7 +23,7 @@
 						
     			}
   			};
-			var s1="ayashameimaru.php?dore=";
+			var s1="ayashameimaru.php?permit="+permit+"&dore=";
 			s1 = s1.concat(dore,"&tab=", tabb);
 			xhttp.open("GET", s1, true);
   			xhttp.send();
