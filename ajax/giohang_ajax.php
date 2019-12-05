@@ -13,9 +13,9 @@ function generateRandomString($length = 15) {
 	mysqli_set_charset($con, 'UTF8');
 	
 	 // Lấy ID hóa đơn hiện tại
-	$result = mysqli_query($con,"SELECT * from orders");
-	$Oid=$result->num_rows+1;
-	
+	$result = mysqli_query($con,"SELECT MAX(Oid) AS currentId FROM orders;");
+	$result=mysqli_fetch_array($result);
+	$Oid = $result['currentId']+1;
 
 	// Lấy thời gian hiện tại
 	date_default_timezone_set("Asia/Saigon");
@@ -26,13 +26,13 @@ function generateRandomString($length = 15) {
 	$user_info=$_POST['user'];
 	$email_info=$_POST['email'];
 	$Stt=0;
-	$str="<center><table border='1px solid black' class='tb-css'><tr><th colspan='7' align='center'>Thông tin giao dịch</th></tr>
+	$str="<center><table border='1px solid black' class='tb-css'><tr><th colspan='7' align='center'>Thông tin giao dịch - Hóa đơn số: $Oid</th></tr>
 		<tr class='row-HD'><th>Stt</th><th>Tên sản phẩm</th><th>Số lượng mua</th><th>Đơn giá</th><th>Giảm giá</th><th>Thành tiền</th><th>Key</th></tr>";	
 				
 	if (isset($_SESSION['user'])) //member
 	{
 		// Lưu hóa đơn vào database
-		$HD_sql="INSERT INTO `orders`(`Cid`, `Odate``, `Total`, `Ostatus`) VALUES ('".$_SESSION['userId']."','$Odate','$Total','Hoàn thành')";
+		$HD_sql="INSERT INTO `orders`(`Cid`, `Odate`, `Total`) VALUES ('".$_SESSION['userId']."','$Odate','$Total')";
 		mysqli_query($con,$HD_sql);
 	
 		// Sale
@@ -60,7 +60,7 @@ function generateRandomString($length = 15) {
 			
 
 			$Cus_sql="UPDATE `customera` SET  `Balance`='$New_Balance' WHERE Cid='".$_SESSION['userId']."'";
-
+			mysqli_query($con,$Cus_sql);
 			
 			foreach ($_COOKIE as $key=>$val)
 			{

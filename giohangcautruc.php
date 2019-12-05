@@ -79,7 +79,7 @@
 		</div>
 	</div></div>';
 				$count++;
-				$Money+=$Price2;
+				$Money+=$Price2*$val;
 			}
 	}
 	$Item=$Item."</div>";
@@ -99,7 +99,7 @@
 	<span id="Header_info">Thông tin khách hàng</span><br/>
 	<span id="name_info">Họ&nbsp;tên&nbsp;</span>'.$Name_Ip.'<br/>
     <span id="mail_info">Email</span>'.$Email_Ip.'<br/>
-            <center><input type="button" name="Submit" value="Đặt hàng" id="DH"  onclick="return CheckInfo();"/></center>
+            <center><input type="button" name="Submit" value="Mua" id="DH"  onclick="return CheckInfo();"/></center>
             <div id="Error"></div>
 		</form></div>';
 
