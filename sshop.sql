@@ -7,6 +7,9 @@
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
+CREATE DATABASE IF NOT EXISTS `sshop` CHARACTER SET utf8 COLLATE utf8_general_ci;
+use `sshop`;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -22,26 +25,7 @@ SET time_zone = "+00:00";
 -- Database: `sshop`
 --
 
--- --------------------------------------------------------
 
---
--- Table structure for table `admini`
---
-
-CREATE TABLE `admini` (
-  `name` varchar(30) NOT NULL,
-  `passwd` varchar(17) NOT NULL,
-  `permit` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admini`
---
-
-INSERT INTO `admini` (`name`, `passwd`, `permit`) VALUES
-('admin', 'rot', 0),
-('moderator', 'rat', 1),
-('uncleyuigone', 'embracearesvn', 2);
 
 -- --------------------------------------------------------
 
@@ -385,7 +369,26 @@ INSERT INTO `usertype` (`UserTypeid`, `UserTypename`, `Thershold`, `TypeDiscount
 (6, 'Steel', 20000000, 5),
 (7, 'Member', 1000000, 1),
 (8, 'Guest', 0, 0);
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `admini`
+--
+
+CREATE TABLE `admini` (
+  `name` varchar(30) NOT NULL,
+  `passwd` varchar(17) NOT NULL,
+  `permit` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `admini`
+--
+
+INSERT INTO `admini` (`name`, `passwd`, `permit`) VALUES
+('admin', 'rot', 0),
+('moderator', 'rat', 1),
+('uncleyuigone', 'embracearesvn', 2);
 --
 -- Indexes for dumped tables
 --
