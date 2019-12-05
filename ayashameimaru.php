@@ -8,6 +8,7 @@
 <body onLoad="initproduct()">
 	<?php 		
 	$tab=strval($_GET['tab']);
+	$permit = $_GET['permit'];
 	echo '<form action="update.php" method="post" enctype="multipart/form-data"';
 	if ($tab=="orders")
 		echo ' onSubmit="return subm()"';
@@ -27,7 +28,7 @@
 	$quer = "select * from ".$tab." where ".$col." = ".$IDs;
 	
 	echo '<table>';
-	echo '<tr><td>Table:</td> <td><input type="text" onfocus="this.blur()" name="tab" value="'.$tab.'" /></td></tr>';
+	echo '<tr style="display:none"><td>Table:</td> <td><input type="text" onfocus="this.blur()" name="tab" value="'.$tab.'" /></td></tr>';
 	$result = $conn->query($quer);	
 	if($tab=="games")
 	{
@@ -73,15 +74,33 @@
 		echo"<tr><td>Customer ID:</td><td><input type='text' name='Cid' value='".$row['Cid']."'/></td></tr>";
 		echo"<tr><td>Customer Mail:</td><td><input type='text' name='Cmail' value='".$row['Cmail']."' onfocus='this.blur()' /></td></tr>";
 		echo"<tr><td>Password:</td><td><input type='password' name='Cpasswd' value='".$row['Cpasswd']."' onfocus='this.blur()' /></td></tr>";
-		echo"<tr><td>Balance:</td><td><input type='text' name='Balance' value='".$row['Balance']."'/></td></tr>";
-		echo"<tr><td>Name:</td><td><input type='text' name='Cname' value='".$row['Cname']."'/></td></tr>";
-		echo"<tr><td>Customer Phone:</td><td><input type='text' name='Cphone' value='".$row['Cphone']."'/></td></tr>";
-		echo"<tr><td>Birthday:</td><td><input type='text' name='Cbirthdate' value='".$row['Cbirthdate']."'/></td></tr>";
-		echo"<tr><td>Gender:</td><td><input type='text' name='Cgender' value='".$row['Cgender']."'/></td></tr>";
+		echo"<tr><td>Balance:</td><td><input type='text' name='Balance' ";
+		if($permit>0)
+			echo"onfocus='this.blur()' ";
+		echo "value='".$row['Balance']."'/></td></tr>";
+		echo"<tr><td>Name:</td><td><input type='text' name='Cname' ";
+		if($permit>0)
+			echo"onfocus='this.blur()' ";
+		echo "value='".$row['Cname']."'/></td></tr>";
+		echo"<tr><td>Customer Phone:</td><td><input type='text' name='Cphone' ";
+		if($permit>0)
+			echo"onfocus='this.blur()' ";
+		echo "value='".$row['Cphone']."'/></td></tr>";
+		echo"<tr><td>Birthday:</td><td><input type='text' name='Cbirthdate' ";
+		if($permit>0)
+			echo"onfocus='this.blur()' ";
+		echo "value='".$row['Cbirthdate']."'/></td></tr>";
+		echo"<tr><td>Gender:</td><td><input type='text' name='Cgender' ";
+		if($permit>0)
+			echo"onfocus='this.blur()' ";
+		echo "value='".$row['Cgender']."'/></td></tr>";
 		$quer2="select UserTypename from UserType where UserTypeid=".$row['UserTypeid'];
 		$result2=$conn->query($quer2);		
 		$row2=mysqli_fetch_array($result2);
-		echo"<tr><td>Customer Type</td><td><input type='text' id='heck' list='hell' name='UserTypeid' value='".$row2['UserTypename']."' />";
+		echo"<tr><td>Customer Type</td><td><input type='text' id='heck' list='hell' ";
+		if($permit>0)
+			echo"onfocus='this.blur()' ";
+		echo "name='UserTypeid' value='".$row2['UserTypename']."' />";
 		echo '<datalist id="hell">';
 		$quer2="select UserTypename from UserType";
 		$result2=$conn->query($quer2);	
@@ -90,8 +109,17 @@
 			echo "<option value='".$row2['UserTypename']."'>";
 		}
 		echo"</datalist></td></tr>";		
-		echo"<tr><td>Total Charged:</td><td><input type='text' name='TCharged' value='".$row['TCharged']."'/></td></tr>";
-		echo"<tr><td>Banned:</td><td><input type='text' name='banned' value='".$row['banned']."'/></td></tr>";
+		echo"<tr><td>Total Charged:</td><td><input type='text' name='TCharged' ";
+		if($permit>0)
+			echo"onfocus='this.blur()' ";
+		echo "value='".$row['TCharged']."'/></td></tr>";
+		echo "<tr><td>Banned:</td><td>";
+		echo "<select  name='banned'>";
+		$banned = $row['banned'];
+		echo "<option ".($banned==0?"selected":"")."value='0'>false</option>";
+		echo "<option ".($banned==1?"selected":"")." value='1'>true</option>";
+		echo "</select></td></tr>";
+//		<input type='text' name='banned' value='".$row['banned']."'/></td></tr>";
 		echo"<tr><td>Footnote:</td><td><input type='text' name='footnote' value='".$row['footnote']."'/></td></tr>";
 	}
 	}
