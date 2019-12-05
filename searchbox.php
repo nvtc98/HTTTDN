@@ -13,7 +13,7 @@
 	if($_GET['id'] == "orders")
 	{
 		echo '<div class="butts">';
-		echo 'Orders status filter: <input list="filth" name="filth"/>';	
+		echo 'Orders ID filter: <input list="filth" name="filth"/>';	
 //		echo '  <datalist id="filth" >
 //					<option value="Chưa thanh toán">
 //					<option value="Đang xử lý">
@@ -21,6 +21,7 @@
 //				</datalist>';
 //		echo '<input type="submit" value="Tìm kiếm" /><input type="button" value="Add"  onclick="openNav1(&#039'.$_GET['id'].'&#039)"/></form>';
 		echo '</form>';
+		echo '<input type="button" style="margin-left:20px;" value="Statistics"  onclick="window.location='."'statistics.php'".'" />';
 	}
 	if($_GET['id'] == "games")
 	{
@@ -40,6 +41,7 @@
 	
 	
 ?>
+	<div style="height: 10px"></div>
 <body>
 </body>
 </html>
