@@ -2,10 +2,10 @@
 -- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 04, 2019 lúc 04:42 PM
--- Phiên bản máy phục vụ: 10.4.8-MariaDB
--- Phiên bản PHP: 7.1.33
+-- Host: 127.0.0.1
+-- Generation Time: Dec 05, 2019 at 04:02 AM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,17 +19,14 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `sshop`
+-- Database: `sshop`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `admini`
+-- Table structure for table `admini`
 --
-
-CREATE DATABASE IF NOT EXISTS `sshop` CHARACTER SET utf8 COLLATE utf8_general_ci;
-use `sshop`;
 
 CREATE TABLE `admini` (
   `name` varchar(30) NOT NULL,
@@ -38,7 +35,7 @@ CREATE TABLE `admini` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `admini`
+-- Dumping data for table `admini`
 --
 
 INSERT INTO `admini` (`name`, `passwd`, `permit`) VALUES
@@ -49,7 +46,7 @@ INSERT INTO `admini` (`name`, `passwd`, `permit`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `config`
+-- Table structure for table `config`
 --
 
 CREATE TABLE `config` (
@@ -64,7 +61,7 @@ CREATE TABLE `config` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `config`
+-- Dumping data for table `config`
 --
 
 INSERT INTO `config` (`Gid`, `OS`, `Processor`, `Memory`, `Graphics`, `DirectX`, `Storage`, `Sound Card`) VALUES
@@ -143,7 +140,7 @@ INSERT INTO `config` (`Gid`, `OS`, `Processor`, `Memory`, `Graphics`, `DirectX`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `customera`
+-- Table structure for table `customera`
 --
 
 CREATE TABLE `customera` (
@@ -162,7 +159,7 @@ CREATE TABLE `customera` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `customera`
+-- Dumping data for table `customera`
 --
 
 INSERT INTO `customera` (`Cid`, `Cmail`, `Cpasswd`, `Balance`, `Cname`, `Cphone`, `Cbirthdate`, `Cgender`, `UserTypeid`, `TCharged`, `banned`, `footnote`) VALUES
@@ -179,7 +176,7 @@ INSERT INTO `customera` (`Cid`, `Cmail`, `Cpasswd`, `Balance`, `Cname`, `Cphone`
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `games`
+-- Table structure for table `games`
 --
 
 CREATE TABLE `games` (
@@ -195,7 +192,7 @@ CREATE TABLE `games` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `games`
+-- Dumping data for table `games`
 --
 
 INSERT INTO `games` (`Gid`, `Gname`, `GGid`, `Nid`, `ESRB`, `description`, `Price`, `Rating`, `gimage`) VALUES
@@ -276,7 +273,7 @@ INSERT INTO `games` (`Gid`, `Gname`, `GGid`, `Nid`, `ESRB`, `description`, `Pric
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `ggenre`
+-- Table structure for table `ggenre`
 --
 
 CREATE TABLE `ggenre` (
@@ -285,7 +282,7 @@ CREATE TABLE `ggenre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `ggenre`
+-- Dumping data for table `ggenre`
 --
 
 INSERT INTO `ggenre` (`GGid`, `GGname`) VALUES
@@ -300,7 +297,7 @@ INSERT INTO `ggenre` (`GGid`, `GGname`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `gkeys`
+-- Table structure for table `gkeys`
 --
 
 CREATE TABLE `gkeys` (
@@ -309,93 +306,10 @@ CREATE TABLE `gkeys` (
   `Oid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Đang đổ dữ liệu cho bảng `gkeys`
---
-
-INSERT INTO `gkeys` (`Gkey`, `Gid`, `Oid`) VALUES
-('0D65PYzNZopCdY5', 13, 0),
-('0ZJs7KXqvEBtxSP', 28, 0),
-('1BUpj8dgPinIsqq', 31, 0),
-('3rjFwKEqDEJkfip', 71, 0),
-('4t8Rb764OtS6cNp', 40, 0),
-('4U9ERoa9RYdaSoT', 14, 0),
-('6kwXPu1ut5nV7wE', 3, 0),
-('6VNw4sOdGf3EyTE', 67, 0),
-('70kDy3Ttmvpzcmm', 19, 0),
-('90rjbjXvdQ7Yael', 12, 0),
-('95nwlOuJcifSygY', 26, 0),
-('9AJeIJD1IcMBHO4', 57, 0),
-('9CJ1l29I4St6rOX', 37, 0),
-('a5Zbs687wQcarDK', 41, 0),
-('aNfCOgjzrYxKz9x', 53, 0),
-('AwIhYQ5BuSpET45', 18, 0),
-('aXJ2ZwSReIk88XH', 59, 0),
-('BSw3AovNNMz2qrV', 20, 0),
-('D1Qb5XsV5aDnW9Y', 47, 0),
-('dIFc5J8GiK7rnFY', 36, 0),
-('Dug7IlH5VKb1iay', 14, 0),
-('e6nfXBwPjBlW4DR', 42, 0),
-('eazZh9J6b1NLmP0', 2, 0),
-('edwLb8DPIN8PcLT', 71, 0),
-('ezE37UjD4yAVqmA', 65, 0),
-('FBhbNBrzto4TjhP', 25, 0),
-('FCiYZqTE6oPQB9M', 48, 0),
-('ft1KX4E1cDEZWNY', 16, 0),
-('G3dkyMFFP4GWnDr', 17, 0),
-('gCS1cMMXXIx10Vx', 20, 0),
-('GjimpUwZkYcpThe', 11, 0),
-('GkB5UBzCtN2eyMy', 38, 0),
-('H5zlinl5pdJtaq9', 49, 0),
-('hz1MMKBj984gySh', 29, 0),
-('I2HyeC9azOpMnXP', 51, 0),
-('I5ceA1pIqBnRX0c', 4, 0),
-('jfKbStzvORjXJhy', 32, 0),
-('jKzOcn8TGNbYMWc', 23, 0),
-('jN0yOnoUzXdYGPY', 39, 0),
-('jVp3aDHneLmW8Jv', 8, 0),
-('kc28eeoaIIbvm9D', 7, 0),
-('KoS8kQWGE4OnFlv', 52, 0),
-('KwN5NyvGary6Ipc', 21, 0),
-('l7mbYAL5FHr3efC', 62, 0),
-('mmtn3X3tFb0z3K4', 68, 0),
-('N6Jx88C39TE8lgv', 69, 0),
-('nKwGrNGF4aATjk6', 22, 0),
-('nm5gUdHSyThsM8C', 70, 0),
-('osml6QhBC0os7b3', 60, 0),
-('pQFYYqosJtb1z3K', 26, 0),
-('pZTRVX02mvB9rQV', 56, 0),
-('q5ssdgCiaUYBx9t', 61, 0),
-('QXrKIAXvdOJKZ9T', 24, 0),
-('QYyuaJaM5Gg25e5', 20, 0),
-('RBVWL8XltxxzdbZ', 46, 0),
-('RXl4tV2dJNLkySd', 6, 0),
-('RzigMiPgQo0wszH', 58, 0),
-('tMaxrLGuFuesn3x', 50, 0),
-('TWxuj0BbxISfcJL', 34, 0),
-('ufSGwLgwubp05RR', 33, 0),
-('Uu7CHAaQn25R0nU', 26, 0),
-('vVXLBqxMslFWG0K', 66, 0),
-('VWsIu0zcRfPigNP', 1, 0),
-('W1g1aWA0VGefF1T', 64, 0),
-('w9pdde2RLdBMfw0', 5, 0),
-('WA0UfSqlwG6w6Mu', 15, 0),
-('waCh3JzYGSFy7CI', 30, 0),
-('WopTYkh67qNPRgU', 45, 0),
-('XCtUTTqiALJKuOP', 54, 0),
-('XEzIUI50Za1wFko', 55, 0),
-('xvzBaFmE2uuu6BS', 27, 0),
-('YDZ7mBV9CRca40k', 10, 0),
-('YJjYpFH2oc4muLf', 63, 0),
-('Z3mQcimLX8qb0Zb', 44, 0),
-('zb7BpicFNeg9jtM', 9, 0),
-('zGYVSvuJAWuTs8v', 43, 0),
-('Zom5BlWgwhYwJkN', 35, 0);
-
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `ncc`
+-- Table structure for table `ncc`
 --
 
 CREATE TABLE `ncc` (
@@ -405,7 +319,7 @@ CREATE TABLE `ncc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `ncc`
+-- Dumping data for table `ncc`
 --
 
 INSERT INTO `ncc` (`Nid`, `Nphone`, `NBmail`) VALUES
@@ -422,7 +336,7 @@ INSERT INTO `ncc` (`Nid`, `Nphone`, `NBmail`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `odetail`
+-- Table structure for table `odetail`
 --
 
 CREATE TABLE `odetail` (
@@ -432,25 +346,10 @@ CREATE TABLE `odetail` (
   `Price` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Đang đổ dữ liệu cho bảng `odetail`
---
-
-INSERT INTO `odetail` (`Oid`, `Gid`, `Amount`, `Price`) VALUES
-(2, 8, 1, 472300),
-(3, 8, 1, 472300),
-(4, 9, 1, 132000),
-(5, 12, 45, 21860000),
-(6, 16, 1, 148000),
-(7, 20, 2, 80000),
-(9, 22, 1, 99000),
-(10, 23, 2, 85000),
-(11, 24, 1, 80000);
-
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `orders`
+-- Table structure for table `orders`
 --
 
 CREATE TABLE `orders` (
@@ -460,25 +359,10 @@ CREATE TABLE `orders` (
   `Total` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Đang đổ dữ liệu cho bảng `orders`
---
-
-INSERT INTO `orders` (`Oid`, `Cid`, `Odate`, `Total`) VALUES
-(2, 3, '2018-03-31 00:00:00', 236150),
-(3, 4, '2018-03-31 00:00:00', 236150),
-(4, 5, '2018-03-26 00:00:00', 66000),
-(5, 1, '2018-03-26 00:00:00', 491850000),
-(6, 9, '2018-03-09 00:00:00', 133200),
-(7, 1, '2018-03-26 00:00:00', 80000),
-(9, 8, '2017-09-06 00:00:00', 94050),
-(10, 7, '2018-02-15 00:00:00', 168300),
-(11, 10, '2017-09-06 00:00:00', 68000);
-
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `usertype`
+-- Table structure for table `usertype`
 --
 
 CREATE TABLE `usertype` (
@@ -489,7 +373,7 @@ CREATE TABLE `usertype` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `usertype`
+-- Dumping data for table `usertype`
 --
 
 INSERT INTO `usertype` (`UserTypeid`, `UserTypename`, `Thershold`, `TypeDiscount`) VALUES
@@ -503,23 +387,23 @@ INSERT INTO `usertype` (`UserTypeid`, `UserTypename`, `Thershold`, `TypeDiscount
 (8, 'Guest', 0, 0);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `admini`
+-- Indexes for table `admini`
 --
 ALTER TABLE `admini`
   ADD PRIMARY KEY (`name`);
 
 --
--- Chỉ mục cho bảng `config`
+-- Indexes for table `config`
 --
 ALTER TABLE `config`
   ADD KEY `Gid` (`Gid`);
 
 --
--- Chỉ mục cho bảng `customera`
+-- Indexes for table `customera`
 --
 ALTER TABLE `customera`
   ADD PRIMARY KEY (`Cid`),
@@ -527,7 +411,7 @@ ALTER TABLE `customera`
   ADD KEY `FKcus` (`UserTypeid`);
 
 --
--- Chỉ mục cho bảng `games`
+-- Indexes for table `games`
 --
 ALTER TABLE `games`
   ADD PRIMARY KEY (`Gid`),
@@ -535,13 +419,13 @@ ALTER TABLE `games`
   ADD KEY `FKgame3` (`Nid`);
 
 --
--- Chỉ mục cho bảng `ggenre`
+-- Indexes for table `ggenre`
 --
 ALTER TABLE `ggenre`
   ADD PRIMARY KEY (`GGid`);
 
 --
--- Chỉ mục cho bảng `gkeys`
+-- Indexes for table `gkeys`
 --
 ALTER TABLE `gkeys`
   ADD PRIMARY KEY (`Gkey`),
@@ -549,113 +433,114 @@ ALTER TABLE `gkeys`
   ADD KEY `FKO` (`Oid`);
 
 --
--- Chỉ mục cho bảng `ncc`
+-- Indexes for table `ncc`
 --
 ALTER TABLE `ncc`
   ADD PRIMARY KEY (`Nid`);
 
 --
--- Chỉ mục cho bảng `odetail`
+-- Indexes for table `odetail`
 --
 ALTER TABLE `odetail`
   ADD PRIMARY KEY (`Oid`,`Gid`),
   ADD KEY `Gid` (`Gid`);
 
 --
--- Chỉ mục cho bảng `orders`
+-- Indexes for table `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`Oid`),
   ADD KEY `Cid` (`Cid`);
 
 --
--- Chỉ mục cho bảng `usertype`
+-- Indexes for table `usertype`
 --
 ALTER TABLE `usertype`
   ADD PRIMARY KEY (`UserTypeid`),
   ADD UNIQUE KEY `Thershold` (`Thershold`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `customera`
+-- AUTO_INCREMENT for table `customera`
 --
 ALTER TABLE `customera`
   MODIFY `Cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10005;
 
 --
--- AUTO_INCREMENT cho bảng `games`
+-- AUTO_INCREMENT for table `games`
 --
 ALTER TABLE `games`
   MODIFY `Gid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
--- AUTO_INCREMENT cho bảng `ggenre`
+-- AUTO_INCREMENT for table `ggenre`
 --
 ALTER TABLE `ggenre`
   MODIFY `GGid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT cho bảng `ncc`
+-- AUTO_INCREMENT for table `ncc`
 --
 ALTER TABLE `ncc`
   MODIFY `Nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT cho bảng `orders`
+-- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
   MODIFY `Oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT cho bảng `usertype`
+-- AUTO_INCREMENT for table `usertype`
 --
 ALTER TABLE `usertype`
   MODIFY `UserTypeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `config`
+-- Constraints for table `config`
 --
 ALTER TABLE `config`
   ADD CONSTRAINT `config_ibfk_1` FOREIGN KEY (`Gid`) REFERENCES `games` (`Gid`);
 
 --
--- Các ràng buộc cho bảng `customera`
+-- Constraints for table `customera`
 --
 ALTER TABLE `customera`
   ADD CONSTRAINT `FKcus` FOREIGN KEY (`UserTypeid`) REFERENCES `usertype` (`UserTypeid`);
 
 --
--- Các ràng buộc cho bảng `games`
+-- Constraints for table `games`
 --
 ALTER TABLE `games`
   ADD CONSTRAINT `FKgame2` FOREIGN KEY (`GGid`) REFERENCES `ggenre` (`GGid`),
   ADD CONSTRAINT `FKgame3` FOREIGN KEY (`Nid`) REFERENCES `ncc` (`Nid`);
 
 --
--- Các ràng buộc cho bảng `gkeys`
+-- Constraints for table `gkeys`
 --
 ALTER TABLE `gkeys`
   ADD CONSTRAINT `FKGKs` FOREIGN KEY (`Gid`) REFERENCES `games` (`Gid`);
 
 --
--- Các ràng buộc cho bảng `odetail`
+-- Constraints for table `odetail`
 --
 ALTER TABLE `odetail`
   ADD CONSTRAINT `odetail_ibfk_1` FOREIGN KEY (`Oid`) REFERENCES `orders` (`Oid`),
   ADD CONSTRAINT `odetail_ibfk_2` FOREIGN KEY (`Gid`) REFERENCES `games` (`Gid`);
 
 --
--- Các ràng buộc cho bảng `orders`
+-- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`Cid`) REFERENCES `customera` (`Cid`);
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`Cid`) REFERENCES `customera` (`Cid`),
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`Oid`) REFERENCES `gkeys` (`Oid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
