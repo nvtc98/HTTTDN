@@ -14,7 +14,7 @@
 	$row = mysqli_fetch_array($result);
 	echo $row['num'];
 	echo '<br/><br/>Tổng doanh thu: ';
-	echo $row['total'];
+	echo $row['total']."đ";
 	echo '<br/><br/>Tổng số khách mua hàng: ';
 	
 	$query2= "SELECT *
