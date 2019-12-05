@@ -7,3 +7,4 @@ Sửa khách hàng, game phải trực quan hơn
 Fix thanh toán xong không bị giảm tiền
 Làm tính năng lịch sử mua hàng
 Thanh toán: momo, chuyển khoản ngân hàng
+Kiểm tra thuộc tính TCharged dùng làm gì
