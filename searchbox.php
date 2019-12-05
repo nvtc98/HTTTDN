@@ -14,11 +14,11 @@
 	{
 		echo '<div class="butts">';
 		echo 'Orders status filter: <input list="filth" name="filth"/>';	
-		echo '  <datalist id="filth" >
-					<option value="Chưa thanh toán">
-					<option value="Đang xử lý">
-					<option value="Hoàn thành">
-				</datalist>';
+//		echo '  <datalist id="filth" >
+//					<option value="Chưa thanh toán">
+//					<option value="Đang xử lý">
+//					<option value="Hoàn thành">
+//				</datalist>';
 //		echo '<input type="submit" value="Tìm kiếm" /><input type="button" value="Add"  onclick="openNav1(&#039'.$_GET['id'].'&#039)"/></form>';
 		echo '</form>';
 	}
