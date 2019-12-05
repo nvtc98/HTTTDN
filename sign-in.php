@@ -91,7 +91,7 @@
 				{
 					if(name==-2)
 						{
-							document.getElementById("showError").innerHTML="Tài khoản này đã bị cấm.";
+							document.getElementById("showError").innerHTML="VAC Banned";
 							return false;
 						}
 				document.signInForm.reset();

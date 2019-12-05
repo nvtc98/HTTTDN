@@ -60,10 +60,9 @@ function Confirmed()
 	//Info from form
 	$user=document.getElementById("GetName").value;
 	$email=document.getElementById("GetMail").value;
-	$address=document.getElementById("GetAddress").value;
 
 	document.getElementsByClassName("Info-giaohang")[0].style.display="block";
-		$.ajax({url:"ajax/giohang_ajax.php", type:"POST", dataType:"text", data:{ money: $money, user: $user, email: $email,  address: $address }, 
+		$.ajax({url:"ajax/giohang_ajax.php", type:"POST", dataType:"text", data:{ money: $money, user: $user, email: $email }, 
 		success: function(result) 
 			{
 					//alert("AAA");
@@ -109,9 +108,6 @@ function CheckInfo()
 	var patMail=/[a-z.0-9_-]+@[a-z]+.[a-z]{3,4}.*/;
 	if (!patMail.test(mail.value)) {err.innerHTML="Email bạn đã nhập không hợp lệ!"; mail.focus(); return false;}
 	
-	//Check address
-	var address=document.getElementById("GetAddress");
-	if (address.value=="") {err.innerHTML="Vui lòng điền địa chỉ nhận hàng!"; address.focus(); return false;}
 	Confirmed();
 }
 function closeForm(ths, e) { if(e.target==ths) $('.Info-giaohang').fadeOut(); }

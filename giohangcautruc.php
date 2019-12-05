@@ -94,6 +94,7 @@
 		$Name_Ip='<input type="text" id="GetName" size="30" name="Name" placeholder="Họ tên" value="'.$Info['Cname'].'" style="width:70%; font-size:18px; border: 2px solid #fd9a00;" disabled />';
 		$Email_Ip='<input type="text" id="GetMail" name="Email" placeholder="Email" value="'.$Info['Cmail'].'" style="width:70%; font-size:18px; border: 2px solid #fd9a00; margin-top:10px;" disabled />';
 	}
+	//Customer's Information 
 	echo '<div class="Info-giaohang" onClick="closeForm(this, event);"><form method="post" name="Info" style="background: #fff;padding-right:20px;height:auto;width: 350px;">
 	<span id="Header_info">Thông tin khách hàng</span><br/>
 	<span id="name_info">Họ&nbsp;tên&nbsp;</span>'.$Name_Ip.'<br/>
