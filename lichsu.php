@@ -49,16 +49,7 @@ tr:nth-child(even) {
             Lịch sử mua hàng
         </div>
         <hr style="width: 90%">
-        <div class="mutual-content" style="margin-left: 150px; margin-bottom: 20px; height: 1000px;"> 
-        <!-- <div class="mutual-normaltitle">
-        		&#9824; liên hệ hỗ trợ trực tuyến &#9824;
-        </div> 
-        <div class="mutual-content" style="margin-left: 350px; margin-right:300px; margin-bottom: 20px;">
-        	<p> <span style="font-weight: bold"> HOTLINE: </span> 0169 696 6969 </p>
-            <p> <span style="font-weight: bold"> MAIL: </span> sangshop69@gmail.com </p>
-            <p> <span style="font-weight: bold"> FACEBOOK: </span> facebook.com/sang.shop </p>
-            <p> Nếu liên hệ qua HOTLINE, bạn sẽ nhận được phản hồi ngay lập tức (nếu quản trị viên có mặt tại văn phòng làm việc). Nếu gửi qua MAIL và FACEBOOK thì các admin sẽ cố gắng trả lời hỗ trợ của bạn sớm nhất có thể (thường thì là trong vòng 1 ngày)
-        </div> -->
+        <div class="mutual-content" style="margin-left: 150px; margin-bottom: 20px;"> 
         <?php
             $query = "SELECT * from orders where Cid=" . $_SESSION['userId'];
 
@@ -67,97 +58,50 @@ tr:nth-child(even) {
             {
                 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
                 {
-                    echo '<div style="float:left; margin-left: 50px; margin-right: 300px;"><p style="font-weight:bold; font-size: 20px">Hóa đơn số: '. $row['Oid'] .'</p>';
+                    echo '<div margin-horizontal: 50px;"><p style="font-weight:bold; font-size: 20px">Hóa đơn số: '. $row['Oid'] .'</p>';
                     echo '<p style="font-size: 16px">Thời điểm mua: '. $row['Odate'] .'</p>';
-                    echo '<p style="font-size: 16px">Thành tiền: '. $row['Oid'] .'</p>';
-                    echo '</div>';
+                    echo '<p style="font-size: 16px">Thành tiền: '. $row['Total'] .'đ</p>';
+					if (mysqli_num_rows($result) > 0)
+						echo '<p style="font-size: 16px">Chi tiết:</p><table style="font-size: 14px;">
+							  <tr>
+								<th>Tên game</th>
+								<th>Số lượng</th>
+								<th>Giá</th>
+								<th>Key</th>
+							  </tr>';
+					//get odetail
+					$query2 = "select * from odetail where Oid = ".$row['Oid'];
+					$result2 = mysqli_query($con, $query2);
+					while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC))
+					{
+						//get game name
+						$query3 = "select Gname from games where Gid='".$row2['Gid']."'";
+						$result3 = mysqli_query($con, $query3);
+						$row3 = mysqli_fetch_array($result3, MYSQLI_ASSOC);
+						echo "<tr>
+							<td>".$row3['Gname']."</td>
+							<td>".$row2['Amount']."</td>
+							<td>".$row2['Price']."</td>
+							<td>";
+						//get keys
+						$query4 = "select Gkey from gkeys where Gid='".$row2['Gid']."' and Oid='".$row['Oid']."'";
+						$result4 = mysqli_query($con, $query4);
+						while ($row4 = mysqli_fetch_array($result4, MYSQLI_ASSOC))
+						{
+							echo "<div>".$row4['Gkey']."</div>";
+						}
+						echo "</td>
+						  </tr>";
+					}
+					echo '
+						 
+						</table>';
+                    echo '</div><div style="height:100px"></div>';
                 }
             }
             else echo "Không có hóa đơn nào.";
         ?>
-        <table>
-  <tr>
-    <th>Company</th>
-    <th>Contact</th>
-    <th>Country</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
-  </tr>
-  <tr>
-    <td>Ernst Handel</td>
-    <td>Roland Mendel</td>
-    <td>Austria</td>
-  </tr>
-  <tr>
-    <td>Island Trading</td>
-    <td>Helen Bennett</td>
-    <td>UK</td>
-  </tr>
-  <tr>
-    <td>Laughing Bacchus Winecellars</td>
-    <td>Yoshi Tannamuri</td>
-    <td>Canada</td>
-  </tr>
-  <tr>
-    <td>Magazzini Alimentari Riuniti</td>
-    <td>Giovanni Rovelli</td>
-    <td>Italy</td>
-  </tr>
-</table>
-        </div>
-        <hr style="width: 90%">
-        <div class="mutual-normaltitle">
-        		&#9824; liên hệ trực tiếp từng quản trị viên &#9824;
-        </div> 
-        <div class="mutual-content" style="margin-left: 150px; margin-bottom: 20px; height: 1000px;">  
-        	<div style="margin-top: 30px">
-                <div style="float:left"> <img src="IMG/contact/sniper.png"> </div>
-                <div style="float:left; margin-left: 50px; margin-right: 300px;">
-                    <p style="font-weight:bold; font-size: 24px"> LÊ ĐỨC HUY </p>
-                    <p> <span style="font-weight: bold"> Số đt: </span> 0122 460 3639 </p>
-                    <p> <span style="font-weight: bold"> Mail: </span> admiralnaruki1998@gmail.com </p>
-                    <p> <span style="font-weight: bold"> Facebook: </span> fb.com/suzuki.huy </p>   
-                </div> 
-            </div> 
-            <hr style="width: 40%">
-        	<div style="margin-top: 30px">
-                <div style="float:left"> <img src="IMG/contact/engineer.png"> </div>
-                <div style="float:left; margin-left: 100px; margin-right: 300px;">
-                    <p style="font-weight:bold; font-size: 24px"> NGUYỄN VĨNH THANH CHƯƠNG </p>
-                    <p> <span style="font-weight: bold"> Số đt: </span> 0124 362 3524 </p>
-                    <p> <span style="font-weight: bold"> Mail: </span> nvtc.98@gmail.com </p>
-                    <p> <span style="font-weight: bold"> Facebook: </span> fb.com/chuong.thanh.98 </p>   
-                </div> 
-            </div>  
-            <hr style="width: 40%">    
-        	<div style="margin-top: 30px">
-                <div style="float:left"> <img src="IMG/contact/rifle.png"> </div>
-                <div style="float:left; margin-left: 100px; margin-right: 300px;">
-                    <p style="font-weight:bold; font-size: 24px"> ĐÀO HOÀN VŨ </p>
-                    <p> <span style="font-weight: bold"> Số đt: </span> 0123 456 7890 </p>
-                    <p> <span style="font-weight: bold"> Mail: </span> yuiastin@gmail.com </p>
-                    <p> <span style="font-weight: bold"> Facebook: </span> fb.com/yashiro12 </p>   
-                </div> 
-            </div>   
-            <hr style="width: 40%">        
-        	<div style="margin-top: 30px">
-                <div style="float:left"> <img src="IMG/contact/medic.png"> </div>
-                <div style="float:left; margin-left: 50px; margin-right: 300px;">
-                    <p style="font-weight:bold; font-size: 24px"> VÕ TRỌNG TRUNG </p>
-                    <p> <span style="font-weight: bold"> Số đt: </span> 0908 076 543 </p>
-                    <p> <span style="font-weight: bold"> Mail: </span> votrungtrung@gmail.com </p>
-                    <p> <span style="font-weight: bold"> Facebook: </span> fb.com/profile.php?id=100009365010067 </p>   
-                </div> 
-            </div>           
-		</div>            
+        </div>       
     </div>        
 	<?php
 		include("back-to-top.php");

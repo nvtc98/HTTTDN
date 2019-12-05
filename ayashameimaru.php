@@ -156,23 +156,7 @@
 			<input type="button" id="addp" style="display:none" value="Thêm sản phẩm" onClick="addproduct()">
 			<div id="plim"></div>
 		</td></tr>
-		';
-		//echo"<tr><td>Total:</td><td><input type='text' name='Total' value='".$row['Total']."'/> VND</td></tr>";
-		echo'<tr><td>Order Status:</td><td>
-		<select name="Ostatus" id="Ostatus">
-			<option ';
-			if($row['Ostatus'] == "Chưa thanh toán")
-				echo "selected";
-			echo ">Chưa thanh toán</option>
-			<option ";
-			if($row['Ostatus'] == "Đang xử lý")
-				echo "selected";
-			echo ">Đang xử lý</option>
-			<option ";
-			if($row['Ostatus'] == "Hoàn thành")
-				echo "selected";
-			echo ">Hoàn thành</option>
-		</select></td></tr>";		
+		';	
 	}
 	}
 	echo '<tr><td> </td> <td><input type="submit" value ="Submit"/><input type="button" onclick="closeNav()" value="cancel"/></td></tr>
