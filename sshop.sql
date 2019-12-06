@@ -3,12 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2019 at 04:02 AM
+-- Generation Time: Dec 06, 2019 at 04:57 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
-
-CREATE DATABASE IF NOT EXISTS `sshop` CHARACTER SET utf8 COLLATE utf8_general_ci;
-use `sshop`;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +22,25 @@ SET time_zone = "+00:00";
 -- Database: `sshop`
 --
 
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `admini`
+--
+
+CREATE TABLE `admini` (
+  `name` varchar(30) NOT NULL,
+  `passwd` varchar(17) NOT NULL,
+  `permit` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `admini`
+--
+
+INSERT INTO `admini` (`name`, `passwd`, `permit`) VALUES
+('admin', 'rot', 0),
+('moderator', 'rat', 1);
 
 -- --------------------------------------------------------
 
@@ -148,14 +163,15 @@ CREATE TABLE `customera` (
 
 INSERT INTO `customera` (`Cid`, `Cmail`, `Cpasswd`, `Balance`, `Cname`, `Cphone`, `Cbirthdate`, `Cgender`, `UserTypeid`, `TCharged`, `banned`, `footnote`) VALUES
 (1, 'votrongtrung', 'ax', 1e18, 'Võ Trọng Trung', '09841134890', '1996-02-29', 'Nam', 2, 4294967295, 0, ''),
-(3, 'nvtc@root.com', 'fØÕsÕ§Ú', 1000000000, 'Thanh Chương', '0984113888', '1970-01-01', 'Nữ', 1, 4294967295, 0, 'gege'),
-(4, 'YuiAstin@root.com', '7©¦¦w«', 1000000000, 'Kizuna Haze', '0984113777', '1998-01-01', 'X', 1, 4294967295, 0, NULL),
-(5, 'NTSang@lecturers.com', 'bÎÇzÅ«Ö×¯ÔÇfÔÕ', 0, 'Sang', '0984113666', '1998-01-01', NULL, 1, 1000000000, 0, NULL),
-(7, 'FuQuang@BookStore.com', 'tàÙwé»àÙÎéÈ', 0, 'Nguyễn Phú Quang', '0984113444', '2018-03-31', 'X', 7, 1000000, 0, NULL),
+(3, 'nvtc@root.com', 'fØÕsÕ§Ú', 998790000, 'Thanh Chương', '0984113888', '1970-01-01', 'Nữ', 1, 4294967295, 0, 'gege'),
+(4, 'YuiAstin@root.com', '7©¦¦w«', 999540000, 'Kizuna Haze', '0984113777', '1998-01-01', 'X', 1, 4294967295, 1, 'a stupid and cocky student'),
+(5, 'NTSang@lecturers.com', 'bÎÇzÅ«Ö×¯ÔÇfÔÕ', 46500, 'Sang', '0984113666', '1998-01-01', '', 1, 1000000000, 0, ''),
+(7, 'FuQuang@BookStore.com', 'tàÙwé»àÙÎéÈ', 1000000, 'Nguyễn Phú Quang', '0984113444', '2018-03-31', 'X', 7, 1000000, 0, ''),
 (8, 'PTD@UO.com', 'eÆ¯s', 0, 'Phạm Thành Đạt', '0984113333', '2018-03-26', 'Nam', 6, 20000000, 0, NULL),
 (9, 'ndtd@yahoo.com', 'j±', 0, 'Nguyễn Đỗ Trung	Đức', '0984113222', '1998-01-22', 'Nam', 5, 50000000, 0, NULL),
 (10, 'ThuyHang98@gmail.com', 'r£¤¥½¦§Å¨', 0, 'Lê Thị Thúy Hằng', '0984113111', '1998-11-24', 'Nữ', 4, 100000000, 0, NULL),
-(10000, 'guest', 'fÍÂÛtËÙ}Ú', 0, 'guest', '099999999', '1998-01-01', 'X', 8, 0, 0, NULL);
+(10000, 'guest', 'fÍÂÛtËÙ}Ú', 0, 'guest', '099999999', '1998-01-01', 'X', 8, 0, 0, NULL),
+(10005, 'lvth98@gmail.com', 'W¦m¤', 0, 'Hiển', '0123456789', '2019-12-03', 'Nữ', 8, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -248,7 +264,7 @@ INSERT INTO `games` (`Gid`, `Gname`, `GGid`, `Nid`, `ESRB`, `description`, `Pric
 INSERT INTO `games` (`Gid`, `Gname`, `GGid`, `Nid`, `ESRB`, `description`, `Price`, `Rating`, `gimage`) VALUES
 (65, 'The American Dream', 3, 3, 'T', 'Samurai Punk presents The American Dream, a satirical virtual reality trip to a ‘brighter future’ where your everyday needs are solved with guns.\r\nIt is the 1950’s and a group of leading gun manufacturers have constructed a vast complex to guide the American Patriot towards a better and richer life. ', 100000, 8.7, 'Games\\Adventure\\The American Dream\\The American Dream_Banner.jpg??Games\\Adventure\\The American Dream\\The American Dream(1).jpg??Games\\Adventure\\The American Dream\\The American Dream(2).jpg??Games\\Adventure\\The American Dream\\The American Dream(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256710121/movie480.webm?t=1520894428'),
 (66, 'Badminton Kings VR', 7, 3, 'T', 'EARLY ACCESS TITLE: Expect glitches, and new content soon!\r\n\r\nBadminton Kings VR is aimed at realistic badminton games using virtual reality systems. \r\nIf you want to enjoy sports VR racket, badminton kings will be a choice without regret!\r\nfeatures\r\nVarious levels of artificial intelligence\r\nSimple UI and easy control to play\r\nVarious levels of artificial intelligence\r\nVariety of rackets from standard to funny style\r\nAdvanced AI divided by 5 difficulty levels\r\nApplied the basic rules of Badminton \r\nOptimized with a combination of live racket sports set and tracker', 165000, 9.3, 'Games\\Sport\\Badminton Kings VR\\Badminton Kings VR_Banner.jpg??Games\\Sport\\Badminton Kings VR\\Badminton Kings VR(1).jpg??Games\\Sport\\Badminton Kings VR\\Badminton Kings VR(2).jpg??Games\\Sport\\Badminton Kings VR\\Badminton Kings VR(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256708722/movie480.webm?t=1519174662'),
-(67, 'Beat the Blitz', 7, 5, 'M', 'Gatorade\'s The Beat is a free-to-play VR simulation designed to put your hydration to the test. Guided by former All-Pro quarterback Peyton Manning, you\'ll battle against the effects of dehydration as you dodge blitzers in our high energy throwing skills competition. \r\n\r\nTogether with Peyton, you\'ll also take a journey into the human body where you\'ll see, firsthand, how dehydration affects your performance, starting with the heart and brain. Then, you\'ll have a chance to set a new high in a challenge designed to make you sweat. \r\n\r\nBeat the Blitz is one of the first football sims to be used as a weapon for ball movement, giving you a realistic experience in the pocket. And you\'ll see how you stack up with a true-to-life hologram of Peyton by your side throughout.\r\n\r\nDo you think you can Beat the Blitz? Download and play today.', 0, 8.5, 'Games\\Sport\\Beat the Blitz\\Beat the Blitz_Banner.jpg??Games\\Sport\\Beat the Blitz\\Beat the Blitz(1).jpg??Games\\Sport\\Beat the Blitz\\Beat the Blitz(2).jpg??Games\\Sport\\Beat the Blitz\\Beat the Blitz(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256710302/movie480.webm?t=1519947542'),
+(67, 'Beat the Blitz', 7, 5, 'M', 'Gatorade', 10000, 8.5, 'GamesSportBeat the BlitzBeat the Blitz_Banner.jpg??GamesSportBeat the BlitzBeat the Blitz(1).jpg??GamesSportBeat the BlitzBeat the Blitz(2).jpg??GamesSportBeat the BlitzBeat the Blitz(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256710302/movie480.webm?t=1519947542'),
 (68, 'Galaxy Race', 7, 7, 'T', 'Galaxy Race is a VR sports game in which the player takes control of one of a handful original and colorful characters. Equipped with GraviDecks - a futuristic high tech hooverboards, the Graviators race against each other on various tracks somewhere in a galaxy.\r\nBeside beautiful sights, tracks also consist lots of pickups giving the player access to throwing discs, mines, shields, power boosts, accelerators etc. Collecting these bring the player one step closer to the victory.\r\n\r\nThis game encourages players to use their motion in a fluid way. A right mixture of body balance and cunning will be essential. Our original and very attractive “GraviMotion” steering system is a completely new and smooth way to control your avatar in virtual reality.\r\n\r\nMagicVR is working day and night on a new content, so keep your eyes on upcoming updates. Multiplayer and tournaments are main goals. There will also be more maps, weapons and heroes. Be fast, be first!', 165000, 10, 'Games\\Sport\\Galaxy Race\\Galaxy Race_Banner.jpg??Games\\Sport\\Galaxy Race\\Galaxy Race(1).jpg??Games\\Sport\\Galaxy Race\\Galaxy Race(2).jpg??Games\\Sport\\Galaxy Race\\Galaxy Race(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256710688/movie480.webm?t=1520352563'),
 (69, 'PingPong Kings VR', 7, 9, 'T', '\r\nPingPong Kings VR is aimed at the table Tennis games using virtual reality systems. \r\nIf you want to enjoy sports VR racket, PingPong kings will be a choice without regret!\r\nFeatures\r\n\r\n- Various levels of artificial intelligence \r\n- Simple UI and easy control to play \r\n- Various levels of artificial intelligence \r\n- Variety of rackets from standard to funny style \r\n- Advanced AI divided by 5 difficulty levels \r\n- Applied the basic rules of Table Tennis \r\n- Optimized with combination of vivid racket sports set and tracker \r\n\r\nRealistic physics, immersive sound, and fluid animation make you feel like you\'re really in the short PingPong. \r\nWith physics designed to be a reality in a PingPong simulator, you will be in VR environment.\r\nHow to play\r\n\r\nTennis table, also known as ping pong, is a sport in which two or four players hit a lightweight ball back and forth across a table using small bats. The game takes place on a hard table by a net. Except for the first time, the rules of the game must be allowed to be dealt with on their side of the table, and must be kept in check. A point is scored when a player fails to return the ball within the rules. Play is fast and demands quick reactions. Spinning the ball and its opponent\'s options, giving the hitter a great advantage.', 165000, 8.6, 'Games\\Sport\\PingPong Kings VR\\PingPong Kings VR_Banner.jpg??Games\\Sport\\PingPong Kings VR\\PingPong Kings VR(1).jpg??Games\\Sport\\PingPong Kings VR\\PingPong Kings VR(2).jpg??Games\\Sport\\PingPong Kings VR\\PingPong Kings VR(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256708714/movie480.webm?t=1519174534'),
 (70, 'Squash Kings VR', 7, 8, 'T', 'EARLY ACCESS TITLE: Expect glitches, and new content soon!\r\nSquash Kings VR is aimed at realistic squash games using virtual reality systems. \r\nIf you want to enjoy sports VR racket, Squash kings will be a choice without regret!\r\nFeatures\r\nVarious levels of artificial intelligence\r\nSimple UI and easy control to play\r\nVarious levels of artificial intelligence\r\nVariety of rackets from standard to funny style\r\nAdvanced AI divided by 5 difficulty levels\r\nApplied the basic rules of squash \r\nOptimized with a combination of live racket sports set and tracker\r\n\r\nRealistic physics, immersive sound, and fluid animation make you feel like you\'re really in the squash court. \r\nWith physics designed to be a reality in a squash simulator, you will be in VR environment.\r\nHow to play\r\nSquash is a sport ball played by two players in a four-walled court with a small, hollow rubber ball. \r\nThe players must alternate in the ball with their racket and hit the ball on the playable surfaces of the four walls of the court.\r\n', 165000, 8.7, 'Games\\Sport\\Squash Kings VR\\Squash Kings VR_Banner.jpg??Games\\Sport\\Squash Kings VR\\Squash Kings VR(1).jpg??Games\\Sport\\Squash Kings VR\\Squash Kings VR(2).jpg??Games\\Sport\\Squash Kings VR\\Squash Kings VR(3).jpg??http://cdn.akamai.steamstatic.com/steam/apps/256708014/movie480.webm?t=1517892859'),
@@ -290,6 +306,36 @@ CREATE TABLE `gkeys` (
   `Oid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `gkeys`
+--
+
+INSERT INTO `gkeys` (`Gkey`, `Gid`, `Oid`) VALUES
+('1KAK0ltBe0acb6u', 6, 18),
+('3dP9mv21DO9I2yN', 67, 19),
+('7nZODir2KH2M7mk', 6, 18),
+('bcbWogJkRuJiHAC', 70, 18),
+('BggTxc8sjJDLe6y', 24, 23),
+('CDcKC4eZT32vMVC', 66, 17),
+('CfmQSO5QYpjHQ0v', 21, 28),
+('fyyjd7O7Y9541Sj', 20, 28),
+('Hla9PMRkzW44EEs', 21, 28),
+('iCwclTctfFXNoxX', 6, 18),
+('KmZrONn3JwWzvE1', 14, 27),
+('LMLaYkUYBmAy9LU', 20, 28),
+('opeGnh7Vv378oc2', 70, 18),
+('pIu4jFE5jHCt7Xn', 56, 28),
+('Q0BSDT437oDKDp2', 71, 22),
+('qAGnwDMuSaBbKpC', 6, 27),
+('qfGoG17N6Taplth', 66, 17),
+('sCM6sPJH5LeAH0I', 24, 28),
+('tv9Z59DX6A6yWM1', 71, 24),
+('uim3Pc0f4PNrvaK', 1, 25),
+('vmIYElmQIGswBXb', 24, 23),
+('YSv5nnM5ud06y3a', 6, 27),
+('yWqpLDe9SrKPnUZ', 1, 25),
+('ZYCZTksFhB8bsOW', 1, 25);
+
 -- --------------------------------------------------------
 
 --
@@ -330,6 +376,26 @@ CREATE TABLE `odetail` (
   `Price` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `odetail`
+--
+
+INSERT INTO `odetail` (`Oid`, `Gid`, `Amount`, `Price`) VALUES
+(17, 66, 2, 165000),
+(18, 6, 3, 30000),
+(18, 70, 2, 165000),
+(19, 67, 1, 0),
+(22, 71, 1, 92500),
+(23, 24, 2, 80000),
+(24, 71, 1, 92500),
+(25, 1, 3, 120000),
+(27, 6, 2, 20000),
+(27, 14, 1, 33500),
+(28, 20, 2, 80000),
+(28, 21, 2, 99000),
+(28, 24, 1, 40000),
+(28, 56, 1, 40000);
+
 -- --------------------------------------------------------
 
 --
@@ -342,6 +408,22 @@ CREATE TABLE `orders` (
   `Odate` datetime DEFAULT NULL,
   `Total` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`Oid`, `Cid`, `Odate`, `Total`) VALUES
+(16, 3, '2019-12-05 08:57:49', 92500),
+(17, 3, '2019-12-05 08:58:32', 165000),
+(18, 4, '2019-12-05 09:00:18', 195000),
+(19, 4, '2019-12-05 09:00:42', 0),
+(22, 4, '2019-12-06 07:13:39', 92500),
+(23, 4, '2019-12-06 07:13:54', 80000),
+(24, 4, '2019-12-06 08:43:21', 92500),
+(25, 3, '2019-12-06 08:48:30', 120000),
+(27, 5, '2019-12-06 09:07:40', 53500),
+(28, 3, '2019-12-06 09:17:58', 259000);
 
 -- --------------------------------------------------------
 
@@ -369,26 +451,7 @@ INSERT INTO `usertype` (`UserTypeid`, `UserTypename`, `Thershold`, `TypeDiscount
 (6, 'Steel', 20000000, 5),
 (7, 'Member', 1000000, 1),
 (8, 'Guest', 0, 0);
--- --------------------------------------------------------
 
---
--- Table structure for table `admini`
---
-
-CREATE TABLE `admini` (
-  `name` varchar(30) NOT NULL,
-  `passwd` varchar(17) NOT NULL,
-  `permit` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `admini`
---
-
-INSERT INTO `admini` (`name`, `passwd`, `permit`) VALUES
-('admin', 'rot', 0),
-('moderator', 'rat', 1),
-('uncleyuigone', 'embracearesvn', 2);
 --
 -- Indexes for dumped tables
 --
@@ -470,7 +533,7 @@ ALTER TABLE `usertype`
 -- AUTO_INCREMENT for table `customera`
 --
 ALTER TABLE `customera`
-  MODIFY `Cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10005;
+  MODIFY `Cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10006;
 
 --
 -- AUTO_INCREMENT for table `games`
@@ -494,7 +557,7 @@ ALTER TABLE `ncc`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `Oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `Oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `usertype`
@@ -529,7 +592,8 @@ ALTER TABLE `games`
 -- Constraints for table `gkeys`
 --
 ALTER TABLE `gkeys`
-  ADD CONSTRAINT `FKGKs` FOREIGN KEY (`Gid`) REFERENCES `games` (`Gid`);
+  ADD CONSTRAINT `FKGKs` FOREIGN KEY (`Gid`) REFERENCES `games` (`Gid`),
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`Oid`) REFERENCES `orders` (`Oid`);
 
 --
 -- Constraints for table `odetail`
@@ -542,8 +606,7 @@ ALTER TABLE `odetail`
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`Cid`) REFERENCES `customera` (`Cid`),
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`Oid`) REFERENCES `gkeys` (`Oid`);
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`Cid`) REFERENCES `customera` (`Cid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
